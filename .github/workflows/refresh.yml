@@ -58,10 +58,26 @@ jobs:
           if not p.exists():
               sys.exit("no data file produced")
           d = json.loads(p.read_text())
-          n = d["counts"]["leads"] + d["counts"]["calls"]
-          print(f"{n} records ({d['counts']})")
-          if n == 0:
-              sys.exit("empty result set — check whether CORDIS URLs moved")
+          c = d["counts"]
+          print(f"counts: {c}")
+
+          # Check each layer separately. Summing them lets a healthy layer mask a
+          # dead one indefinitely — 223 CORDIS leads hid a totally broken SEDIA
+          # fetch, which is how this went unnoticed in the first place.
+          #
+          # Warn rather than exit: this step gates the commit below, so failing
+          # here would also discard the layers that did work.
+          for layer, hint in [
+              ("leads",  "CORDIS bulk CSV — check whether the URLs moved"),
+              ("calls",  "SEDIA search API — see pipeline/README.md"),
+              ("people", "roster in data/people.json"),
+          ]:
+              if c.get(layer, 0) == 0:
+                  print(f"::warning::{layer} layer returned 0 — {hint}")
+
+          # Only a total wipeout is worth blocking the commit for.
+          if sum(c.get(k, 0) for k in ("leads", "calls", "people")) == 0:
+              sys.exit("empty result set — every layer returned nothing")
           PY
 
       - name: Commit if changed
