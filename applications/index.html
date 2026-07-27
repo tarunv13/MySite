@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>EU funding targets — application dossier</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+img,svg{display:block;max-width:100%}
+ul{list-style:none;padding:0}
+table{border-collapse:collapse}
+a{color:inherit}
+</style>
+<style>
+  :root {
+    --ground:   #F1F3F0;
+    --surface:  #FBFCFA;
+    --raised:   #E7EBE7;
+    --ink:      #161C1B;
+    --muted:    #5E6B66;
+    --hair:     #CBD3CE;
+    --accent:   #1F4E46;
+    --go:       #2F6B43;
+    --outreach: #2E5878;
+    --excluded: #93452E;
+    --shadow:   rgba(22, 40, 36, .07);
+
+    --f-display: ui-serif, Georgia, "Times New Roman", serif;
+    --f-body:    system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --f-data:    ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+
+    --measure: 68ch;
+    --pad: clamp(1.1rem, 4vw, 3rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:   #0F1514;
+      --surface:  #161E1C;
+      --raised:   #1E2825;
+      --ink:      #E3E8E4;
+      --muted:    #97A49E;
+      --hair:     #2C3936;
+      --accent:   #5BA396;
+      --go:       #6DB37E;
+      --outreach: #7BA6CC;
+      --excluded: #D08466;
+      --shadow:   rgba(0, 0, 0, .4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:   #0F1514;
+    --surface:  #161E1C;
+    --raised:   #1E2825;
+    --ink:      #E3E8E4;
+    --muted:    #97A49E;
+    --hair:     #2C3936;
+    --accent:   #5BA396;
+    --go:       #6DB37E;
+    --outreach: #7BA6CC;
+    --excluded: #D08466;
+    --shadow:   rgba(0, 0, 0, .4);
+  }
+  :root[data-theme="light"] {
+    --ground:   #F1F3F0;
+    --surface:  #FBFCFA;
+    --raised:   #E7EBE7;
+    --ink:      #161C1B;
+    --muted:    #5E6B66;
+    --hair:     #CBD3CE;
+    --accent:   #1F4E46;
+    --go:       #2F6B43;
+    --outreach: #2E5878;
+    --excluded: #93452E;
+    --shadow:   rgba(22, 40, 36, .07);
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: var(--pad);
+    display: flex;
+    flex-direction: column;
+    gap: 3.25rem;
+  }
+
+  h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; line-height: 1.15; font-weight: 600; }
+  h1 { font-size: clamp(1.9rem, 4.4vw, 2.9rem); letter-spacing: -.015em; }
+  h2 { font-size: clamp(1.35rem, 2.6vw, 1.7rem); letter-spacing: -.01em; }
+  p  { max-width: var(--measure); }
+  a  { color: var(--accent); text-underline-offset: .18em; }
+  a:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px;
+  }
+
+  .eyebrow {
+    font-family: var(--f-data);
+    font-size: .7rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .mast { display: flex; flex-direction: column; gap: .9rem; }
+  .mast > p { color: var(--muted); font-size: 1.05rem; }
+  .provenance {
+    font-family: var(--f-data);
+    font-size: .76rem;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: .45rem 1.4rem;
+    padding-top: .9rem;
+    border-top: 1px solid var(--hair);
+  }
+  .provenance b { color: var(--ink); font-weight: 600; }
+
+  .gaps {
+    background: var(--surface);
+    border: 1px solid var(--hair);
+    border-left: 3px solid var(--excluded);
+    padding: clamp(1.1rem, 3vw, 1.9rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .gaps h2 { font-size: 1.2rem; }
+  .gap-list { display: flex; flex-direction: column; gap: 1rem; list-style: none; }
+  .gap-list li { display: flex; flex-direction: column; gap: .2rem; }
+  .gap-list b { font-family: var(--f-data); font-size: .78rem; letter-spacing: .04em; color: var(--excluded); text-transform: uppercase; }
+  .gap-list span { color: var(--muted); max-width: var(--measure); font-size: .95rem; }
+
+  .routes { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .route {
+    background: var(--surface);
+    border: 1px solid var(--hair);
+    padding: 1.2rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    box-shadow: 0 1px 2px var(--shadow);
+  }
+  .route .count {
+    font-family: var(--f-data);
+    font-size: 2.3rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    font-weight: 600;
+  }
+  .route h3 { font-family: var(--f-body); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; }
+  .route p { font-size: .9rem; color: var(--muted); }
+  .route.go  { border-top: 3px solid var(--go); }
+  .route.go .count, .route.go h3 { color: var(--go); }
+  .route.out { border-top: 3px solid var(--outreach); }
+  .route.out .count, .route.out h3 { color: var(--outreach); }
+  .route.no  { border-top: 3px solid var(--excluded); }
+  .route.no .count, .route.no h3 { color: var(--excluded); }
+
+  /* ── project entries ──────────────────────────────────── */
+  .entries { display: flex; flex-direction: column; gap: 1.25rem; }
+  .entry {
+    background: var(--surface);
+    border: 1px solid var(--hair);
+    border-left: 3px solid var(--outreach);
+    padding: clamp(1rem, 2.6vw, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: .85rem;
+  }
+  .entry.dn { border-left-color: var(--go); }
+  .entry-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem .85rem; }
+  .entry-head .acr {
+    font-family: var(--f-data);
+    font-size: 1.12rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+  }
+  .entry-head .scheme {
+    font-family: var(--f-data);
+    font-size: .7rem;
+    letter-spacing: .07em;
+    color: var(--muted);
+    border: 1px solid var(--hair);
+    padding: .1rem .4rem;
+  }
+  .entry-head .fitbadge {
+    font-family: var(--f-data);
+    font-size: .7rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .07em;
+    color: var(--accent);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .entry .desc { font-size: .96rem; }
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: .7rem 1.3rem;
+    padding: .85rem 0;
+    border-top: 1px solid var(--hair);
+    border-bottom: 1px solid var(--hair);
+  }
+  .meta div { display: flex; flex-direction: column; gap: .12rem; }
+  .meta dt, .meta .k {
+    font-family: var(--f-data);
+    font-size: .64rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .meta .v { font-size: .89rem; font-variant-numeric: tabular-nums; }
+  .meta .v.mono { font-family: var(--f-data); font-size: .84rem; }
+
+  .apply { display: flex; flex-direction: column; gap: .45rem; }
+  .apply .k {
+    font-family: var(--f-data);
+    font-size: .66rem;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .apply p { font-size: .93rem; margin: 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: .25rem; }
+  .tag {
+    font-family: var(--f-data);
+    font-size: .63rem;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--hair);
+    padding: .07rem .34rem;
+    white-space: nowrap;
+  }
+  .tag.core { color: var(--accent); border-color: var(--accent); }
+
+  section { display: flex; flex-direction: column; gap: 1.1rem; }
+  section > p { color: var(--muted); }
+
+  .flag {
+    background: var(--raised);
+    border-left: 3px solid var(--accent);
+    padding: .9rem 1.1rem;
+    font-size: .92rem;
+  }
+  .flag p + p { margin-top: .55rem; }
+
+  .scroll { overflow-x: auto; border: 1px solid var(--hair); background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: .86rem; min-width: 38rem; }
+  th, td { padding: .6rem .8rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--hair); }
+  thead th {
+    font-family: var(--f-data); font-size: .66rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--muted); background: var(--raised); white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.mono { font-family: var(--f-data); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  details { border: 1px solid var(--hair); background: var(--surface); padding: .8rem 1.1rem; }
+  summary { cursor: pointer; font-family: var(--f-data); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+  details[open] summary { margin-bottom: .8rem; }
+  details ul { margin-left: 1.1rem; display: flex; flex-direction: column; gap: .4rem; font-size: .92rem; }
+
+  footer { border-top: 1px solid var(--hair); padding-top: 1.4rem; color: var(--muted); font-size: .85rem; }
+  code { font-family: var(--f-data); font-size: .86em; background: var(--raised); padding: .08em .34em; }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="mast">
+    <span class="eyebrow">Application dossier · conservation culturomics</span>
+    <h1>EU funding targets, sorted by how you would actually approach them</h1>
+    <p>Every project below is a live EU grant whose abstract matches your research profile. What decides your next move is not the fit score — it is the funding scheme, because the three schemes recruit in completely different ways, and one of them cannot take you at all.</p>
+    <div class="provenance">
+      <span><b>Source</b> CORDIS bulk export</span>
+      <span><b>Snapshot</b> 27 Jul 2026</span>
+      <span><b>Projects</b> 223</span>
+      <span><b>Coordinator institution</b> 223/223</span>
+      <span><b>Named partners</b> 137/223</span>
+    </div>
+  </header>
+
+  <div class="gaps">
+    <h2>Three things this dossier cannot give you</h2>
+    <ul class="gap-list">
+      <li>
+        <b>No PI names</b>
+        <span>CORDIS does not publish principal investigator names in its bulk export — there is no such column in <code>project.csv</code> or <code>organization.csv</code>. Institutions are complete; the person is not. You get the name from the project's CORDIS page or the group's own site, one at a time.</span>
+      </li>
+      <li>
+        <b>No Erasmus, at all</b>
+        <span>Erasmus+ and Erasmus Mundus Joint Masters are a separate programme from Horizon Europe and appear nowhere in CORDIS — every one of the 223 records and every scheme code was searched, with zero matches. Erasmus Mundus catalogues live on the EACEA Joint Masters listing and the Erasmus+ Project Results platform, which are different sources needing their own fetcher.</span>
+      </li>
+      <li>
+        <b>No application deadlines</b>
+        <span>Deadlines belong to the calls layer, which is down — the SEDIA API has been answering <code>500</code> to every request since at least 27 Jul 2026. Everything here is a <em>grant</em> with a start and end date, not an <em>opening</em> with a closing date. Every date below is a project date; closing dates must come from the institution's own vacancy page.</span>
+      </li>
+    </ul>
+  </div>
+
+  <section>
+    <h2>The three routes</h2>
+    <p>This split is the most useful thing in the dossier, and your site does not currently make it. Roughly a quarter of the list cannot be applied to.</p>
+    <div class="routes">
+      <div class="route go">
+        <span class="count">9</span>
+        <h3>Doctoral networks</h3>
+        <p>MSCA-DN and Cofund. These recruit doctoral candidates through structured, advertised calls. The only entries here you formally <em>apply</em> to.</p>
+      </div>
+      <div class="route out">
+        <span class="count">162</span>
+        <h3>PI-held grants</h3>
+        <p>ERC, RIA, IA, CSA. Money is held, no PhD post is advertised. The move is cold outreach to the coordinating group before anything is posted.</p>
+      </div>
+      <div class="route no">
+        <span class="count">52</span>
+        <h3>Postdoc fellowships</h3>
+        <p>MSCA-PF-EF and PF-GF. These require a doctorate already in hand. Not applicable to you pre-PhD — discount them entirely.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Doctoral networks — the only formal applications</h2>
+    <p>Two of the nine are genuine. Both are worth watching closely, because unlike everything else in this dossier they will advertise named, funded doctoral positions.</p>
+
+    <div class="entries">
+
+      <article class="entry dn">
+        <div class="entry-head">
+          <span class="acr">HEALENAE</span>
+          <span class="scheme">HORIZON-TMA-MSCA-DN-JD</span>
+          <span class="fitbadge">fit 7</span>
+        </div>
+        <p class="desc">A cross-continental anthropological doctoral network on the entanglement of health and environment across Africa and Europe, built around the interlinkages that intensified after the last pandemic: vector-borne and zoonotic disease, rising temperatures, agricultural chemical intensification and pollution. It is a joint-doctorate network, meaning candidates are enrolled across more than one institution rather than at a single host.</p>
+        <div class="meta">
+          <div><span class="k">Runs</span><span class="v mono">2026-01-01 → 2029-12-31</span></div>
+          <div><span class="k">Coordinator</span><span class="v">Aarhus Universitet, DK</span></div>
+          <div><span class="k">Partners</span><span class="v mono">12</span></div>
+          <div><span class="k">EC contribution</span><span class="v mono">€4,658,684</span></div>
+        </div>
+        <div class="apply">
+          <span class="k">How to apply</span>
+          <p>The project is already six months underway, so recruitment is likely open now or very recently closed — this is the most time-sensitive entry in the dossier. Doctoral network posts are advertised on EURAXESS and on the coordinator's own vacancy pages, never through CORDIS. Check Aarhus first, then each of the 12 partners, since joint doctorates advertise per-host rather than centrally. The anthropological framing is the fit: your multilingual environmental discourse work maps onto it more naturally than a straight ecology profile would.</p>
+        </div>
+        <div class="tags"><span class="tag core">zoonotic</span><span class="tag">biodiv</span><span class="tag">media</span></div>
+      </article>
+
+      <article class="entry dn">
+        <div class="entry-head">
+          <span class="acr">RESDOC</span>
+          <span class="scheme">HORIZON-TMA-MSCA-Cofund-D</span>
+          <span class="fitbadge">fit 7</span>
+        </div>
+        <p class="desc">A doctoral training programme deliberately bridging life, natural and social sciences, addressing climate change, biodiversity loss, emerging infectious disease, antibiotic resistance and food and water systems as intertwined rather than separate problems. Cofund programmes run their own competitive intake with a dedicated selection round, so the application process is more formal and more predictable than a standard network.</p>
+        <div class="meta">
+          <div><span class="k">Runs</span><span class="v mono">2027-01-01 → 2031-12-31</span></div>
+          <div><span class="k">Coordinator</span><span class="v">Helsingin Yliopisto, FI</span></div>
+          <div><span class="k">Partners</span><span class="v mono">24</span></div>
+          <div><span class="k">EC contribution</span><span class="v mono">€4,752,000</span></div>
+        </div>
+        <div class="apply">
+          <span class="k">How to apply</span>
+          <p>Starts January 2027, so the first intake will be advertised in the second half of 2026 — that is the window you are currently in, and it is the single best-timed opportunity here. Cofund calls are published centrally by the coordinating university with a fixed deadline and a written research proposal, so prepare a project outline rather than a letter. Its explicit social-plus-natural-science bridge is unusually close to conservation culturomics, and Helsinki also coordinates BIOBANG below.</p>
+        </div>
+        <div class="tags"><span class="tag core">zoonotic</span><span class="tag">biodiv</span><span class="tag">media</span></div>
+      </article>
+
+      <article class="entry dn">
+        <div class="entry-head">
+          <span class="acr">BEYOND</span>
+          <span class="scheme">HORIZON-TMA-MSCA-DN</span>
+          <span class="fitbadge">fit 5</span>
+        </div>
+        <p class="desc">Trains water professionals to tackle European water quality under climate change and emerging contaminants, with an emphasis on systems approaches and operational tools for water management. Freshwater ecology rather than conservation culturomics — adjacent to your profile, not central to it.</p>
+        <div class="meta">
+          <div><span class="k">Runs</span><span class="v mono">2025-01-01 → 2028-12-31</span></div>
+          <div><span class="k">Coordinator</span><span class="v">Sveriges Lantbruksuniversitet, SE</span></div>
+          <div><span class="k">Partners</span><span class="v mono">36</span></div>
+          <div><span class="k">EC contribution</span><span class="v mono">€2,192,760</span></div>
+        </div>
+        <div class="apply">
+          <span class="k">How to apply</span>
+          <p>Running since January 2025, so its doctoral cohort is very likely already recruited — treat this as a fallback rather than a target. Worth a check across the 36 partners for replacement posts, which do come up in networks this size. Only pursue if you can honestly frame your data and discourse skills against water quality monitoring.</p>
+        </div>
+        <div class="tags"><span class="tag">biodiv</span><span class="tag">spatial</span></div>
+      </article>
+
+    </div>
+
+    <div class="flag">
+      <p><strong>Five of the nine are outright false positives</strong> and are listed below only so you do not waste time rediscovering them. Your scoring vocabulary treats "conservation" as a biodiversity word, so stained-glass restoration scores as well as freshwater ecology.</p>
+    </div>
+
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Project</th><th>Fit</th><th>What it actually is</th><th>Coordinator</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="mono">GLASS-CARE</td><td class="mono">6</td><td>Stained glass conservation — art, not biodiversity</td><td>Vrije Universiteit Brussel, BE</td></tr>
+          <tr><td class="mono">UNVEIL</td><td class="mono">6</td><td>Nondestructive analysis of historical artifacts — heritage science</td><td>CNRS, FR</td></tr>
+          <tr><td class="mono">T-RAFIC</td><td class="mono">5</td><td>Therapeutic immune cells in cancer — oncology</td><td>LMU München, DE</td></tr>
+          <tr><td class="mono">SOLSTIS</td><td class="mono">5</td><td>Organic photovoltaic indoor sensors — materials</td><td>CNRS, FR</td></tr>
+          <tr><td class="mono">NESTOR</td><td class="mono">5</td><td>High-speed optical networks — telecoms</td><td>Infinera, PT</td></tr>
+          <tr><td class="mono">HealthIntelAct</td><td class="mono">5</td><td>Health and care system performance — marginal, not conservation</td><td>Amsterdam UMC, NL</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Strongest matches — cold outreach</h2>
+    <p>Core-tag projects scoring 10 or above, postdoc fellowships excluded. No post is advertised for any of these; the approach is a letter to the group before anything is posted, which is the whole strategic point of the leads layer.</p>
+
+    <div class="entries">
+
+      <article class="entry">
+        <div class="entry-head">
+          <span class="acr">BIOBANG</span>
+          <span class="scheme">HORIZON-ERC</span>
+          <span class="fitbadge">fit 16 · strongest in set</span>
+        </div>
+        <p class="desc">Investigates how sociocultural and economic <em>indirect</em> drivers shape the direct drivers of biodiversity loss, arguing that societal values of nature and human behaviour are the underexamined layer beneath land-use change. It runs from big-data analytics through to gamification as a route to transformative change.</p>
+        <div class="meta">
+          <div><span class="k">Runs</span><span class="v mono">2025-05-01 → 2030-04-30</span></div>
+          <div><span class="k">Coordinator</span><span class="v">Helsingin Yliopisto, FI</span></div>
+          <div><span class="k">Partners</span><span class="v mono">0 — single host</span></div>
+          <div><span class="k">Runway</span><span class="v mono">3.8 years remaining</span></div>
+        </div>
+        <div class="apply">
+          <span class="k">How to apply</span>
+          <p>No advertised post — this is a cold letter to the ERC grant holder, and it is the one worth the most preparation in the entire dossier. Nearly four years of runway means a doctoral position started in 2027 fits comfortably inside the grant. With zero partners there is exactly one door: a single PI at Helsinki, no consortium to route around. Get the PI name from the CORDIS page first, and lead with the digital-trace-as-evidence question from your own site — it is the same argument this project is built on.</p>
+        </div>
+        <div class="tags"><span class="tag core">culturomics</span><span class="tag">language</span><span class="tag">media</span><span class="tag">biodiv</span><span class="tag">spatial</span></div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <span class="acr">ZOONOSIS</span>
+          <span class="scheme">HORIZON-ERC</span>
+          <span class="fitbadge">fit 12</span>
+        </div>
+        <p class="desc">Develops a "zoonotic anthropology" of China's Belt and Road Initiative, examining how roads, railways and ports create new contact zones between humans, animals and microbes and so amplify spillover risk. It is explicitly cross-cultural and infrastructural rather than epidemiological.</p>
+        <div class="meta">
+          <div><span class="k">Runs</span><span class="v mono">2026-09-01 → 2031-08-31</span></div>
+          <div><span class="k">Coordinator</span><span class="v">Universitetet i Tromsø, NO</span></div>
+          <div><span class="k">Partners</span><span class="v mono">0 — single host</span></div>
+          <div><span class="k">Runway</span><span class="v mono">starts in 5 weeks</span></div>
+        </div>
+        <div class="apply">
+          <span class="k">How to apply</span>
+          <p>The best-timed cold approach here: the grant starts in early September 2026, and the months just before and after a start date are when PIs are actually assembling teams. Write now rather than later. It touches wildlife trade, zoonotic spillover and multilingual discourse simultaneously — three of your stated axes in one project, which is rare. Again a single host with no partners, so the letter goes directly to Tromsø.</p>
+        </div>
+        <div class="tags"><span class="tag core">trade</span><span class="tag core">zoonotic</span><span class="tag">language</span></div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <span class="acr">PLANETARY EEL</span>
+          <span class="scheme">HORIZON-ERC-SYG</span>
+          <span class="fitbadge">fit 11</span>
+        </div>
+        <p class="desc">A political ontology of human–eel relations, treating the eel's resistance to domestication as a lens on reproduction of life on a damaged planet. The €4bn aquaculture industry depends on wild-caught juveniles, which puts illegal trade and overfishing at the centre rather than the margin.</p>
+        <div class="meta">
+          <div><span class="k">Runs</span><span class="v mono">2026-09-01 → 2032-08-31</span></div>
+          <div><span class="k">Coordinator</span><span class="v">Università di Bologna, IT</span></div>
+          <div><span class="k">Partners</span><span class="v mono">3</span></div>
+          <div><span class="k">Runway</span><span class="v mono">6 years, longest here</span></div>
+        </div>
+        <div class="apply">
+          <span class="k">How to apply</span>
+          <p>A Synergy Grant, so several PIs hold it jointly across four institutions — more doors than a standard ERC, and worth identifying which of the four is closest to trade rather than writing to all. Starting September 2026 with six years to run, it is the least time-pressured target in the dossier and the most patient one to build a relationship with. The wildlife trade angle is genuine here, not incidental.</p>
+        </div>
+        <div class="tags"><span class="tag core">trade</span><span class="tag">language</span><span class="tag">biodiv</span></div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <span class="acr">NextBON</span>
+          <span class="scheme">HORIZON-RIA</span>
+          <span class="fitbadge">fit 10</span>
+        </div>
+        <p class="desc">Builds the next generation biodiversity observation network, replacing fragmented and non-interoperable monitoring with a tiered blueprint that integrates genomics, remote sensing and data science. The consortium spans 22 institutions across 16 countries and is aimed squarely at EU Biodiversity Strategy and Kunming-Montréal reporting.</p>
+        <div class="meta">
+          <div><span class="k">Runs</span><span class="v mono">2026-10-01 → 2030-09-30</span></div>
+          <div><span class="k">Coordinator</span><span class="v">Københavns Universitet, DK</span></div>
+          <div><span class="k">Partners</span><span class="v mono">21</span></div>
+          <div><span class="k">Runway</span><span class="v mono">starts in 2 months</span></div>
+        </div>
+        <div class="apply">
+          <span class="k">How to apply</span>
+          <p>Large consortia hire in waves as work packages spin up, so a project starting October 2026 will be staffing through late 2026 and 2027. With 21 partners the coordinator is the wrong first contact — find the work package nearest data integration and write to that partner instead. Your computer science background is a stronger card here than at the anthropological projects.</p>
+        </div>
+        <div class="tags"><span class="tag core">culturomics</span><span class="tag">biodiv</span><span class="tag">spatial</span></div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <span class="acr">SPOON</span>
+          <span class="scheme">HORIZON-RIA</span>
+          <span class="fitbadge">fit 11</span>
+        </div>
+        <p class="desc">Participatory citizen research on sustainable nutrition, framing the food system — responsible for up to 37% of greenhouse emissions — as needing behavioural and policy change as much as technological. Citizen science and open participatory method are the core, which is where the culturomics overlap sits.</p>
+        <div class="meta">
+          <div><span class="k">Runs</span><span class="v mono">2024-12-01 → 2028-11-30</span></div>
+          <div><span class="k">Coordinator</span><span class="v">Collaborating Centre on Sustainable Consumption and Production, DE</span></div>
+          <div><span class="k">Partners</span><span class="v mono">15</span></div>
+          <div><span class="k">Runway</span><span class="v mono">2.3 years remaining</span></div>
+        </div>
+        <div class="apply">
+          <span class="k">How to apply</span>
+          <p>Under two and a half years left, which is too short to host a doctorate started from scratch — approach this for collaboration or a research assistant role, not a PhD position. The coordinator is a non-university research centre, so any doctoral registration would sit with one of the 15 academic partners rather than the coordinator itself.</p>
+        </div>
+        <div class="tags"><span class="tag core">culturomics</span><span class="tag">media</span><span class="tag">biodiv</span></div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <span class="acr">FORbEST</span>
+          <span class="scheme">HORIZON-RIA</span>
+          <span class="fitbadge">fit 10</span>
+        </div>
+        <p class="desc">Works on forest restoration and protection across five EU biogeographical regions plus one tropical non-EU region, connecting governance history to shared roadmaps for sustainable futures. The governance and practice emphasis makes it more social-scientific than most forestry work.</p>
+        <div class="meta">
+          <div><span class="k">Runs</span><span class="v mono">2025-05-01 → 2029-04-30</span></div>
+          <div><span class="k">Coordinator</span><span class="v">Oulun Yliopisto, FI</span></div>
+          <div><span class="k">Partners</span><span class="v mono">18</span></div>
+          <div><span class="k">Runway</span><span class="v mono">2.8 years remaining</span></div>
+        </div>
+        <div class="apply">
+          <span class="k">How to apply</span>
+          <p>Already running with under three years left — viable for a doctorate only if you start within roughly a year, so treat it as a 2027 target at the latest. The tropical non-EU region is the opening worth naming explicitly: your India-based fieldwork experience is directly relevant to a work package most European applicants cannot speak to.</p>
+        </div>
+        <div class="tags"><span class="tag core">culturomics</span><span class="tag">biodiv</span><span class="tag">spatial</span></div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <span class="acr">BLUE CONNECT</span>
+          <span class="scheme">HORIZON-IA</span>
+          <span class="fitbadge">fit 10</span>
+        </div>
+        <p class="desc">Co-develops marine protected area planning with MPA managers, authorities, industry and local communities across 12 demonstration sites, producing a blueprint for science-based conservation objectives. An Innovation Action, so weighted toward deployment and stakeholder practice rather than open research questions.</p>
+        <div class="meta">
+          <div><span class="k">Runs</span><span class="v mono">2024-09-01 → 2028-02-29</span></div>
+          <div><span class="k">Coordinator</span><span class="v">Submariner Network for Blue Growth, DE</span></div>
+          <div><span class="k">Partners</span><span class="v mono">26</span></div>
+          <div><span class="k">Runway</span><span class="v mono">1.6 years remaining</span></div>
+        </div>
+        <div class="apply">
+          <span class="k">How to apply</span>
+          <p>Ends February 2028 — too short for a doctorate, and Innovation Actions rarely host them regardless. Listed because 26 partners is a large network map: use it to identify marine conservation groups worth knowing, then approach those institutions about their <em>other</em> grants. Value here is the contact map, not the project.</p>
+        </div>
+        <div class="tags"><span class="tag core">culturomics</span><span class="tag">biodiv</span><span class="tag">spatial</span></div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <span class="acr">GENeCITY</span>
+          <span class="scheme">HORIZON-IA</span>
+          <span class="fitbadge">fit 10</span>
+        </div>
+        <p class="desc">Builds a federated, explainable digital twin framework for climate-neutral cities, combining retrieval-augmented generation, explainable forecasting and participatory backcasting to turn climate policy into locally adapted targets. Urban climate and AI methods rather than biodiversity — the weakest thematic fit of this group despite the score.</p>
+        <div class="meta">
+          <div><span class="k">Runs</span><span class="v mono">2026-06-01 → 2029-11-30</span></div>
+          <div><span class="k">Coordinator</span><span class="v">Maggioli SpA, IT</span></div>
+          <div><span class="k">Partners</span><span class="v mono">25</span></div>
+          <div><span class="k">Runway</span><span class="v mono">3.3 years remaining</span></div>
+        </div>
+        <div class="apply">
+          <span class="k">How to apply</span>
+          <p>Coordinated by a private company, so doctoral hosting would sit with an academic partner — start there, not with Maggioli. It scored on language and culturomics because of the AI and participatory methods, not because of conservation content. Pursue only if you want to lean toward the NLP and digital-methods side of your profile; on subject matter alone it is the least aligned entry in this section.</p>
+        </div>
+        <div class="tags"><span class="tag core">culturomics</span><span class="tag">language</span><span class="tag">spatial</span></div>
+      </article>
+
+    </div>
+
+    <div class="flag">
+      <p><strong>If you write only two letters, write them to Helsinki and Tromsø.</strong> BIOBANG scores 16 — more than triple the passing threshold and the highest in all 223 — and ZOONOSIS starts in five weeks, which is exactly when a PI is building a team. Both are single-host ERC grants: one PI, one door, no consortium politics.</p>
+      <p>Helsinki is worth a single coordinated approach rather than two separate ones, since it coordinates both BIOBANG and the RESDOC doctoral programme above.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>How much of the list is noise</h2>
+    <p>Worth knowing before you work through the full spreadsheet: 144 of 223 projects — 65 percent — sit at fit 5, the minimum threshold that lets a record through at all. The distribution is heavily bottom-weighted and the top is thin.</p>
+    <details>
+      <summary>Fit distribution, all 223</summary>
+      <ul>
+        <li><b>fit 5</b> — 144 projects (65%) · minimum passing score, expect false positives</li>
+        <li><b>fit 6–7</b> — 44 projects (20%) · read the abstract before deciding</li>
+        <li><b>fit 8–9</b> — 24 projects (11%) · generally genuine matches</li>
+        <li><b>fit 10+</b> — 11 projects (5%) · the real shortlist</li>
+        <li><b>fit 16</b> — BIOBANG alone, the strongest match in the entire set</li>
+      </ul>
+    </details>
+  </section>
+
+  <footer>
+    <p>Built by joining CORDIS <code>project.csv</code> with <code>organization.csv</code> from the Horizon and H2020 bulk exports, scored with the site's own <code>fetch.py</code> vocabulary so the set matches exactly. Project descriptions are condensed from each grant's published abstract. Institution data is recovered here but is <em>absent from the live site</em>, which reports empty PI and host fields for all 223 records. Recruitment timing reflects how these schemes generally operate, not dates published by CORDIS — confirm every one against the institution. Full data: <code>applications/cordis_targets.csv</code>.</p>
+  </footer>
+
+</div>
+</body>
+</html>
