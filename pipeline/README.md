@@ -22,6 +22,10 @@ So this pipeline goes to the sources the dashboard itself is built from.
 
 Both are public reads. Neither needs an EU Login or an API key you have to apply for.
 
+> **The calls layer is currently returning nothing.** SEDIA has been answering
+> `500` to every request shape since at least 2026-07-27, so the site shows
+> leads only. See [Known failure modes](#known-failure-modes).
+
 ## Run
 
 ```bash
@@ -42,9 +46,16 @@ Two safety behaviours worth knowing:
 
 - The previous JSON is backed up before each run and **restored if the fetch
   fails**, so a source outage leaves the site stale rather than empty.
-- A sanity check fails the run loudly if the result set is empty. A sudden
-  collapse in record count almost always means a source URL moved, not that
-  Europe stopped funding research.
+- A sanity check inspects **each layer separately** and prints a GitHub warning
+  annotation for any that returned zero. A sudden collapse in record count
+  almost always means a source URL moved, not that Europe stopped funding
+  research.
+
+The check warns per layer rather than failing, because it runs *before* the
+commit step — exiting there would also throw away the layers that did work.
+Only a total wipeout, every layer at zero, fails the run. This matters: summing
+the layers is what let a completely dead SEDIA fetch hide behind 223 healthy
+CORDIS leads for as long as it did. See **Known failure modes** below.
 
 ## Tuning it
 
@@ -78,6 +89,60 @@ That limitation is the strategy, not a gap in it. Working the leads layer —
 writing to a PI whose grant runs to 2030 before any post is advertised — is a
 better position than competing on listings everyone else can also see.
 
+## Known failure modes
+
+### The SEDIA calls layer is down (as of 2026-07-27)
+
+`counts.calls` is **0** and will stay there until this is fixed. The leads layer
+is unaffected. Two separate problems, stacked — fixing only the first gets you a
+different error, not calls.
+
+**1. The query is not URL-encoded.** `fetch_calls()` interpolates `query`
+straight into the URL:
+
+```python
+url = (f"{SEDIA}?apiKey={SEDIA_KEY}&text={query}" ...)
+```
+
+The default query contains spaces and quotes, so `urllib` raises
+`InvalidURL: URL can't contain control characters` and **no request is ever
+sent**. The bare `except` a few lines down catches it, logs `FAILED: ...
+continuing without calls layer`, and returns `[]`. Note `social.py` does call
+`quote()` on its query — this looks like an oversight rather than a decision.
+
+**2. The API returns HTTP 500 regardless.** With `quote(query)` applied the
+request goes out and the server answers:
+
+```json
+{"apiVersion":"2.148.3","type":"throwable","message":"An internal error occurred"}
+```
+
+Every request shape tried on 2026-07-27 returned this: the original
+type+status filter, wildcard `text=***`, no status filter, a single type,
+an empty `must` clause, and with `sortField` set to `title`, `sortStatus`,
+or omitted. A `GET` to the same URL returns `405 Method not allowed`, so the
+endpoint still exists and `POST` is still the right verb — something in the
+request contract changed on their side.
+
+**Do not fix this by guessing.** Blind probing established only what is above.
+The next useful step is opening the Funding & Tenders Portal search in a browser
+with devtools recording, and copying the request its own front end sends — this
+code was written against that front end's behaviour originally, and that is
+where the drift will show. Until then `--no-calls` skips the layer cleanly.
+
+### Bluesky returns 403 on every query
+
+`public.api.bsky.app`'s `app.bsky.feed.searchPosts` no longer serves
+unauthenticated requests — all 27 queries returned `HTTP 403 Forbidden` on
+2026-07-27. This one is *not* a bug in `social.py`, which encodes its query
+correctly; the endpoint's terms changed. Restoring it means authenticating with
+an app password and holding a session, which is why it has not simply been
+patched: it turns a keyless public read into a credentialed one, and
+`refresh.yml` currently has no secrets.
+
+Mastodon is unaffected and still carries the layer — 16 relevant posts from 184
+scanned on the same run. `social.py` is `continue-on-error` in the workflow, so
+neither failure blocks the refresh.
 
 ---
 
