@@ -1,0 +1,215 @@
+{
+  "_README": "Coordinates are approximate institution centroids, hand-entered. THE ranks are 2026 edition where I could verify them; 'unverified' means I could not, and the SVS annexure governs anyway — never trust a rank here for an eligibility decision.",
+
+  "countries": {
+    "Finland": {
+      "model": "salaried",
+      "post_study": "Residence permit for job-seeking after graduation; doctoral researchers are employees throughout",
+      "quota": "None. No home/international fee split.",
+      "outlook": "Stable. EU member, strong research funding, active ERC presence in your exact field.",
+      "risk": "low",
+      "note": "The four Digital Geography Lab grants make this the densest cluster for your work anywhere.",
+      "confidence": "high"
+    },
+    "Norway": {
+      "model": "salaried",
+      "post_study": "Doctoral positions are full employment contracts with pension and sick leave",
+      "quota": "None.",
+      "outlook": "Stable and well funded. Not in the EU but in the EEA, and associated to Horizon Europe.",
+      "risk": "low",
+      "note": "Salaries are high relative to cost of living. Tromsø is Arctic — factor the darkness honestly.",
+      "confidence": "high"
+    },
+    "Sweden": {
+      "model": "salaried",
+      "post_study": "Doctoral employment; permit rules for post-completion work have tightened in recent years",
+      "quota": "None.",
+      "outlook": "Stable. SLU is a world centre for forest and wildlife science.",
+      "risk": "low",
+      "note": "Verify current post-doctoral residence rules — Sweden has changed these more than its neighbours.",
+      "confidence": "medium"
+    },
+    "Netherlands": {
+      "model": "salaried",
+      "post_study": "Orientation year (zoekjaar) for graduates and researchers",
+      "quota": "None.",
+      "outlook": "Stable, though there is ongoing political pressure to reduce international student numbers.",
+      "risk": "low",
+      "note": "Wageningen is the strongest nature-and-food-systems institution in Europe.",
+      "confidence": "medium"
+    },
+    "Italy": {
+      "model": "salaried",
+      "post_study": "Doctoral scholarships (borse di dottorato); ERC-funded posts are contracts",
+      "quota": "None.",
+      "outlook": "ERC funding is strong; national funding is thinner. Follow the grant, not the institution.",
+      "risk": "low",
+      "note": "Two large Synergy grants relevant to you are hosted here.",
+      "confidence": "medium"
+    },
+    "United Kingdom": {
+      "model": "mixed",
+      "post_study": "Graduate Route: 18 months if applying from 1 Jan 2027; 3 years for doctoral graduates",
+      "quota": "UKRI caps international students at ~30% of each doctoral training programme, and funds fees at the Home rate only.",
+      "outlook": "Under real strain. THE reports UK universities in the global top 500 fell below 50 for the first time, with twelve at their lowest-ever positions amid a sector funding crisis.",
+      "risk": "medium",
+      "note": "ERC-funded posts hosted in the UK are hired by the PI and sit outside the UKRI cap. That is the way in.",
+      "confidence": "high"
+    },
+    "United States": {
+      "model": "assistantship",
+      "post_study": "OPT, then the H-1B lottery — which is a lottery, not a process you can plan around",
+      "quota": "None formally, but doctoral admission is departmental and highly competitive.",
+      "outlook": "Funding for doctoral students is usually good once admitted. Immigration policy has been volatile and should be treated as a live risk.",
+      "risk": "high",
+      "note": "December deadlines. Verify current visa conditions close to any application — this changes faster than any other item on this map.",
+      "confidence": "low"
+    },
+    "Germany": {
+      "model": "salaried",
+      "post_study": "18 months to seek work after graduation",
+      "quota": "None.",
+      "outlook": "Stable. Many doctoral posts are TV-L E13 public-sector contracts.",
+      "risk": "low",
+      "note": "Max Planck IMPRS programmes are fully funded and internationally open.",
+      "confidence": "medium"
+    },
+    "Australia": {
+      "model": "stipend",
+      "post_study": "Post-study work rights, historically around 2 years",
+      "quota": "RTP stipends are awarded internally by universities.",
+      "outlook": "Stable, but international student policy has been tightening.",
+      "risk": "medium",
+      "note": "UQ ranks far higher in QS than THE, so it is probably outside SVS eligibility. Funding would come via the university instead.",
+      "confidence": "low"
+    },
+    "France": {
+      "model": "salaried",
+      "post_study": "Doctoral contracts (contrat doctoral) are employment",
+      "quota": "None.",
+      "outlook": "Stable. CNRS hosts substantial ERC activity.",
+      "risk": "low",
+      "note": "",
+      "confidence": "medium"
+    },
+    "Switzerland": {
+      "model": "salaried",
+      "post_study": "Doctoral positions are employment; permits tied to the contract",
+      "quota": "None, but places are few and competitive.",
+      "outlook": "Very well funded. Association status with Horizon Europe has fluctuated — check current position.",
+      "risk": "low",
+      "note": "Swiss Government Excellence Scholarships require a supervisor's acceptance first.",
+      "confidence": "medium"
+    }
+  },
+
+  "institutions": [
+    { "name": "University of Helsinki", "country": "Finland", "lat": 60.1699, "lon": 24.9384,
+      "the": null, "the_note": "outside top 50", "kind": "roster",
+      "people": ["Enrico Di Minin", "Tuomo Hiippala", "Tuuli Toivonen"],
+      "dept": "Geosciences & Geography · Digital Geography Lab · HELSUS",
+      "why": "Three roster names, four live ERC grants, and your proposed RESDOC supervisor. The densest single point on this map for your work." },
+
+    { "name": "University of Turku", "country": "Finland", "lat": 60.4518, "lon": 22.2666,
+      "the": null, "the_note": "outside top 50", "kind": "roster",
+      "people": ["Ricardo A. Correia"],
+      "dept": "Department of Biology · Biodiversity Unit",
+      "why": "NATURETIME began June 2026. A team being assembled right now." },
+
+    { "name": "UiT The Arctic University of Norway", "country": "Norway", "lat": 69.6811, "lon": 18.9733,
+      "the": null, "the_note": "outside top 50", "kind": "roster",
+      "people": ["Richard Fraser"],
+      "dept": "Department of Social Sciences",
+      "why": "ZOONOSIS starts September 2026 — the only grant in the ERC record combining wildlife trade, spillover and multispecies relations." },
+
+    { "name": "University of Padua", "country": "Italy", "lat": 45.4064, "lon": 11.8768,
+      "the": null, "the_note": "outside top 50", "kind": "roster",
+      "people": ["Deborah Nadal"],
+      "dept": "Historical & Geographic Sciences · Anthropology",
+      "why": "INVANISH starts October 2026. Anthropologists, ecologists and citizen scientists on species redistribution. Her prior work is on human-animal relations in India." },
+
+    { "name": "University of Bologna", "country": "Italy", "lat": 44.4949, "lon": 11.3426,
+      "the": null, "the_note": "outside top 50", "kind": "roster",
+      "people": ["Marc Brightman"],
+      "dept": "Cultural Heritage · Environmental anthropology",
+      "why": "PLANETARY EEL, EUR 11.1M Synergy to 2032. Strongest more-than-human match in the record, but methodologically distant from your computational work." },
+
+    { "name": "King's College London", "country": "United Kingdom", "lat": 51.5115, "lon": -0.1160,
+      "the": null, "the_note": "verify", "kind": "roster",
+      "people": ["George Adamson"],
+      "dept": "Department of Geography · King's Water",
+      "why": "AdaptAIR, EUR 10.0M Synergy to 2032, on climate adaptation in Ladakh. ERC-funded posts sit outside the UKRI 30% cap." },
+
+    { "name": "University College London", "country": "United Kingdom", "lat": 51.5246, "lon": -0.1340,
+      "the": 22, "the_note": "verify against annexure", "kind": "roster",
+      "people": ["Kate Jones"],
+      "dept": "Genetics, Evolution & Environment · CBER",
+      "why": "One of very few people working on both biodiversity monitoring and zoonotic risk — the One Health co-supervision your Objective 2 declares it needs." },
+
+    { "name": "University of Cambridge", "country": "United Kingdom", "lat": 52.2043, "lon": 0.1149,
+      "the": 4, "the_note": "verified 2026 edition", "kind": "blocked",
+      "people": ["Chris Sandbrook", "William Sutherland"],
+      "dept": "Geography · Zoology · Cambridge Conservation Initiative",
+      "why": "BLOCKED on language: requires IELTS 7.5 overall with 7.0 per element. You hold 7.0 / 6.5." },
+
+    { "name": "University of Oxford", "country": "United Kingdom", "lat": 51.7548, "lon": -1.2544,
+      "the": 1, "the_note": "verified — 10th consecutive year at #1", "kind": "watch",
+      "people": [],
+      "dept": "School of Geography and the Environment",
+      "why": "Standard-tier courses require 7.0 overall / 6.5 each, which your bands clear exactly. Higher-tier courses do not. Check the tier per course page." },
+
+    { "name": "Imperial College London", "country": "United Kingdom", "lat": 51.4988, "lon": -0.1749,
+      "the": null, "the_note": "verify", "kind": "watch",
+      "people": ["Jesús Aguirre Gutiérrez"],
+      "dept": "Life Sciences · Silwood Park",
+      "why": "ADAPTA, EUR 3.0M ERC Consolidator to 2031, on tropical forest adaptation." },
+
+    { "name": "Massachusetts Institute of Technology", "country": "United States", "lat": 42.3601, "lon": -71.0942,
+      "the": 2, "the_note": "verified 2026 edition", "kind": "roster",
+      "people": ["Sara Beery", "Carlo Ratti"],
+      "dept": "EECS / CSAIL · Urban Studies & Planning / Senseable City Lab",
+      "why": "Your B.Tech is a genuine asset here. But Beery's work is image-focused rather than social, so the thematic fit is weaker than the ranking suggests." },
+
+    { "name": "Yale University", "country": "United States", "lat": 41.3163, "lon": -72.9223,
+      "the": null, "the_note": "verify", "kind": "roster",
+      "people": ["Walter Jetz"],
+      "dept": "Ecology & Evolutionary Biology · Center for Biodiversity and Global Change",
+      "why": "Map of Life is infrastructure your Objective 1 would use. His work on gaps in digital biodiversity coverage is your detection-effort problem restated." },
+
+    { "name": "Cornell University", "country": "United States", "lat": 42.4534, "lon": -76.4735,
+      "the": null, "the_note": "verify", "kind": "roster",
+      "people": ["Daniel Fink"],
+      "dept": "Cornell Lab of Ornithology · eBird",
+      "why": "eBird is the largest citizen-science conservation dataset in existence and the clearest real-world case of the detection-effort problem." },
+
+    { "name": "University of Michigan", "country": "United States", "lat": 42.2780, "lon": -83.7382,
+      "the": null, "the_note": "verify", "kind": "roster",
+      "people": ["Derek Van Berkel", "Neil Carter"],
+      "dept": "School for Environment and Sustainability",
+      "why": "Van Berkel publishes on geotagged social media for cultural ecosystem services. Carter works on tigers and coexistence — your WII and Ranthambhore work is legible to him without translation." },
+
+    { "name": "University of Queensland", "country": "Australia", "lat": -27.4975, "lon": 153.0137,
+      "the": null, "the_note": "likely outside top 50 in THE", "kind": "watch",
+      "people": ["Richard Fuller"],
+      "dept": "School of the Environment · CBCS",
+      "why": "Extinction of experience connects to your Objective 4. But UQ ranks far better in QS than THE, so SVS probably will not cover it." },
+
+    { "name": "Wageningen University", "country": "Netherlands", "lat": 51.9847, "lon": 5.6636,
+      "the": null, "the_note": "outside top 50", "kind": "watch",
+      "people": [],
+      "dept": "Environmental Sciences Group",
+      "why": "Strongest nature-and-food-systems institution in Europe. Salaried doctorates, no quota." },
+
+    { "name": "Swedish University of Agricultural Sciences (SLU)", "country": "Sweden", "lat": 59.8180, "lon": 17.6600,
+      "the": null, "the_note": "outside top 50", "kind": "watch",
+      "people": [],
+      "dept": "Wildlife, Fish and Environmental Studies",
+      "why": "Your WIFORCE application. Salaried, no tuition, no nationality quota." },
+
+    { "name": "ETH Zurich", "country": "Switzerland", "lat": 47.3763, "lon": 8.5476,
+      "the": null, "the_note": "verify — highest-ranked outside UK/US", "kind": "watch",
+      "people": [],
+      "dept": "Environmental Systems Science",
+      "why": "Salaried doctoral positions, very well funded. Requirements vary by department." }
+  ]
+}

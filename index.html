@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tarun Kumar Verma — conservation culturomics</title>
+<meta name="description" content="Conservation researcher working on digital traces of human pressure on biodiversity: illegal wildlife trade, multilingual environmental discourse, and the evaluation of nature media.">
+<meta property="og:title" content="Tarun Kumar Verma — conservation culturomics">
+<meta property="og:description" content="Digital traces of human pressure on biodiversity. Wildlife trade, multilingual discourse, nature media.">
+<meta property="og:type" content="profile">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16262B; --ink-2:#2C444D; --card:#E4E0D4; --paper:#EDEAE1;
+  --flag:#FF2E63; --lichen:#6E8257; --amber:#B0790F; --indigo:#24405E;
+  --rule:rgba(22,38,43,.15); --rule-2:rgba(22,38,43,.30);
+  --disp:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Newsreader",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+body{margin:0; background:var(--card); color:var(--ink); font:400 18px/1.62 var(--body)}
+.wrap{max-width:1000px; margin:0 auto; padding:0 26px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--flag); outline-offset:3px}
+
+/* skip link */
+.skip{position:absolute; left:-9999px; background:var(--ink); color:var(--card);
+  padding:10px 16px; font:500 12px/1 var(--mono); z-index:99}
+.skip:focus{left:12px; top:12px}
+
+/* ── nav ── */
+nav{position:sticky; top:0; z-index:20; background:var(--ink); color:var(--card)}
+nav .wrap{display:flex; align-items:center; gap:20px; padding-top:12px; padding-bottom:12px; flex-wrap:wrap}
+nav .id{font:600 12px/1 var(--mono); letter-spacing:.13em; text-transform:uppercase; margin-right:auto}
+nav a{font:400 11.5px/1 var(--mono); letter-spacing:.08em; text-decoration:none; opacity:.65}
+nav a:hover{opacity:1}
+
+/* ── hero ── */
+header.hero{background:var(--ink); color:var(--card); padding:56px 0 68px}
+.kicker{font:500 11px/1 var(--mono); letter-spacing:.26em; text-transform:uppercase;
+  color:var(--flag); margin:0 0 24px}
+header.hero h1{font:800 clamp(34px,6.2vw,68px)/0.98 var(--disp); letter-spacing:-.032em;
+  margin:0 0 22px; max-width:17ch}
+header.hero .lede{font:300 clamp(17px,2.1vw,23px)/1.52 var(--body); opacity:.82;
+  max-width:56ch; margin:0 0 30px}
+.who{font:400 13px/1.7 var(--mono); opacity:.55; margin:0}
+
+/* the signature: a detection grid where absence is the point */
+.grid-motif{display:grid; grid-template-columns:repeat(auto-fill,minmax(13px,1fr));
+  gap:5px; margin:38px 0 0; max-width:520px}
+.grid-motif i{display:block; height:13px; background:rgba(228,224,212,.16)}
+.grid-motif i.seen{background:var(--card); opacity:.85}
+.grid-motif i.gap{background:transparent; box-shadow:inset 0 0 0 1px var(--flag)}
+.motif-key{font:400 10.5px/1.7 var(--mono); opacity:.45; margin:12px 0 0; letter-spacing:.04em}
+
+/* ── sections ── */
+section{padding:66px 0 6px; border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0}
+.sec-k{font:500 10.5px/1 var(--mono); letter-spacing:.2em; text-transform:uppercase;
+  color:var(--flag); margin:0 0 16px}
+h2{font:600 clamp(25px,3.4vw,38px)/1.12 var(--disp); letter-spacing:-.026em; margin:0 0 18px; max-width:20ch}
+.intro{font:300 19.5px/1.55 var(--body); opacity:.78; max-width:62ch; margin:0 0 34px}
+p{margin:0 0 18px}
+
+/* ── objectives ── */
+.objs{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.obj{background:var(--paper); border:1px solid var(--rule); border-top:3px solid var(--lichen); padding:22px 22px 24px}
+.obj:nth-child(2){border-top-color:var(--indigo)}
+.obj:nth-child(3){border-top-color:var(--amber)}
+.obj:nth-child(4){border-top-color:var(--flag)}
+.obj .n{font:500 10px/1 var(--mono); letter-spacing:.16em; text-transform:uppercase;
+  opacity:.45; display:block; margin-bottom:11px}
+.obj h3{font:600 19px/1.22 var(--disp); letter-spacing:-.016em; margin:0 0 10px}
+.obj p{font:300 16px/1.52 var(--body); margin:0 0 12px; opacity:.85}
+.obj .m{font:400 11.5px/1.6 var(--mono); opacity:.6; margin:0; padding-top:11px; border-top:1px solid var(--rule)}
+
+/* ── evidence ── */
+.ev{display:grid; grid-template-columns:repeat(auto-fit,minmax(178px,1fr)); gap:0;
+  border:1px solid var(--rule-2); background:var(--paper)}
+.ev div{padding:22px 20px 24px; border-right:1px solid var(--rule)}
+.ev div:last-child{border-right:0}
+.ev b{display:block; font:800 clamp(26px,3.4vw,38px)/1 var(--disp); letter-spacing:-.032em; color:var(--ink)}
+.ev span{display:block; font:400 12px/1.55 var(--mono); opacity:.62; margin-top:9px}
+.roles{margin:30px 0 0; padding:0; list-style:none; max-width:66ch}
+.roles li{padding:13px 0; border-top:1px solid var(--rule); display:grid;
+  grid-template-columns:150px 1fr; gap:18px}
+.roles li:last-child{border-bottom:1px solid var(--rule)}
+.roles dt,.roles .org{font:500 11.5px/1.5 var(--mono); letter-spacing:.05em; opacity:.6}
+.roles .what{font:300 16.5px/1.5 var(--body)}
+
+/* ── stack ── */
+.tags{display:flex; flex-wrap:wrap; gap:7px; max-width:70ch}
+.tags span{font:400 12px/1 var(--mono); padding:7px 11px; background:var(--paper);
+  border:1px solid var(--rule)}
+
+/* ── calls / pipeline ── */
+.callnote{background:var(--paper); border-left:3px solid var(--indigo); padding:16px 20px;
+  font:300 16.5px/1.55 var(--body); max-width:64ch; margin:0 0 28px}
+.calls{display:grid; gap:14px}
+.call{background:var(--paper); border:1px solid var(--rule); padding:20px 22px 22px;
+  display:grid; grid-template-columns:1fr auto; gap:18px; align-items:start}
+.call.past{opacity:.44}
+.call h3{font:600 19px/1.22 var(--disp); letter-spacing:-.014em; margin:0 0 7px}
+.call h3 a{text-decoration:none; border-bottom:1px solid var(--rule-2)}
+.call h3 a:hover{border-bottom-color:var(--flag)}
+.call .meta{font:400 11.5px/1.6 var(--mono); opacity:.62; margin:0 0 9px}
+.call p.d{font:300 16px/1.5 var(--body); margin:0; opacity:.85; max-width:52ch}
+.cd{text-align:right; min-width:110px}
+.cd b{display:block; font:800 30px/1 var(--disp); letter-spacing:-.03em}
+.cd.soon b{color:var(--flag)}
+.cd.gone b{opacity:.4}
+.cd span{display:block; font:400 10px/1.5 var(--mono); letter-spacing:.1em;
+  text-transform:uppercase; opacity:.55; margin-top:7px}
+
+/* verification badges — the honest bit */
+.vb{display:inline-flex; align-items:center; gap:6px; font:500 9.5px/1 var(--mono);
+  letter-spacing:.12em; text-transform:uppercase; padding:5px 8px; margin-right:8px}
+.vb::before{content:""; width:6px; height:6px; flex:none}
+.vb.v{background:rgba(110,130,87,.16); color:#48592F}
+.vb.v::before{background:var(--lichen)}
+.vb.s{background:rgba(176,121,15,.16); color:#7A520A}
+.vb.s::before{background:var(--amber)}
+.vb.u{background:rgba(22,38,43,.09); color:var(--ink-2)}
+.vb.u::before{background:var(--ink-2); opacity:.5}
+
+/* links out */
+.outs{display:grid; gap:0; margin-top:34px; border-top:1px solid var(--rule-2)}
+.out{display:grid; grid-template-columns:180px 1fr auto; gap:20px; padding:15px 0;
+  border-bottom:1px solid var(--rule); text-decoration:none; align-items:baseline}
+.out:hover{background:var(--paper)}
+.out .cat{font:500 10px/1.6 var(--mono); letter-spacing:.13em; text-transform:uppercase; opacity:.5}
+.out .nm{font:500 16.5px/1.4 var(--disp)}
+.out .go{font:400 11px/1.6 var(--mono); opacity:.4}
+.out:hover .go{opacity:.9; color:var(--flag)}
+
+/* contact */
+footer{background:var(--ink); color:var(--card); margin-top:66px; padding:56px 0 40px}
+footer h2{color:var(--card)}
+.cta{display:flex; flex-wrap:wrap; gap:10px; margin:24px 0 34px}
+.cta a{font:500 12px/1 var(--mono); letter-spacing:.08em; text-decoration:none;
+  padding:13px 18px; border:1px solid rgba(228,224,212,.4)}
+.cta a:hover{background:var(--card); color:var(--ink); border-color:var(--card)}
+.fine{font:400 11.5px/1.75 var(--mono); opacity:.42; max-width:66ch; margin:0}
+
+@media (max-width:760px){
+  body{font-size:17px}
+  .call{grid-template-columns:1fr; gap:14px}
+  .cd{text-align:left}
+  .roles li{grid-template-columns:1fr; gap:4px}
+  .out{grid-template-columns:1fr; gap:3px}
+  .out .go{display:none}
+  .ev div{border-right:0; border-bottom:1px solid var(--rule)}
+  .ev div:last-child{border-bottom:0}
+}
+@media print{
+  body{background:#fff} nav,.cta{display:none}
+  header.hero,footer{background:#fff;color:#000}
+  .kicker,.sec-k{color:#000}
+}
+
+.ctrl{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 12px}
+.seg{display:flex;border:1px solid var(--ink)}
+.sg{border:0;border-right:1px solid var(--ink);background:transparent;cursor:pointer;font:inherit;
+font-size:11px;letter-spacing:.09em;text-transform:uppercase;padding:9px 16px;color:var(--ink)}
+.sg:last-child{border-right:0}
+.sg.on{background:var(--ink);color:var(--card);font-weight:600}
+.filt{flex:1;min-width:190px;font:inherit;font-size:14px;padding:8px 11px;border:1px solid var(--rule);
+background:var(--paper);color:var(--ink)}
+.filt:focus{outline:2px solid var(--flag);outline-offset:-1px}
+.stamp{font:400 11px/1.6 var(--mono);opacity:.5;margin:0 0 18px}
+.row{background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--rule-2);
+padding:16px 18px;margin-bottom:9px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start}
+.row.hi{border-left-color:var(--flag)}
+.row.mid{border-left-color:var(--lichen)}
+.row h3{font:600 17px/1.25 var(--disp);letter-spacing:-.012em;margin:0 0 5px}
+.row h3 a{text-decoration:none;border-bottom:1px solid var(--rule-2)}
+.row h3 a:hover{border-bottom-color:var(--flag)}
+.row .sub{font:400 11.5px/1.6 var(--mono);opacity:.62;margin:0 0 7px}
+.row .tg{display:flex;flex-wrap:wrap;gap:4px;margin:0}
+.row .tg span{font:400 9.5px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;
+padding:4px 6px;background:rgba(22,38,43,.07)}
+.new{font:500 9px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:4px 7px;
+background:var(--flag);color:#fff;margin-left:7px;vertical-align:2px}
+.rt{text-align:right;min-width:96px}
+.rt b{display:block;font:800 21px/1 var(--disp);letter-spacing:-.02em}
+.rt.soon b{color:var(--flag)}
+.rt span{display:block;font:400 9.5px/1.5 var(--mono);letter-spacing:.09em;text-transform:uppercase;
+opacity:.55;margin-top:6px}
+.more{font:400 11.5px/1.7 var(--mono);opacity:.6;margin:16px 0 0}
+.none{opacity:.5;font:300 17px/1.6 var(--body);padding:26px 0}
+@media(max-width:760px){.row{grid-template-columns:1fr;gap:11px}.rt{text-align:left}}
+
+.pcard{background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--rule-2);
+padding:18px 20px;margin-bottom:10px}
+.pcard.live{border-left-color:var(--flag)}
+.pcard.blocked{border-left-color:var(--amber);opacity:.72}
+.pcard .ph{display:flex;flex-wrap:wrap;gap:9px;align-items:baseline;margin-bottom:5px}
+.pcard h3{font:600 18px/1.22 var(--disp);letter-spacing:-.014em;margin:0}
+.pcard .aff{font:400 11.5px/1.6 var(--mono);opacity:.62;margin:0 0 9px}
+.pcard .why{font:300 16px/1.5 var(--body);margin:0 0 10px;max-width:62ch}
+.pcard .gr{font:400 11.5px/1.6 var(--mono);margin:0 0 8px;padding:8px 11px;
+background:rgba(22,38,43,.05);border-left:2px solid var(--lichen)}
+.pcard .nt{font:300 14.5px/1.5 var(--body);opacity:.72;margin:0;padding-top:9px;
+border-top:1px solid var(--rule)}
+.bdg{font:500 9px/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;padding:4px 7px}
+.bdg.l{background:var(--flag);color:#fff}
+.bdg.s{background:rgba(110,130,87,.2);color:#48592F}
+.bdg.v{background:rgba(36,64,94,.14);color:var(--indigo)}
+.bdg.u{background:rgba(22,38,43,.09);color:var(--ink-2)}
+.bdg.w{background:rgba(176,121,15,.2);color:#7A520A}
+
+.fcard{background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--rule-2);
+padding:18px 20px;margin-bottom:10px}
+.fcard.strong{border-left-color:var(--lichen)}
+.fcard.blocked{border-left-color:var(--flag);opacity:.66}
+.fcard .fh{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;margin-bottom:5px}
+.fcard h3{font:600 18px/1.22 var(--disp);letter-spacing:-.014em;margin:0}
+.fcard .who{font:400 11.5px/1.6 var(--mono);opacity:.6;margin:0 0 9px}
+.fcard .wt{font:300 16px/1.5 var(--body);margin:0 0 10px;max-width:62ch}
+.fcard .bl{font:400 13px/1.55 var(--mono);margin:0 0 8px;padding:9px 12px;
+background:rgba(255,46,99,.07);border-left:2px solid var(--flag)}
+.fcard .bl b{font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:9.5px;
+display:block;margin-bottom:4px;opacity:.7}
+.fcard .wy{font:300 15px/1.5 var(--body);opacity:.75;margin:0;padding-top:9px;border-top:1px solid var(--rule)}
+.dept{font:400 11px/1.6 var(--mono);opacity:.5;margin:-5px 0 9px}
+
+.cp{margin-top:11px;border:1px solid var(--ink);background:transparent;cursor:pointer;
+font:inherit;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:7px 12px;
+color:var(--ink)}
+.cp:hover{background:var(--ink);color:var(--card)}
+.cp:focus-visible{outline:2px solid var(--flag);outline-offset:2px}
+
+#leaf{height:520px;border:1px solid var(--rule-2);background:var(--paper);margin-bottom:14px}
+.leaflet-container{font:400 13px/1.5 var(--mono);background:var(--paper)}
+.leaflet-popup-content-wrapper{border-radius:0;background:var(--paper);color:var(--ink);
+box-shadow:0 3px 18px rgba(22,38,43,.22)}
+.leaflet-popup-content{margin:15px 17px;max-width:310px}
+.leaflet-popup-tip{background:var(--paper)}
+.pp h4{font:600 16px/1.24 var(--disp);letter-spacing:-.012em;margin:0 0 4px}
+.pp .pd{font:400 10.5px/1.55 var(--mono);opacity:.6;margin:0 0 9px}
+.pp .pw{font:300 14.5px/1.48 var(--body);margin:0 0 10px}
+.pp .pn{font:400 11px/1.5 var(--mono);margin:0 0 4px;padding:7px 9px;background:rgba(22,38,43,.05);
+border-left:2px solid var(--ink-2)}
+.pp .pn b{display:block;font-size:9px;letter-spacing:.11em;text-transform:uppercase;opacity:.6;margin-bottom:3px}
+.pp .pl{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 0}
+.pp .pl span{font:400 9.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;
+padding:4px 6px;background:rgba(22,38,43,.08)}
+.mk{border-radius:50%;border:2px solid var(--card);box-shadow:0 1px 5px rgba(0,0,0,.3)}
+.key{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;
+padding:16px 18px;background:var(--paper);border:1px solid var(--rule)}
+.kg b{display:block;font:500 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+margin-bottom:9px;opacity:.6}
+.kg span{display:flex;align-items:flex-start;gap:8px;font:400 11.5px/1.55 var(--mono);
+opacity:.78;margin-bottom:5px}
+.dot{width:9px;height:9px;flex:none;border-radius:50%;margin-top:4px}
+.k-r{background:var(--flag)} .k-w{background:var(--indigo)} .k-b{background:var(--amber)}
+.k-lo{background:var(--lichen)} .k-md{background:var(--amber)} .k-hi{background:var(--flag)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav>
+  <div class="wrap">
+    <span class="id">Tarun Kumar Verma</span>
+    <a href="#work">Research</a>
+    <a href="#evidence">Evidence</a>
+    <a href="#map">Map</a>
+    <a href="#calls">Listings</a>
+    <a href="#people">People</a>
+    <a href="#funding">Funding</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Conservation culturomics · Jaipur, India</p>
+    <h1>Digital traces of human pressure on biodiversity.</h1>
+    <p class="lede">Digital records are increasingly proposed as a way of closing gaps in what we know about threats to species. Those records are not neutral. My work asks when a digital trace can be read as evidence of pressure, and when it only shows us where somebody was looking.</p>
+    <p class="who">M.Sc. Wildlife Science · B.Tech Computer Science · previously ATREE, IIT Bombay, WCS India, Wildlife Crime Control Bureau</p>
+
+    <div class="grid-motif" id="motif" aria-hidden="true"></div>
+    <p class="motif-key">Filled cells: observed records. Outlined cells: pressure with no detection effort behind it. The second group is the research problem.</p>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <p class="sec-k">Research</p>
+    <h2>Four questions, one problem</h2>
+    <p class="intro">A digital record reflects both the activity it registers and the conditions under which that activity became visible. A seizure reflects trade and enforcement effort. A pathogen record reflects a species' pathogens and how intensively it has been studied. Separating the two is what turns a signal into evidence.</p>
+
+    <div class="objs">
+      <article class="obj">
+        <span class="n">One</span>
+        <h3>Where trade pressure falls — and where nobody is looking</h3>
+        <p>Species-level trade intensity from open trade records and seizure data, combined with species geography, read alongside detection effort so that an absence of records is not mistaken for an absence of trade.</p>
+        <p class="m">CITES · seizure corpora · IUCN ranges · spatial analysis</p>
+      </article>
+      <article class="obj">
+        <span class="n">Two</span>
+        <h3>What the traded species carry</h3>
+        <p>Species detected in online trade matched to published host–pathogen records, corrected for research effort per taxon, producing a species-level exposure indicator rather than a disease model. Requires One Health collaboration.</p>
+        <p class="m">VIRION · CLOVER · EID2 · effort correction</p>
+      </article>
+      <article class="obj">
+        <span class="n">Three</span>
+        <h3>How environmental change is narrated across languages</h3>
+        <p>Multilingual discourse on shared conservation topics, classified against a pre-specified codebook, with human coding as the benchmark. Where automated classification fails outside English, that failure is the finding.</p>
+        <p class="m">multilingual transformers · IndicNLP · human-coded benchmark</p>
+      </article>
+      <article class="obj">
+        <span class="n">Four</span>
+        <h3>What engagement with nature media actually produces</h3>
+        <p>Mixed-methods evaluation of environmental documentaries. The only strand whose outcome measure sits outside the digital record, and therefore the only direct test of what engagement signals correspond to.</p>
+        <p class="m">pre/post · treatment–control · survey + interview</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- EVIDENCE -->
+<section id="evidence">
+  <div class="wrap">
+    <p class="sec-k">Evidence</p>
+    <h2>Work already done</h2>
+    <p class="intro">Every strand above builds on a workflow, codebook or instrument I have already built and used at scale.</p>
+
+    <div class="ev">
+      <div><b>6,000+</b><span>Conservation reports in the Protected Area Update archive worked with at IIT Bombay, of which roughly 1,000 coded directly</span></div>
+      <div><b>600+</b><span>First Information Reports on wildlife offences analysed for my M.Sc. thesis on Ranthambhore Tiger Reserve</span></div>
+      <div><b>6</b><span>Indian states across which I have implemented multilingual survey and interview fieldwork</span></div>
+      <div><b>1</b><span>First-author manuscript under review, from an evaluation I ran as sole researcher</span></div>
+    </div>
+
+    <ul class="roles">
+      <li><span class="org">ATREE</span><span class="what">Sole researcher on the evaluation of UNEP's Tide Turners Plastic Challenge in India — survey design, implementation, interviews, analysis, manuscript.</span></li>
+      <li><span class="org">IIT Bombay</span><span class="what">Protected Area Update database: a newsletter archive spanning nearly three decades of conservation reporting in India.</span></li>
+      <li><span class="org">WCS India</span><span class="what">Monitoring of online wildlife trade.</span></li>
+      <li><span class="org">Wildlife Crime Control Bureau</span><span class="what">Wildlife crime monitoring.</span></li>
+      <li><span class="org">Wildlife Institute of India</span><span class="what">Tiger prey base research.</span></li>
+      <li><span class="org">Independent</span><span class="what">Species on Screen — how species and ecological narratives are represented across media.</span></li>
+    </ul>
+
+    <p class="intro" style="margin-top:34px">Methods and tools I work in directly:</p>
+    <div class="tags">
+      <span>Python</span><span>QGIS</span><span>spatial analysis</span><span>computational text analysis</span>
+      <span>Darwin Core</span><span>survey design</span><span>qualitative coding</span><span>mixed methods</span>
+      <span>React / Next.js</span><span>FastAPI</span><span>Mapbox</span><span>reproducible workflows</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- MAP -->
+<section id="map">
+  <div class="wrap">
+    <p class="sec-k">Map</p>
+    <h2>Where the opportunities physically are</h2>
+    <p class="intro">Every institution on the roster, plotted. Click a marker for the people, the department, the live grants, and what the funding and immigration picture actually looks like in that country as of 2026. No redirect needed to decide whether somewhere is worth your time.</p>
+
+    <div class="ctrl">
+      <div class="seg" id="mf">
+        <button class="sg on" data-mf="all">All</button>
+        <button class="sg" data-mf="salaried">Salaried</button>
+        <button class="sg" data-mf="the">THE top 50</button>
+        <button class="sg" data-mf="blocked">Blocked</button>
+      </div>
+    </div>
+
+    <div id="leaf"></div>
+
+    <div class="key">
+      <div class="kg">
+        <b>Marker</b>
+        <span><i class="dot k-r"></i>Roster — a named person you have reason to contact</span>
+        <span><i class="dot k-w"></i>Watch — institution of interest, no named contact yet</span>
+        <span><i class="dot k-b"></i>Blocked — a named criterion disqualifies you</span>
+      </div>
+      <div class="kg">
+        <b>Country risk, 2026</b>
+        <span><i class="dot k-lo"></i>Low — salaried model, no quota, stable policy</span>
+        <span><i class="dot k-md"></i>Medium — real constraints, workable with a route around them</span>
+        <span><i class="dot k-hi"></i>High — volatile immigration policy, plan defensively</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LISTINGS -->
+<section id="calls">
+  <div class="wrap">
+    <p class="sec-k">Listings</p>
+    <h2>Live grants and open calls</h2>
+    <p class="intro">Refreshed weekly from CORDIS bulk data and the EU Funding &amp; Tenders Portal. Two layers, and the difference decides how you use them.</p>
+
+    <div class="callnote"><strong>Leads are not vacancies.</strong> A live grant means someone holds money and plausibly needs people — it is a person worth writing to, not a post to apply for. <em>Calls</em> are openings with real deadlines. Actual PhD vacancies are announced by individual universities on their own boards and no single feed aggregates them honestly; anyone claiming otherwise is selling a scraper. Work the leads layer, because that is where the advantage is.</p>
+
+    <div class="ctrl">
+      <div class="seg" id="lay">
+        <button class="sg on" data-lay="lead">Funding leads</button>
+        <button class="sg" data-lay="call">Open calls</button>
+        <button class="sg" data-lay="ext">Board positions</button>
+      </div>
+      <input id="q" class="filt" type="search" placeholder="Filter by name, country, topic…">
+    </div>
+    <p class="stamp" id="stamp"></p>
+    <div id="rows"></div>
+    <p class="more"><a href="https://cordis.europa.eu/projects" target="_blank" rel="noopener">CORDIS ↗</a> · <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-search" target="_blank" rel="noopener">Funding &amp; Tenders Portal ↗</a> · <a href="https://euraxess.ec.europa.eu/jobs/search" target="_blank" rel="noopener">EURAXESS vacancies ↗</a></p>
+
+    <div class="outs" id="outs"></div>
+  </div>
+</section>
+
+
+
+<!-- FUNDING -->
+<section id="funding">
+  <div class="wrap">
+    <p class="sec-k">Funding</p>
+    <h2>Routes, screened against real constraints</h2>
+    <p class="intro">Scholarships, fellowships and employment routes relevant to doctoral work in conservation data science. Each carries what would disqualify a given applicant — the blocker matters more than the headline value, and is what most listings omit.</p>
+
+    <div class="ctrl">
+      <div class="seg" id="fk">
+        <button class="sg on" data-fk="all">All</button>
+        <button class="sg" data-fk="Employment">Salaried</button>
+        <button class="sg" data-fk="scholarship">Scholarships</button>
+      </div>
+    </div>
+    <div id="fund"></div>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section id="people">
+  <div class="wrap">
+    <p class="sec-k">People</p>
+    <h2>Where the work is being done</h2>
+    <p class="intro">A working roster of researchers whose active programmes overlap with mine. Grant records are matched automatically against CORDIS on each refresh — so a name marked <em>live grant</em> has been verified against the funding record, not assumed.</p>
+
+    <div class="ctrl">
+      <div class="seg" id="trk">
+        <button class="sg on" data-trk="all">All</button>
+        <button class="sg" data-trk="salaried">Salaried route</button>
+        <button class="sg" data-trk="svs">Scholarship route</button>
+      </div>
+    </div>
+    <div id="ppl"></div>
+  </div>
+</section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <p class="sec-k">Contact</p>
+    <h2>Open to collaboration</h2>
+    <p class="intro" style="opacity:.8">Particularly on wildlife trade data, multilingual environmental discourse, and the evaluation of conservation media. If you work on any of these and something above overlaps with your own, I'd like to hear from you.</p>
+    <div class="cta">
+      <a href="mailto:REPLACE@example.com">Email</a>
+      <a href="https://github.com/tarunv13" rel="me">GitHub</a>
+      <a href="#" data-edit="linkedin">LinkedIn</a>
+      <a href="#" data-edit="scholar">Google Scholar</a>
+      <a href="#" data-edit="orcid">ORCID</a>
+    </div>
+    <p class="fine">Built as a static page, no tracking, no cookies, no analytics. Countdowns are computed in your browser; nothing is sent anywhere. Source at github.com/tarunv13/MySite. Last content review: <span id="rev"></span>.</p>
+  </div>
+</footer>
+
+<!--DATA:START-->
+<script id="bootstrap" type="application/json">{"opportunities":{"generated":"2026-07-27T04:06:12+00:00","counts":{"leads":39,"calls":0,"people":18},"note":"Leads are live grants, not vacancies — they identify who holds money and is plausibly recruiting. Calls are applicable openings.","leads":[{"kind":"lead","source":"CORDIS fixture","id":"101171602","acronym":"BIOBANG","title":"Investigating opportunities for transformative change in biodiversity conservation: from Big Data analytics to Gamification.","pi":"Enrico Di Minin","host":"University of Helsinki","country":"Finland","grant_type":"Consolidator Grants","panel":"SH7 - Human Mobility, Environment & Space","start":"2025-05-01","end":"2030-04-30","fresh":false,"fit":16,"tags":["culturomics","language","media","biodiv","spatial"],"url":"https://cordis.europa.eu/project/id/101171602"},{"kind":"lead","source":"CORDIS fixture","id":"101097302","acronym":"ANTHROFUTURE","title":"The anthropology of the future: An art world perspective","pi":"Manuela Ciotti","host":"University of Vienna","country":"Austria","grant_type":"Advanced Grants","panel":"SH3 - The Social World and its Diversity","start":"2024-01-01","end":"2028-12-31","fresh":false,"fit":8,"tags":["culturomics","language"],"url":"https://cordis.europa.eu/project/id/101097302"},{"kind":"lead","source":"CORDIS fixture","id":"101116504","acronym":"TRACES","title":"Tracking Long-Term Resilience in Arctic Sociocultural-Ecological Systems","pi":"Sean Desjardins","host":"University of Groningen","country":"Netherlands","grant_type":"Starting Grants","panel":"SH5 - Cultures & Cultural Production","start":"2024-01-01","end":"2028-12-31","fresh":false,"fit":8,"tags":["culturomics","biodiv"],"url":"https://cordis.europa.eu/project/id/101116504"},{"kind":"lead","source":"CORDIS fixture","id":"101122047","acronym":"FOUNDATIONS","title":"A Foundation for Empirical Multimodality Research","pi":"Tuomo Hiippala","host":"University of Helsinki","country":"Finland","grant_type":"Consolidator Grants","panel":"SH5 - Cultures & Cultural Production","start":"2024-05-01","end":"2029-04-30","fresh":false,"fit":8,"tags":["culturomics","language"],"url":"https://cordis.europa.eu/project/id/101122047"},{"kind":"lead","source":"CORDIS fixture","id":"101230145","acronym":"NATURETIME","title":"Understanding how nature reshapes human sense of time to foster well-being and sustainable futures","pi":"Ricardo Aleixo Henriques Correia","host":"University of Turku","country":"Finland","grant_type":"Consolidator Grants","panel":"SH7 - Human Mobility, Environment & Space","start":"2026-06-01","end":"2031-05-31","fresh":true,"fit":8,"tags":["culturomics","media"],"url":"https://cordis.europa.eu/project/id/101230145"},{"kind":"lead","source":"CORDIS fixture","id":"101094311","acronym":"Interspecific","title":"Biodiversity, Local Knowledge and Zoonoses in Austronesia: Ethnography of Bats and Related Interspecific Communities","pi":"Frederic Laugrand","host":"University of Louvain","country":"Belgium","grant_type":"Advanced Grants","panel":"SH3 - The Social World and its Diversity","start":"2023-09-01","end":"2028-08-31","fresh":false,"fit":7,"tags":["zoonotic","biodiv"],"url":"https://cordis.europa.eu/project/id/101094311"},{"kind":"lead","source":"CORDIS fixture","id":"101115677","acronym":"VetValues","title":"Farm animal value-scapes: veterinarians and the contrasting values of European livestock production","pi":"Else Vogel","host":"University of Amsterdam","country":"Netherlands","grant_type":"Starting Grants","panel":"SH3 - The Social World and its Diversity","start":"2024-01-01","end":"2028-12-31","fresh":false,"fit":7,"tags":["zoonotic","biodiv"],"url":"https://cordis.europa.eu/project/id/101115677"},{"kind":"lead","source":"CORDIS fixture","id":"101043504","acronym":"CHINACADEMY","title":"Art Academies in China: Global Histories and Institutional Practices","pi":"Juliane Noth","host":"Free University of Berlin","country":"Germany","grant_type":"Consolidator Grants","panel":"SH5 - Cultures & Cultural Production","start":"2023-09-01","end":"2028-08-31","fresh":false,"fit":6,"tags":["language","biodiv"],"url":"https://cordis.europa.eu/project/id/101043504"},{"kind":"lead","source":"CORDIS fixture","id":"101089113","acronym":"MAKEBELIEF","title":"The Religious Politics of Theme Parks in the 21st century: Imagineering Religion, Heritage and National Sentiments","pi":"Ernst Van Den Hemel","host":"Royal Netherlands Academy of Arts and Sciences","country":"Netherlands","grant_type":"Consolidator Grants","panel":"SH5 - Cultures & Cultural Production","start":"2023-12-01","end":"2028-11-30","fresh":false,"fit":6,"tags":["language","media"],"url":"https://cordis.europa.eu/project/id/101089113"},{"kind":"lead","source":"CORDIS fixture","id":"101087000","acronym":"BeValue","title":"From Behavior to Values: An Unexplored Process of Personal Value Development","pi":"Maya Benish-Weisman","host":"Hebrew University of Jerusalem","country":"Israel","grant_type":"Consolidator Grants","panel":"SH3 - The Social World and its Diversity","start":"2024-01-01","end":"2028-12-31","fresh":false,"fit":6,"tags":["language","media"],"url":"https://cordis.europa.eu/project/id/101087000"},{"kind":"lead","source":"CORDIS fixture","id":"101077855","acronym":"LEVER","title":"Our sustainabLe futurE, the ValuEs that dRive it, and how to get there","pi":"Horcea-Milcu Andra-Ioana","host":"University of Kassel","country":"Germany","grant_type":"Starting Grants","panel":"SH7 - Human Mobility, Environment & Space","start":"2024-02-01","end":"2029-01-31","fresh":false,"fit":6,"tags":["language","biodiv"],"url":"https://cordis.europa.eu/project/id/101077855"},{"kind":"lead","source":"CORDIS fixture","id":"101124193","acronym":"ChrIs-cross","title":"Entangled Christianities in Jerusalem and the Middle East: A cross-cultural bottom-up approach (12th-16th centuries)","pi":"Camille Rouxpetel","host":"National Centre for Scientific Research (CNRS)","country":"France","grant_type":"Consolidator Grants","panel":"SH6 - The Study of the Human Past","start":"2024-06-01","end":"2029-05-31","fresh":false,"fit":6,"tags":["language","biodiv"],"url":"https://cordis.europa.eu/project/id/101124193"},{"kind":"lead","source":"CORDIS fixture","id":"101163065","acronym":"DELaw","title":"Degrowth through Energy Law: Using the legal framework for electricity batteries in Europe to achieve a degrowth-focused energy law","pi":"Romain Mauger","host":"FUNDECYT-PCTEx","country":"Spain","grant_type":"Starting Grants","panel":"SH2 - Institutions, Governance & Legal Systems","start":"2025-01-01","end":"2029-09-30","fresh":false,"fit":6,"tags":["language","biodiv"],"url":"https://cordis.europa.eu/project/id/101163065"},{"kind":"lead","source":"CORDIS fixture","id":"101170823","acronym":"RiDe","title":"Rise and Demise of Industrial Modernity","pi":"Laur Kanger","host":"University of Tartu","country":"Estonia","grant_type":"Consolidator Grants","panel":"SH7 - Human Mobility, Environment & Space","start":"2025-05-01","end":"2030-04-30","fresh":false,"fit":6,"tags":["language","biodiv"],"url":"https://cordis.europa.eu/project/id/101170823"},{"kind":"lead","source":"CORDIS fixture","id":"101075426","acronym":"BIOCOMP","title":"Consequences of global biodiversity loss and climate change for decomposer communities and implications for forest carbon fluxes","pi":"Sebastian Seibold","host":"University of Ulm","country":"Germany","grant_type":"Starting Grants","panel":"LS8 - Environmental Biology, Ecology & Evolution","start":"2023-05-01","end":"2028-04-30","fresh":false,"fit":5,"tags":["biodiv","spatial"],"url":"https://cordis.europa.eu/project/id/101075426"},{"kind":"lead","source":"CORDIS fixture","id":"101085894","acronym":"CarboCell","title":"Vesicular mechanisms of carbon fixation in calcifying cells of marine animals","pi":"Marian Yong-An Hu","host":"University of Kiel","country":"Germany","grant_type":"Consolidator Grants","panel":"LS8 - Environmental Biology, Ecology & Evolution","start":"2023-07-01","end":"2028-06-30","fresh":false,"fit":5,"tags":["trade"],"url":"https://cordis.europa.eu/project/id/101085894"},{"kind":"lead","source":"CORDIS fixture","id":"101086695","acronym":"APATHES","title":"Assessing Philosophical Authors and Texts from Herculaneum and elsewhere on Early Stoicism: Insights into ancient logic, physics, and ethics towards a new von Arnim","pi":"Christian Vassallo","host":"University of Turin","country":"Italy","grant_type":"Consolidator Grants","panel":"SH5 - Cultures & Cultural Production","start":"2023-11-01","end":"2028-10-31","fresh":false,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101086695"},{"kind":"lead","source":"CORDIS fixture","id":"101097091","acronym":"STAGE","title":"STAGE: From Stage to Data, the Digital Turn of  Contemporary Performing Arts Historiography","pi":"Clarisse Bardiot","host":"Rennes 2 University","country":"France","grant_type":"Advanced Grants","panel":"SH5 - Cultures & Cultural Production","start":"2024-01-01","end":"2028-12-31","fresh":false,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101097091"},{"kind":"lead","source":"CORDIS fixture","id":"101096539","acronym":"BOSTAN TREE","title":"Bioarchaeology of Orchards and Sustainable Terroir in the Arid Near East – Trends in Ecology and Evolution","pi":"Guy Bar-Oz","host":"University of Haifa","country":"Israel","grant_type":"Advanced Grants","panel":"SH6 - The Study of the Human Past","start":"2024-01-01","end":"2028-12-31","fresh":false,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101096539"},{"kind":"lead","source":"CORDIS fixture","id":"101124323","acronym":"PLUNDERED LIVES","title":"Intimate Dispossession: The Afterlives of Plundered Jewish Personal Possessions in the Aftermath of the Holocaust","pi":"Magdalena Waligórska-Huhle","host":"Humboldt University of Berlin","country":"Germany","grant_type":"Consolidator Grants","panel":"SH6 - The Study of the Human Past","start":"2024-04-01","end":"2029-03-31","fresh":false,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101124323"},{"kind":"lead","source":"CORDIS fixture","id":"101125731","acronym":"K9VocLearn","title":"Capturing the evolution of a transformative cognitive capacity: the case of vocal learning in dogs","pi":"Tamás Faragó","host":"Eotvos Lorand University","country":"Hungary","grant_type":"Consolidator Grants","panel":"SH4 - The Human Mind and its Complexity","start":"2024-06-01","end":"2029-05-31","fresh":false,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101125731"},{"kind":"lead","source":"CORDIS fixture","id":"101142895","acronym":"IneQint","title":"Inequality and Integration","pi":"Jan Jonsson","host":"Institute for Futures Studies","country":"Sweden","grant_type":"Advanced Grants","panel":"SH3 - The Social World and its Diversity","start":"2024-10-01","end":"2029-09-30","fresh":false,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101142895"},{"kind":"lead","source":"CORDIS fixture","id":"101161589","acronym":"GreenFrontier","title":"Politics of Conservation and Unequal Ecological Exchange in European Peripheries","pi":"George Iordachescu","host":"Wageningen University","country":"Netherlands","grant_type":"Starting Grants","panel":"SH7 - Human Mobility, Environment & Space","start":"2024-12-01","end":"2029-11-30","fresh":false,"fit":5,"tags":["biodiv","spatial"],"url":"https://cordis.europa.eu/project/id/101161589"},{"kind":"lead","source":"CORDIS fixture","id":"101162844","acronym":"DOMESTIC","title":"The role of domestic markets and public policy for sustainable food systems: the case of Brazil","pi":"Erasmus Zu Ermgassen","host":"University of Louvain","country":"Belgium","grant_type":"Starting Grants","panel":"SH7 - Human Mobility, Environment & Space","start":"2025-01-01","end":"2029-12-31","fresh":false,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101162844"},{"kind":"lead","source":"CORDIS fixture","id":"101142006","acronym":"DATAGOV","title":"Governance by data infrastructure in the post-pandemic democracy","pi":"Stefania Milan","host":"University of Amsterdam","country":"Netherlands","grant_type":"Advanced Grants","panel":"SH3 - The Social World and its Diversity","start":"2025-03-01","end":"2030-02-28","fresh":false,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101142006"},{"kind":"lead","source":"CORDIS fixture","id":"101164150","acronym":"DISINFORMED TEENS","title":"Growing Up in the Digital Age of Disinformation","pi":"Ili Ma","host":"Leiden University","country":"Netherlands","grant_type":"Starting Grants","panel":"SH4 - The Human Mind and its Complexity","start":"2025-03-01","end":"2030-02-28","fresh":false,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101164150"},{"kind":"lead","source":"CORDIS fixture","id":"101170899","acronym":"WRAP","title":"Western Rift Archaeology and Palaeoenvironment Project","pi":"Tomos Proffitt","host":"University of Algarve","country":"Portugal","grant_type":"Consolidator Grants","panel":"SH6 - The Study of the Human Past","start":"2025-03-01","end":"2030-02-28","fresh":false,"fit":5,"tags":["biodiv","spatial"],"url":"https://cordis.europa.eu/project/id/101170899"},{"kind":"lead","source":"CORDIS fixture","id":"101161971","acronym":"LOUARN","title":"Lights in the nightsky and Ozone loss: Unravelling Atmosphere forcing from space with Radar, optics, and Novel citizen science","pi":"Maxime Grandin","host":"Finnish Meteorological Institute","country":"Finland","grant_type":"Starting Grants","panel":"PE10 - Earth System Science","start":"2025-04-01","end":"2030-03-31","fresh":false,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101161971"},{"kind":"lead","source":"CORDIS fixture","id":"101165962","acronym":"MaMo","title":"Markets and Mobility: How Employers Structure Economic Opportunity","pi":"Per Engzell","host":"University College London","country":"United Kingdom","grant_type":"Starting Grants","panel":"SH3 - The Social World and its Diversity","start":"2025-05-01","end":"2030-04-30","fresh":false,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101165962"},{"kind":"lead","source":"CORDIS fixture","id":"101169640","acronym":"LOTIS","title":"Loneliness Across Time and Space","pi":"Maike Luhmann","host":"University of Bochum","country":"Germany","grant_type":"Consolidator Grants","panel":"SH3 - The Social World and its Diversity","start":"2025-06-01","end":"2030-05-31","fresh":false,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101169640"},{"kind":"lead","source":"CORDIS fixture","id":"101169786","acronym":"KIDFLUENCER","title":"Towards a Kid-Centric, Dynamic and Hybrid Theory of Consumer Socialization to Understand the Dynamics and Implications of the Kidfluencer Phenomenon.","pi":"Liselot Hudders","host":"Ghent University","country":"Belgium","grant_type":"Consolidator Grants","panel":"SH3 - The Social World and its Diversity","start":"2025-09-01","end":"2030-08-31","fresh":true,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101169786"},{"kind":"lead","source":"CORDIS fixture","id":"101198091","acronym":"BYGENEX","title":"Unveiling oceanic bacterivory through gene expression","pi":"Ramon Massana","host":"Spanish National Research Council (CSIC)","country":"Spain","grant_type":"Advanced Grants","panel":"LS8 - Environmental Biology, Ecology & Evolution","start":"2025-12-01","end":"2030-11-30","fresh":true,"fit":5,"tags":["trade"],"url":"https://cordis.europa.eu/project/id/101198091"},{"kind":"lead","source":"CORDIS fixture","id":"101170767","acronym":"UNDERGOV","title":"The Underbelly of Migration Governance: Exploring the Intersection of Transnational Crime and Migration Governance","pi":"Luigi Achilli","host":"Superior School Sant'Anna","country":"Italy","grant_type":"Consolidator Grants","panel":"SH3 - The Social World and its Diversity","start":"2025-12-01","end":"2030-11-30","fresh":true,"fit":5,"tags":["trade"],"url":"https://cordis.europa.eu/project/id/101170767"},{"kind":"lead","source":"CORDIS fixture","id":"101170559","acronym":"ENCODED","title":"Encoded Knowledge: Epistemology of  Computer Technology in Modern Economics","pi":"Magdalena Malecka","host":"University of Copenhagen","country":"Denmark","grant_type":"Consolidator Grants","panel":"SH5 - Cultures & Cultural Production","start":"2025-12-01","end":"2030-11-30","fresh":true,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101170559"},{"kind":"lead","source":"CORDIS fixture","id":"101220912","acronym":"COLLABOR","title":"Collusion and Imperfect Competition in Labor Markets: A Unified Approach","pi":"Axel Gottfries","host":"University of Edinburgh","country":"United Kingdom","grant_type":"Starting Grants","panel":"SH1 - Individuals, Markets & Organisations","start":"2026-01-01","end":"2030-12-31","fresh":true,"fit":5,"tags":["trade"],"url":"https://cordis.europa.eu/project/id/101220912"},{"kind":"lead","source":"CORDIS fixture","id":"101231095","acronym":"ADAPTA","title":"Tropical forest adaptation to a changing biosphere","pi":"Jesús Aguirre Gutiérrez","host":"Imperial College","country":"United Kingdom","grant_type":"Consolidator Grants","panel":"LS8 - Environmental Biology, Ecology & Evolution","start":"2026-09-01","end":"2031-08-31","fresh":true,"fit":5,"tags":["biodiv","spatial"],"url":"https://cordis.europa.eu/project/id/101231095"},{"kind":"lead","source":"CORDIS fixture","id":"101230415","acronym":"PARENTALHOPE","title":"Parenting in Times of Global Uncertainty: Understanding and Cultivating Parental Hope","pi":"Patty Leijten","host":"University of Amsterdam","country":"Netherlands","grant_type":"Consolidator Grants","panel":"SH3 - The Social World and its Diversity","start":"2026-09-01","end":"2031-08-31","fresh":true,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101230415"},{"kind":"lead","source":"CORDIS fixture","id":"101230518","acronym":"DeepCattle","title":"The Deep History of Commercial Cattle Farming in Europe, c.1240-1840 AD","pi":"Eugene Costello","host":"National University of Ireland - University College Cork","country":"Ireland","grant_type":"Consolidator Grants","panel":"SH6 - The Study of the Human Past","start":"2026-09-01","end":"2031-08-31","fresh":true,"fit":5,"tags":["biodiv","spatial"],"url":"https://cordis.europa.eu/project/id/101230518"},{"kind":"lead","source":"CORDIS fixture","id":"101222637","acronym":"EWINCOL","title":"The Evolution of Wing Coloration in Lepidoptera","pi":"Moritz Lürig","host":"Leibniz Institute for the Analysis of Biodiversity Change (LIB)","country":"Germany","grant_type":"Starting Grants","panel":"LS8 - Environmental Biology, Ecology & Evolution","start":"2026-10-01","end":"2031-09-30","fresh":true,"fit":5,"tags":["culturomics"],"url":"https://cordis.europa.eu/project/id/101222637"}],"calls":[],"roster":[{"name":"Enrico Di Minin","inst":"University of Helsinki","country":"Finland","group":"Digital Geography Lab","focus":"Conservation culturomics, illegal wildlife trade, social media data","why":"Holds BIOBANG (ERC Consolidator, EUR 2.0M, to Apr 2030). His WILDTRADE grant on illegal wildlife trade ended May 2024 — that strand lost its vehicle. You cite him three times.","track":"salaried","status":"cold","verified":"erc-data","the_top50":"no","note":"Proposed RESDOC supervisor. Second route: ERC-funded posts hire outside the COFUND eligibility rules.","url":"https://cordis.europa.eu/project/id/101171602","dept":"Department of Geosciences and Geography","unit":"Helsinki Institute of Sustainability Science (HELSUS)","grants":[{"acronym":"BIOBANG","title":"Investigating opportunities for transformative change in biodiversity conservation: from Big Data analytics to Gamification.","end":"2030-04-30","live":true,"url":"https://cordis.europa.eu/project/id/101171602"},{"acronym":"WILDTRADE","title":"Quantifying the global patterns and trends of the illegal wildlife trade: from artificial intelligence to financial market analysis","end":"2024-05-31","live":false,"url":"https://cordis.europa.eu/project/id/802933"}],"live_grant":true},{"name":"Ricardo A. Correia","inst":"University of Turku","country":"Finland","group":"NATURETIME (ERC Consolidator)","focus":"Conservation culturomics, nature experience, wellbeing","why":"Co-author on Ladle et al. 2016, the paper that named the field. His grant started 1 June 2026 — a team being assembled right now.","track":"salaried","status":"cold","verified":"erc-data","the_top50":"no","note":"Highest time-sensitivity on this list. New grants staff up within months.","url":"https://cordis.europa.eu/project/id/101230145","dept":"Department of Biology","unit":"Biodiversity Unit","grants":[{"acronym":"NATURETIME","title":"Understanding how nature reshapes human sense of time to foster well-being and sustainable futures","end":"2031-05-31","live":true,"url":"https://cordis.europa.eu/project/id/101230145"}],"live_grant":true},{"name":"Tuomo Hiippala","inst":"University of Helsinki","country":"Finland","group":"FOUNDATIONS (ERC Consolidator)","focus":"Multimodal corpora, computational text and image analysis","why":"Your co-cited author on Di Minin 2018 and 2019. Runs the methodological engine Objectives 3 and 4 need, in the same university as Di Minin.","track":"salaried","status":"cold","verified":"erc-data","the_top50":"no","note":"Natural second supervisor for the multilingual classification strand.","url":"https://cordis.europa.eu/project/id/101122047","dept":"Department of Languages","unit":"Digital Humanities","grants":[{"acronym":"FOUNDATIONS","title":"A Foundation for Empirical Multimodality Research","end":"2029-04-30","live":true,"url":"https://cordis.europa.eu/project/id/101122047"}],"live_grant":true},{"name":"Tuuli Toivonen","inst":"University of Helsinki","country":"Finland","group":"Digital Geography Lab","focus":"Spatial data science, green space accessibility","why":"Co-author on Di Minin, Tenkanen & Toivonen 2015, which you cite. Two ERC grants, both ending during 2027.","track":"salaried","status":"cold","verified":"erc-data","the_top50":"no","note":"Grants end too soon to fund a 2027 start. Useful as a lab contact, not as a funding route.","url":"https://www.helsinki.fi/en/researchgroups/digital-geography","dept":"Department of Geosciences and Geography","unit":"Digital Geography Lab","grants":[{"acronym":"GREENTRAVEL","title":"GREENER URBAN TRAVEL ENVIRONMENTS FOR EVERYONE: From measured wellbeing impacts to Big Data analytics","end":"2027-12-31","live":true,"url":"https://cordis.europa.eu/project/id/101044906"},{"acronym":"UrbanISE VR","title":"Virtual Reality (VR) in your suitcase: Lowering the entry point to VR adoption for immersive planning of urban street interventions.","end":"2027-07-31","live":true,"url":"https://cordis.europa.eu/project/id/101248556"}],"live_grant":true},{"name":"Richard Fraser","inst":"University of Tromsø","country":"Norway","group":"ZOONOSIS (ERC Starting)","focus":"Zoonotic anthropology, multispecies infrastructure, Belt and Road","why":"Trade corridors, spillover risk and multispecies relations in one project — the only grant in the whole ERC record that combines your Objective 1 and Objective 2 explicitly. Starts Sep 2026, runs to Aug 2031.","track":"salaried","status":"cold","verified":"erc-data","the_top50":"no","note":"Norwegian doctorates are salaried employment. Grant has not started yet, so the team is not built. This is the single most time-sensitive entry on the roster.","url":"https://cordis.europa.eu/project/id/101220868","dept":"Department of Social Sciences","unit":"UiT The Arctic University of Norway","grants":[{"acronym":"ZOONOSIS","title":"Zoonotic Anthropology and Multispecies Infrastructures along China's Belt and Road","end":"2031-08-31","live":true,"url":"https://cordis.europa.eu/project/id/101220868"}],"live_grant":true},{"name":"Deborah Nadal","inst":"University of Padua","country":"Italy","group":"INVANISH (ERC Consolidator)","focus":"Anthropology of wildlife on the move, climate-driven range shifts, citizen science","why":"Joins anthropologists, ecologists and citizen scientists on species redistribution and human-wildlife friction. Her prior work is on human-animal relations and rabies in India — your field context is directly legible to her. Starts Oct 2026.","track":"salaried","status":"cold","verified":"erc-data","the_top50":"no","note":"EUR 2.0M to Sep 2031. Citizen-science component is a direct route for your Objective 1 detection-effort argument.","url":"https://cordis.europa.eu/project/id/101232437","dept":"Department of Historical and Geographic Sciences","unit":"Anthropology","grants":[{"acronym":"INVANISH","title":"INtruders and VANISHers.  Living with wildlife on the move amidst a changing climate.","end":"2031-09-30","live":true,"url":"https://cordis.europa.eu/project/id/101232437"}],"live_grant":true},{"name":"George Adamson (+ Gagné, Natarajan, Ely)","inst":"King's College London / Sheffield","country":"United Kingdom","group":"AdaptAIR (ERC Synergy)","focus":"Climate adaptation, artificial ice reservoirs, Ladakh","why":"EUR 10.0M Synergy grant on climate adaptation in Ladakh, running Mar 2026 to Feb 2032. A six-year India-focused environmental social science programme with four PIs — the largest team on this roster.","track":"either","status":"cold","verified":"erc-data","the_top50":"check","note":"ERC-funded posts are hired by the PIs directly and sit outside the UKRI 30% cap. Check KCL's language requirement against your bands before investing.","url":"https://cordis.europa.eu/project/id/101224987","dept":"Department of Geography","unit":"King's Water / Sheffield Geography","grants":[{"acronym":"AdaptAIR","title":"AdaptAIR: Climate Adaptation through Artificial Ice Reservoirs (AIRs) in the Himalayas","end":"2032-02-29","live":true,"url":"https://cordis.europa.eu/project/id/101224987"},{"acronym":"-","title":"-","end":null,"live":false,"url":"https://cordis.europa.eu/project/id/101224987"}],"live_grant":true},{"name":"Marc Brightman (+ Roudavski, Bambridge, Grotti)","inst":"University of Bologna / CNRS","country":"Italy / France","group":"PLANETARY EEL (ERC Synergy)","focus":"Planetary anthropology, interspecies relations, political ontology","why":"EUR 11.1M Synergy grant on human-eel relations as a lens on damaged planetary life, Sep 2026 to Aug 2032. The strongest more-than-human match in the entire ERC record.","track":"salaried","status":"cold","verified":"erc-data","the_top50":"no","note":"Theoretically rich but methodologically distant from your computational work. Consider whether your quantitative skills are an asset here or a mismatch.","url":"https://cordis.europa.eu/project/id/101224851","dept":"Department of Cultural Heritage","unit":"Environmental anthropology","grants":[{"acronym":"PLANETARY EEL","title":"Planetary Anthropology and Interspecies Nurture: A Political Ontology of Human-Eel Relations.","end":"2032-08-31","live":true,"url":"https://cordis.europa.eu/project/id/101224851"},{"acronym":"IMPACT HAU","title":"The Hau of Finance: Impact Investing and the Globalization of Social and Environmental Sustainability","end":"2025-01-31","live":false,"url":"https://cordis.europa.eu/project/id/772544"}],"live_grant":true},{"name":"Derek Van Berkel","inst":"University of Michigan","country":"United States","group":"School for Environment and Sustainability","focus":"Geospatial data science, social media mining, cultural ecosystem services","why":"Published directly on geotagged social media for mapping where people value nature. The closest methodological match on the uploaded list to your Objective 3.","track":"either","status":"cold","verified":"unverified","the_top50":"check","note":"US doctorates are usually funded by departmental assistantship, so SVS may be unnecessary. December deadlines. Verify current affiliation.","url":"https://seas.umich.edu/","dept":"School for Environment and Sustainability","unit":"Geospatial data science","grants":[],"live_grant":false},{"name":"Chris Sandbrook","inst":"University of Cambridge","country":"United Kingdom","group":"Department of Geography","focus":"Digital conservation, conservation surveillance, political ecology","why":"The leading theorist on digital conservation and its ethics. Directly relevant to your detection-effort argument and to the ethics section of your proposal.","track":"svs","status":"cold","verified":"unverified","the_top50":"likely","note":"BLOCKED on language: Cambridge requires IELTS 7.5 overall with 7.0 per element. You hold 7.0/6.5. Retake or drop.","url":"https://www.geog.cam.ac.uk/","dept":"Department of Geography","unit":"Cambridge Conservation Initiative","grants":[],"live_grant":false},{"name":"Kate Jones","inst":"University College London","country":"United Kingdom","group":"People and Nature Lab","focus":"Bioacoustics, machine learning for biodiversity, zoonotic disease ecology","why":"One of very few people working on both biodiversity monitoring and zoonotic risk. The strongest match on the uploaded list to your Objective 2.","track":"svs","status":"cold","verified":"unverified","the_top50":"likely","note":"Her disease-ecology work is the One Health co-supervision your Objective 2 declares it needs. Subject to the UKRI 30% international cap.","url":"https://www.ucl.ac.uk/biosciences/people-and-nature-lab","dept":"Genetics, Evolution and Environment","unit":"Centre for Biodiversity and Environment Research","grants":[],"live_grant":false},{"name":"Walter Jetz","inst":"Yale University","country":"United States","group":"Jetz Lab / Map of Life","focus":"Biodiversity informatics, global species distribution modelling","why":"Map of Life is infrastructure your Objective 1 would use. His work on gaps in digital biodiversity coverage is your detection-effort problem in another register.","track":"either","status":"cold","verified":"unverified","the_top50":"likely","note":"Verify current affiliation and whether the lab takes students in your area.","url":"https://jetzlab.yale.edu/","dept":"Ecology and Evolutionary Biology","unit":"Center for Biodiversity and Global Change","grants":[],"live_grant":false},{"name":"Sara Beery","inst":"MIT","country":"United States","group":"EECS / CSAIL","focus":"Computer vision for ecology, camera traps, long-tailed distributions","why":"Your B.Tech in Computer Science is a genuine asset here in a way it is not elsewhere on this list.","track":"either","status":"cold","verified":"unverified","the_top50":"likely","note":"Method-heavy and image-focused rather than social. Weaker fit to your four objectives than the ranking suggests. Admission to MIT EECS is exceptionally competitive.","url":"https://www.eecs.mit.edu/","dept":"Electrical Engineering and Computer Science","unit":"CSAIL","grants":[],"live_grant":false},{"name":"Neil Carter","inst":"University of Michigan","country":"United States","group":"School for Environment and Sustainability","focus":"Coupled human and natural systems, tiger and megafauna coexistence","why":"Works on tigers and human-wildlife coexistence. Your WII prey-base work and Ranthambhore thesis are directly legible to him in a way they are not to most on this list.","track":"either","status":"cold","verified":"unverified","the_top50":"check","note":"Possibly the best fit-to-existing-CV match among the US entries.","url":"https://seas.umich.edu/","dept":"School for Environment and Sustainability","unit":"Conservation and coexistence","grants":[],"live_grant":false},{"name":"Richard Fuller","inst":"University of Queensland","country":"Australia","group":"Fuller Lab","focus":"Human-nature interaction, extinction of experience, urban biodiversity","why":"Extinction of experience connects directly to your Objective 4 on what engagement with nature media produces.","track":"either","status":"cold","verified":"unverified","the_top50":"unlikely","note":"UQ ranks far higher in QS than in THE. Since SVS uses THE, this is probably NOT scholarship-eligible. Australia funds domestic and international PhDs via stipend scholarships, so check that route instead.","url":"https://fullerlab.org/","dept":"School of the Environment","unit":"Centre for Biodiversity and Conservation Science","grants":[],"live_grant":false},{"name":"Daniel Fink","inst":"Cornell University","country":"United States","group":"Cornell Lab of Ornithology / eBird","focus":"Citizen science at scale, machine learning, migration modelling","why":"eBird is the largest citizen-science conservation dataset in existence and the strongest example of the detection-effort problem you are working on.","track":"either","status":"cold","verified":"unverified","the_top50":"likely","note":"The uploaded list also names Steve Kelling — verify whether he is still active at Cornell before writing to him.","url":"https://www.birds.cornell.edu/","dept":"Cornell Lab of Ornithology","unit":"eBird / Information Science","grants":[],"live_grant":false},{"name":"Carlo Ratti","inst":"MIT","country":"United States","group":"Senseable City Lab","focus":"Urban sensing, mobile phone and social media data for human activity","why":"Pioneered social media signal analysis for mapping human activity in green space.","track":"either","status":"cold","verified":"unverified","the_top50":"likely","note":"Urban studies rather than conservation. Weakest thematic fit on this list despite the institutional prestige.","url":"https://senseable.mit.edu/","dept":"Urban Studies and Planning","unit":"Senseable City Lab","grants":[],"live_grant":false},{"name":"William Sutherland","inst":"University of Cambridge","country":"United Kingdom","group":"Department of Zoology","focus":"Evidence-based conservation, horizon scanning, literature synthesis","why":"Evidence synthesis and horizon scanning overlap with your interest in what conservation evidence exists and where it is missing.","track":"svs","status":"cold","verified":"unverified","the_top50":"likely","note":"Same Cambridge IELTS block. Also senior enough that cold contact rarely lands.","url":"https://www.zoo.cam.ac.uk/","dept":"Department of Zoology","unit":"Conservation Science Group","grants":[],"live_grant":false}]},"funding":{"_README":"Hand-maintained. Screened against one specific profile: Indian citizen, 34 on 1 July 2027, IELTS 7.0 overall / 6.5 writing, ~10 years research experience, M.Sc. + B.Tech. The 'blocks' field is the point — it names what would disqualify you before you spend time. Verify everything at source; scheme terms change annually.","_verified_values":{"checked":"Confirmed against the issuing organisation's own page on the date shown","secondary":"One secondary source, uncorroborated","lead":"Not checked — treat as a starting point only"},"_fit_values":{"strong":"Structurally suited to your profile","possible":"Worth checking, with a real caveat","blocked":"A named criterion disqualifies you as things stand"},"funding":[{"name":"ERC-funded doctoral and postdoctoral posts","kind":"Employment","who":"Individual ERC grant holders","value":"Salary on national scales","fit":"strong","verified":"checked","checked":"2026-07-26","url":"https://cordis.europa.eu/projects","what":"Grant holders hire their own researchers at their own discretion. This is the route the roster is built around — no cohort call, no nationality quota, no ranking requirement.","blocks":"None structural. Posts are advertised on each university's own board, often briefly, and sometimes filled before advertisement.","why":"The only route on this list where a decade of experience is an asset rather than an eligibility problem."},{"name":"MSCA COFUND doctoral programmes","kind":"Employment","who":"European Commission + host institutions","value":"Salaried, typically 4-year contracts","fit":"possible","verified":"checked","checked":"2026-07-26","url":"https://marie-sklodowska-curie-actions.ec.europa.eu/actions/cofund","what":"Cohort-based salaried doctoral programmes across Europe. RESDOC at Helsinki is one instance; dozens run annually on staggered deadlines.","blocks":"Most impose an early-stage researcher rule — under 4 years of research experience, counted from the qualifying degree. Your CV may exceed it. Also an MSCA mobility rule: not more than 12 months in the host country in the preceding 36.","why":"Get the experience count ruled on in writing by the programme office before applying. Supervisors routinely misread this."},{"name":"RESDOC — University of Helsinki","kind":"Employment","who":"University of Helsinki, MSCA COFUND","value":"~EUR 2,900/month, 4-year contract","fit":"possible","verified":"checked","checked":"2026-07-26","deadline":"2026-08-31","url":"https://www.helsinki.fi/en/research/doctoral-school/resdoc-project/how-apply","what":"30 salaried doctoral positions across four themes including biodiversity and resilience. Starts Jan–Mar 2027.","blocks":"Early-stage researcher criterion — under 4 years research experience. This is the open question on your application.","why":"Di Minin is in the supervisor pool. Even if the eligibility ruling goes against you, his BIOBANG grant runs to 2030 and hires independently."},{"name":"MSCA Doctoral Networks","kind":"Employment","who":"European Commission","value":"Salaried, mobility and family allowances","fit":"possible","verified":"checked","checked":"2026-07-26","url":"https://marie-sklodowska-curie-actions.ec.europa.eu/actions/doctoral-networks","what":"Consortium-based doctoral training. Positions advertised individually on EURAXESS rather than as one cohort call.","blocks":"Same early-stage researcher and mobility rules as COFUND.","why":"Search EURAXESS for 'Doctoral Network' plus your topic terms rather than waiting for a central call."},{"name":"Nordic and Dutch employed doctorates","kind":"Employment","who":"Individual universities","value":"Full salary, pension, no tuition","fit":"strong","verified":"checked","checked":"2026-07-26","url":"https://euraxess.ec.europa.eu/jobs/search","what":"In Sweden, Norway, Denmark, Finland and the Netherlands a doctorate is a job. Selection reads like hiring, not admissions.","blocks":"None on nationality or age. English requirements usually 6.5–7.0, which your bands clear.","why":"Your publication record and applied experience count for more here than in any admissions-based system."},{"name":"Swami Vivekananda Scholarship for Academic Excellence","kind":"State scholarship","who":"Government of Rajasthan","value":"Tuition up to ~INR 50 lakh; living allowance varies by income category","fit":"possible","verified":"secondary","checked":"2026-07-26","url":"https://scholarship.rajasthan.gov.in/","what":"Rajasthan domicile scheme for study abroad. Conditional offer accepted at application; unconditional letter due within two months of provisional selection.","blocks":"Age under 35 on 1 July — your last clean cycle is 2027–28. THE top-50 institutions only, not QS. Reported 75% / 7.5 CGPA qualifying threshold conflicts with older 60% sources. E1 → E2 → E3 evaluation order puts you second in line as E2.","why":"Verify the marks threshold against your own transcripts before anything else. It can disqualify you outright and is the cheapest thing to check."},{"name":"Commonwealth Scholarships","kind":"Scholarship","who":"UK FCDO / CSC","value":"Full tuition, stipend, airfare","fit":"strong","verified":"lead","url":"https://cscuk.fcdo.gov.uk/scholarships/","what":"Master's and PhD scholarships for citizens of Commonwealth countries. India is eligible. Nominated through approved bodies.","blocks":"No upper age limit in most streams. Requires a specific nominating route — check which applies to you before drafting anything.","why":"One of very few full-cost routes into the UK that sidesteps the UKRI 30% international cap entirely."},{"name":"Chevening","kind":"Scholarship","who":"UK FCDO","value":"Full tuition, stipend, travel","fit":"possible","verified":"lead","url":"https://www.chevening.org/","what":"One-year UK master's for emerging leaders. Requires around two years' work experience — you have far more.","blocks":"Master's only, not doctoral. Carries a return-home requirement. One year is short for the research training you want.","why":"A poor fit for a doctoral trajectory, but the leadership framing suits your CV if you decide a UK master's is the route."},{"name":"Swedish Institute Scholarships for Global Professionals","kind":"Scholarship","who":"Swedish Institute","value":"Tuition, living costs, insurance","fit":"possible","verified":"lead","url":"https://si.se/en/apply/scholarships/","what":"Master's scholarships explicitly aimed at professionals with work experience and demonstrated leadership.","blocks":"Master's level only. Cycle dates not confirmed here.","why":"The 'global professional' framing fits an applicant with a decade of applied work better than most academic schemes."},{"name":"Erasmus Mundus Joint Masters","kind":"Scholarship","who":"European Commission","value":"Full tuition, travel, monthly allowance","fit":"possible","verified":"lead","url":"https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en","what":"Multi-country master's programmes with integrated full scholarships. No age bar in most.","blocks":"Master's level, so it does not advance a doctoral timeline directly.","why":"Worth scanning the catalogue for anything on conservation data or environmental humanities."},{"name":"DAAD scholarship database","kind":"Scholarship","who":"German Academic Exchange Service","value":"Varies by programme","fit":"possible","verified":"lead","url":"https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/","what":"Searchable database of German funding for international researchers at every career stage.","blocks":"Some doctoral schemes impose age or years-since-degree limits. Filter carefully.","why":"Germany also runs salaried TV-L E13 doctoral posts, which do not need a scholarship at all."},{"name":"JN Tata Endowment","kind":"Loan scholarship","who":"JN Tata Endowment, India","value":"Loan scholarship plus travel grant","fit":"possible","verified":"lead","url":"https://www.jntataendowment.org/","what":"Long-established Indian endowment for graduate study abroad in any field.","blocks":"It is a loan, repayable. Annual cycle, typically opening early in the calendar year.","why":"Useful as a gap-filler alongside a partial award rather than as a primary route."},{"name":"KC Mahindra Scholarships","kind":"Loan scholarship","who":"KC Mahindra Education Trust","value":"Interest-free loan scholarship","fit":"possible","verified":"lead","url":"https://www.kcmet.org/","what":"For Indian graduates pursuing postgraduate study abroad.","blocks":"Interest-free but repayable. Competitive and modest in value relative to European tuition.","why":"Same gap-filler logic as the Tata endowment."},{"name":"Inlaks Shivdasani Scholarship","kind":"Scholarship","who":"Inlaks Shivdasani Foundation","value":"Tuition, living, health insurance","fit":"blocked","verified":"lead","url":"https://www.inlaksfoundation.org/","what":"Prestigious Indian scholarship for study abroad.","blocks":"Age limit is typically 30 at application. At 33 you are almost certainly outside it.","why":"Listed so you do not spend an evening discovering this yourself. Confirm and then close it out."},{"name":"Fulbright-Nehru Fellowships","kind":"Fellowship","who":"USIEF","value":"Tuition, stipend, travel, insurance","fit":"possible","verified":"lead","url":"https://www.usief.org.in/","what":"India-specific US programmes including doctoral research fellowships and master's awards.","blocks":"US visa environment adds risk. Doctoral research fellowships require existing Indian PhD enrolment in some streams — check which category applies.","why":"The doctoral research fellowship is worth understanding even if you do not use it, because it structures a lot of India-US academic mobility."},{"name":"Rotary Peace Fellowships","kind":"Fellowship","who":"Rotary Foundation","value":"Fully funded master's or certificate","fit":"possible","verified":"lead","url":"https://www.rotary.org/en/our-programs/peace-fellowships","what":"Fully funded programmes at partner universities, aimed at mid-career professionals in peace and development.","blocks":"Framing is peace and conflict rather than conservation. You would need to make the environmental-conflict link explicitly.","why":"Mid-career framing is rare and suits you; the thematic stretch is the cost."},{"name":"Aga Khan Foundation ISP","kind":"Scholarship + loan","who":"Aga Khan Foundation","value":"50% grant, 50% loan","fit":"possible","verified":"lead","url":"https://www.akdn.org/our-agencies/aga-khan-foundation/international-scholarship-programme","what":"Postgraduate scholarships for students from selected countries including India.","blocks":"Half is a loan. Applications open once a year, typically January to March.","why":"Applies to doctoral study, which several Indian schemes on this list do not."},{"name":"Swiss Government Excellence Scholarships","kind":"Scholarship","who":"Swiss Confederation","value":"Monthly stipend, tuition waiver, insurance","fit":"possible","verified":"lead","url":"https://www.sbfi.admin.ch/sbfi/en/home/education/scholarships-and-grants/swiss-government-excellence-scholarships.html","what":"Research and PhD scholarships. Requires a supervisor's acceptance letter before applying.","blocks":"Age limits apply in some categories, often born after a stated year. Check the India-specific call.","why":"The supervisor-first requirement suits the outreach strategy you are already running."},{"name":"Australia Awards / RTP stipends","kind":"Scholarship","who":"Australian Government / universities","value":"Tuition plus living stipend","fit":"possible","verified":"lead","url":"https://www.dese.gov.au/research-block-grants/research-training-program","what":"Australian universities fund international doctoral students through RTP stipends awarded internally.","blocks":"Competitive and university-administered rather than centrally applied for. UQ ranks well in QS but far lower in THE, so it is likely outside SVS eligibility.","why":"Relevant if you pursue Richard Fuller at UQ — the funding would come through the university, not the scholarship."}]},"geo":{"_README":"Coordinates are approximate institution centroids, hand-entered. THE ranks are 2026 edition where I could verify them; 'unverified' means I could not, and the SVS annexure governs anyway — never trust a rank here for an eligibility decision.","countries":{"Finland":{"model":"salaried","post_study":"Residence permit for job-seeking after graduation; doctoral researchers are employees throughout","quota":"None. No home/international fee split.","outlook":"Stable. EU member, strong research funding, active ERC presence in your exact field.","risk":"low","note":"The four Digital Geography Lab grants make this the densest cluster for your work anywhere.","confidence":"high"},"Norway":{"model":"salaried","post_study":"Doctoral positions are full employment contracts with pension and sick leave","quota":"None.","outlook":"Stable and well funded. Not in the EU but in the EEA, and associated to Horizon Europe.","risk":"low","note":"Salaries are high relative to cost of living. Tromsø is Arctic — factor the darkness honestly.","confidence":"high"},"Sweden":{"model":"salaried","post_study":"Doctoral employment; permit rules for post-completion work have tightened in recent years","quota":"None.","outlook":"Stable. SLU is a world centre for forest and wildlife science.","risk":"low","note":"Verify current post-doctoral residence rules — Sweden has changed these more than its neighbours.","confidence":"medium"},"Netherlands":{"model":"salaried","post_study":"Orientation year (zoekjaar) for graduates and researchers","quota":"None.","outlook":"Stable, though there is ongoing political pressure to reduce international student numbers.","risk":"low","note":"Wageningen is the strongest nature-and-food-systems institution in Europe.","confidence":"medium"},"Italy":{"model":"salaried","post_study":"Doctoral scholarships (borse di dottorato); ERC-funded posts are contracts","quota":"None.","outlook":"ERC funding is strong; national funding is thinner. Follow the grant, not the institution.","risk":"low","note":"Two large Synergy grants relevant to you are hosted here.","confidence":"medium"},"United Kingdom":{"model":"mixed","post_study":"Graduate Route: 18 months if applying from 1 Jan 2027; 3 years for doctoral graduates","quota":"UKRI caps international students at ~30% of each doctoral training programme, and funds fees at the Home rate only.","outlook":"Under real strain. THE reports UK universities in the global top 500 fell below 50 for the first time, with twelve at their lowest-ever positions amid a sector funding crisis.","risk":"medium","note":"ERC-funded posts hosted in the UK are hired by the PI and sit outside the UKRI cap. That is the way in.","confidence":"high"},"United States":{"model":"assistantship","post_study":"OPT, then the H-1B lottery — which is a lottery, not a process you can plan around","quota":"None formally, but doctoral admission is departmental and highly competitive.","outlook":"Funding for doctoral students is usually good once admitted. Immigration policy has been volatile and should be treated as a live risk.","risk":"high","note":"December deadlines. Verify current visa conditions close to any application — this changes faster than any other item on this map.","confidence":"low"},"Germany":{"model":"salaried","post_study":"18 months to seek work after graduation","quota":"None.","outlook":"Stable. Many doctoral posts are TV-L E13 public-sector contracts.","risk":"low","note":"Max Planck IMPRS programmes are fully funded and internationally open.","confidence":"medium"},"Australia":{"model":"stipend","post_study":"Post-study work rights, historically around 2 years","quota":"RTP stipends are awarded internally by universities.","outlook":"Stable, but international student policy has been tightening.","risk":"medium","note":"UQ ranks far higher in QS than THE, so it is probably outside SVS eligibility. Funding would come via the university instead.","confidence":"low"},"France":{"model":"salaried","post_study":"Doctoral contracts (contrat doctoral) are employment","quota":"None.","outlook":"Stable. CNRS hosts substantial ERC activity.","risk":"low","note":"","confidence":"medium"},"Switzerland":{"model":"salaried","post_study":"Doctoral positions are employment; permits tied to the contract","quota":"None, but places are few and competitive.","outlook":"Very well funded. Association status with Horizon Europe has fluctuated — check current position.","risk":"low","note":"Swiss Government Excellence Scholarships require a supervisor's acceptance first.","confidence":"medium"}},"institutions":[{"name":"University of Helsinki","country":"Finland","lat":60.1699,"lon":24.9384,"the":null,"the_note":"outside top 50","kind":"roster","people":["Enrico Di Minin","Tuomo Hiippala","Tuuli Toivonen"],"dept":"Geosciences & Geography · Digital Geography Lab · HELSUS","why":"Three roster names, four live ERC grants, and your proposed RESDOC supervisor. The densest single point on this map for your work."},{"name":"University of Turku","country":"Finland","lat":60.4518,"lon":22.2666,"the":null,"the_note":"outside top 50","kind":"roster","people":["Ricardo A. Correia"],"dept":"Department of Biology · Biodiversity Unit","why":"NATURETIME began June 2026. A team being assembled right now."},{"name":"UiT The Arctic University of Norway","country":"Norway","lat":69.6811,"lon":18.9733,"the":null,"the_note":"outside top 50","kind":"roster","people":["Richard Fraser"],"dept":"Department of Social Sciences","why":"ZOONOSIS starts September 2026 — the only grant in the ERC record combining wildlife trade, spillover and multispecies relations."},{"name":"University of Padua","country":"Italy","lat":45.4064,"lon":11.8768,"the":null,"the_note":"outside top 50","kind":"roster","people":["Deborah Nadal"],"dept":"Historical & Geographic Sciences · Anthropology","why":"INVANISH starts October 2026. Anthropologists, ecologists and citizen scientists on species redistribution. Her prior work is on human-animal relations in India."},{"name":"University of Bologna","country":"Italy","lat":44.4949,"lon":11.3426,"the":null,"the_note":"outside top 50","kind":"roster","people":["Marc Brightman"],"dept":"Cultural Heritage · Environmental anthropology","why":"PLANETARY EEL, EUR 11.1M Synergy to 2032. Strongest more-than-human match in the record, but methodologically distant from your computational work."},{"name":"King's College London","country":"United Kingdom","lat":51.5115,"lon":-0.116,"the":null,"the_note":"verify","kind":"roster","people":["George Adamson"],"dept":"Department of Geography · King's Water","why":"AdaptAIR, EUR 10.0M Synergy to 2032, on climate adaptation in Ladakh. ERC-funded posts sit outside the UKRI 30% cap."},{"name":"University College London","country":"United Kingdom","lat":51.5246,"lon":-0.134,"the":22,"the_note":"verify against annexure","kind":"roster","people":["Kate Jones"],"dept":"Genetics, Evolution & Environment · CBER","why":"One of very few people working on both biodiversity monitoring and zoonotic risk — the One Health co-supervision your Objective 2 declares it needs."},{"name":"University of Cambridge","country":"United Kingdom","lat":52.2043,"lon":0.1149,"the":4,"the_note":"verified 2026 edition","kind":"blocked","people":["Chris Sandbrook","William Sutherland"],"dept":"Geography · Zoology · Cambridge Conservation Initiative","why":"BLOCKED on language: requires IELTS 7.5 overall with 7.0 per element. You hold 7.0 / 6.5."},{"name":"University of Oxford","country":"United Kingdom","lat":51.7548,"lon":-1.2544,"the":1,"the_note":"verified — 10th consecutive year at #1","kind":"watch","people":[],"dept":"School of Geography and the Environment","why":"Standard-tier courses require 7.0 overall / 6.5 each, which your bands clear exactly. Higher-tier courses do not. Check the tier per course page."},{"name":"Imperial College London","country":"United Kingdom","lat":51.4988,"lon":-0.1749,"the":null,"the_note":"verify","kind":"watch","people":["Jesús Aguirre Gutiérrez"],"dept":"Life Sciences · Silwood Park","why":"ADAPTA, EUR 3.0M ERC Consolidator to 2031, on tropical forest adaptation."},{"name":"Massachusetts Institute of Technology","country":"United States","lat":42.3601,"lon":-71.0942,"the":2,"the_note":"verified 2026 edition","kind":"roster","people":["Sara Beery","Carlo Ratti"],"dept":"EECS / CSAIL · Urban Studies & Planning / Senseable City Lab","why":"Your B.Tech is a genuine asset here. But Beery's work is image-focused rather than social, so the thematic fit is weaker than the ranking suggests."},{"name":"Yale University","country":"United States","lat":41.3163,"lon":-72.9223,"the":null,"the_note":"verify","kind":"roster","people":["Walter Jetz"],"dept":"Ecology & Evolutionary Biology · Center for Biodiversity and Global Change","why":"Map of Life is infrastructure your Objective 1 would use. His work on gaps in digital biodiversity coverage is your detection-effort problem restated."},{"name":"Cornell University","country":"United States","lat":42.4534,"lon":-76.4735,"the":null,"the_note":"verify","kind":"roster","people":["Daniel Fink"],"dept":"Cornell Lab of Ornithology · eBird","why":"eBird is the largest citizen-science conservation dataset in existence and the clearest real-world case of the detection-effort problem."},{"name":"University of Michigan","country":"United States","lat":42.278,"lon":-83.7382,"the":null,"the_note":"verify","kind":"roster","people":["Derek Van Berkel","Neil Carter"],"dept":"School for Environment and Sustainability","why":"Van Berkel publishes on geotagged social media for cultural ecosystem services. Carter works on tigers and coexistence — your WII and Ranthambhore work is legible to him without translation."},{"name":"University of Queensland","country":"Australia","lat":-27.4975,"lon":153.0137,"the":null,"the_note":"likely outside top 50 in THE","kind":"watch","people":["Richard Fuller"],"dept":"School of the Environment · CBCS","why":"Extinction of experience connects to your Objective 4. But UQ ranks far better in QS than THE, so SVS probably will not cover it."},{"name":"Wageningen University","country":"Netherlands","lat":51.9847,"lon":5.6636,"the":null,"the_note":"outside top 50","kind":"watch","people":[],"dept":"Environmental Sciences Group","why":"Strongest nature-and-food-systems institution in Europe. Salaried doctorates, no quota."},{"name":"Swedish University of Agricultural Sciences (SLU)","country":"Sweden","lat":59.818,"lon":17.66,"the":null,"the_note":"outside top 50","kind":"watch","people":[],"dept":"Wildlife, Fish and Environmental Studies","why":"Your WIFORCE application. Salaried, no tuition, no nationality quota."},{"name":"ETH Zurich","country":"Switzerland","lat":47.3763,"lon":8.5476,"the":null,"the_note":"verify — highest-ranked outside UK/US","kind":"watch","people":[],"dept":"Environmental Systems Science","why":"Salaried doctoral positions, very well funded. Requirements vary by department."}]},"external":{"generated":null,"source":null,"counts":{"total":0,"actionable":0,"by_funding":{}},"the_filter":false,"note":"No import yet. Run: python pipeline/adapt.py yourfile.csv","positions":[]},"_embedded":"2026-07-27T05:25:30+00:00"}</script>
+<!--DATA:END-->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+/* Data comes from data/opportunities.json, regenerated weekly by
+   .github/workflows/refresh.yml. If the fetch fails the workflow restores the
+   previous file, so this page degrades to stale rather than empty. */
+
+const REVIEWED = "2026-07-26";
+let DATA = { leads: [], calls: [], generated: null };
+let LAYER = "lead", Q = "";
+
+const OUTS = [
+  { cat: "Positions", nm: "EURAXESS — search COFUND", url: "https://euraxess.ec.europa.eu/jobs/search" },
+  { cat: "Positions", nm: "AcademicTransfer (Netherlands)", url: "https://www.academictransfer.com/en/jobs/" },
+  { cat: "Positions", nm: "Jobbnorge (Norway)", url: "https://www.jobbnorge.no/en/search" },
+  { cat: "Positions", nm: "University of Helsinki vacancies", url: "https://jobs.helsinki.fi/" },
+  { cat: "Positions", nm: "ECOEVOJOBS", url: "https://ecoevojobs.net/" },
+  { cat: "Grants", nm: "CORDIS — EU funded projects", url: "https://cordis.europa.eu/search" },
+  { cat: "Grants", nm: "Horizon Dashboard (Qlik, manual only)", url: "https://dashboard.tech.ec.europa.eu/" },
+  { cat: "Grants", nm: "SweCRIS — Swedish research funding", url: "https://www.swecris.se/" },
+  { cat: "Data", nm: "CITES Trade Database", url: "https://trade.cites.org/" },
+  { cat: "Data", nm: "TRAFFIC Wildlife Trade Portal", url: "https://www.wildlifetradeportal.org/" },
+  { cat: "Data", nm: "VIRION — host–virus associations", url: "https://www.viralemergence.org/virion" },
+  { cat: "Data", nm: "GBIF", url: "https://www.gbif.org/" },
+  { cat: "Data", nm: "ENCORE — sector nature dependencies", url: "https://www.encorenature.org/" }
+];
+
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const days = iso => Math.ceil((new Date(iso + "T23:59:59") - new Date()) / 864e5);
+const fmt = iso => new Date(iso + "T12:00:00")
+  .toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+
+async function load() {
+  const d = await grab("opportunities", "data/opportunities.json");
+  if (d) DATA = d;
+  else document.getElementById("stamp").textContent =
+    "No data found — run pipeline/fetch.py then pipeline/embed.py";
+  stamp(); render(); people();
+}
+
+function stamp() {
+  const el = document.getElementById("stamp");
+  if (!DATA.generated) return;
+  const age = Math.floor((new Date() - new Date(DATA.generated)) / 864e5);
+  el.textContent =
+    `${DATA.counts.leads} live grants · ${DATA.counts.calls} open calls · refreshed ` +
+    (age === 0 ? "today" : age === 1 ? "yesterday" : `${age} days ago`) +
+    (age > 21 ? " — stale, check the workflow" : "");
+}
+
+function render() {
+  const src = LAYER === "lead" ? (DATA.leads || [])
+            : LAYER === "call" ? (DATA.calls || [])
+            : (EXT.positions || []);
+  const q = Q.trim().toLowerCase();
+  const rows = q
+    ? src.filter(x => JSON.stringify(x).toLowerCase().includes(q))
+    : src;
+
+  document.getElementById("rows").innerHTML = rows.length
+    ? rows.map(LAYER === "lead" ? lead : LAYER === "call" ? call : extRow).join("")
+    : `<p class="none">Nothing matches that filter.</p>`;
+}
+
+function lead(x) {
+  const cls = x.fit >= 12 ? "hi" : x.fit >= 7 ? "mid" : "";
+  const yrs = x.end ? ((new Date(x.end) - new Date()) / 3.156e10).toFixed(1) : "?";
+  return `<article class="row ${cls}">
+    <div>
+      <h3><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.pi || x.acronym)}</a>
+        ${x.fresh ? '<span class="new">new grant</span>' : ""}</h3>
+      <p class="sub">${esc(x.acronym)} · ${esc(x.host)} · ${esc(x.country)}${
+        x.grant_type ? " · " + esc(x.grant_type) : ""}</p>
+      <p class="sub" style="opacity:.85">${esc(x.title)}</p>
+      <p class="tg">${(x.tags || []).map(t => `<span>${esc(t)}</span>`).join("")}</p>
+    </div>
+    <div class="rt"><b>${yrs}y</b><span>runway · ends ${esc(fmt(x.end))}</span></div>
+  </article>`;
+}
+
+function call(x) {
+  const d = x.deadline ? days(x.deadline) : null;
+  return `<article class="row ${d !== null && d <= 30 ? "hi" : "mid"}">
+    <div>
+      <h3><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title)}</a></h3>
+      <p class="sub">${esc(x.id)}${x.programme ? " · " + esc(x.programme) : ""}${
+        x.status ? " · " + esc(x.status) : ""}</p>
+      <p class="tg">${(x.tags || []).map(t => `<span>${esc(t)}</span>`).join("")}</p>
+    </div>
+    <div class="rt ${d !== null && d <= 30 ? "soon" : ""}">
+      <b>${d === null ? "—" : d < 0 ? "closed" : d}</b>
+      <span>${d === null ? "no date" : d < 0 ? esc(fmt(x.deadline)) : "days · " + esc(fmt(x.deadline))}</span>
+    </div>
+  </article>`;
+}
+
+function renderOuts() {
+  document.getElementById("outs").innerHTML = OUTS.map(o =>
+    `<a class="out" href="${esc(o.url)}" target="_blank" rel="noopener">
+      <span class="cat">${esc(o.cat)}</span>
+      <span class="nm">${esc(o.nm)}</span>
+      <span class="go">open \u2197</span></a>`).join("");
+}
+
+function motif() {
+  let out = "";
+  for (let i = 0; i < 96; i++) {
+    const seen = (i * 7 + 3) % 11 > 4;
+    const gap = !seen && (i * 5 + 2) % 9 < 3;
+    out += `<i class="${gap ? "gap" : seen ? "seen" : ""}"></i>`;
+  }
+  document.getElementById("motif").innerHTML = out;
+}
+
+document.querySelectorAll("#lay .sg").forEach(b =>
+  b.addEventListener("click", () => {
+    LAYER = b.dataset.lay;
+    document.querySelectorAll("#lay .sg").forEach(x => x.classList.toggle("on", x === b));
+    render();
+  }));
+document.getElementById("q").addEventListener("input", e => { Q = e.target.value; render(); });
+
+document.getElementById("rev").textContent = fmt(REVIEWED);
+
+
+/* ── external board positions ── */
+let EXT = { positions: [] };
+
+async function loadExt() {
+  EXT = (await grab("external", "data/external.json")) || { positions: [] };
+  if (LAYER === "ext") render();
+}
+
+function extRow(x) {
+  const F = {
+    worldwide: ["hi", "open to you"], funded: ["hi", "funded"],
+    competition: ["mid", "competitive"], "self-funded": ["mid", "self-funded"],
+    unknown: ["", "unstated"], "eu-only": ["", "blocked"], "home-only": ["", "blocked"]
+  };
+  const [cls, lab] = F[x.funding] || F.unknown;
+  return `<article class="row ${x.actionable ? "hi" : cls}">
+    <div>
+      <h3><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title)}</a></h3>
+      <p class="sub">${esc(x.country)}${x.institution ? " · " + esc(x.institution) : ""}${
+        x.date ? " · " + esc(x.date) : ""}</p>
+      <p class="sub" style="opacity:.85">${esc(x.meaning)}</p>
+      ${x.the_ok ? `<p class="tg"><span>SVS-eligible · ${esc(x.the_ok)}</span></p>` : ""}
+    </div>
+    <div class="rt ${x.actionable ? "soon" : ""}"><b>${esc(lab)}</b><span>${
+      x.actionable ? "actionable" : "check first"}</span></div>
+  </article>`;
+}
+
+/* ── roster ── */
+let TRK = "all";
+const BADGE = {
+  "erc-data": ["v", "grant-verified"],
+  "unverified": ["u", "unverified"]
+};
+
+function people() {
+  const all = DATA.roster || [];
+  const rows = TRK === "all" ? all
+    : all.filter(p => p.track === TRK || (TRK === "salaried" && p.track === "either"));
+  document.getElementById("ppl").innerHTML = rows.length
+    ? rows.map(pcard).join("")
+    : `<p class="none">No one on this track yet.</p>`;
+}
+
+function pcard(p) {
+  const blocked = /BLOCKED/i.test(p.note || "");
+  const cls = blocked ? "blocked" : p.live_grant ? "live" : "";
+  const [bk, bl] = BADGE[p.verified] || BADGE.unverified;
+  const g = (p.grants || []).filter(x => x.live)[0];
+  return `<article class="pcard ${cls}">
+    <div class="ph">
+      <h3>${esc(p.name)}</h3>
+      ${p.live_grant ? '<span class="bdg l">live grant</span>' : ""}
+      <span class="bdg ${bk}">${bl}</span>
+      <span class="bdg ${p.track === "salaried" ? "s" : p.track === "svs" ? "w" : "u"}">${
+        p.track === "salaried" ? "salaried" : p.track === "svs" ? "needs scholarship" : "check funding"}</span>
+    </div>
+    <p class="aff">${esc(p.inst)}, ${esc(p.country)}${p.group ? " · " + esc(p.group) : ""}</p>
+    ${p.dept ? `<p class="dept">${esc(p.dept)}${p.unit ? " · " + esc(p.unit) : ""}</p>` : ""}
+    <p class="why">${esc(p.why)}</p>
+    ${g ? `<p class="gr"><a href="${esc(g.url)}" target="_blank" rel="noopener">${esc(g.acronym)}</a> — ${esc(g.title)} · to ${esc(fmt(g.end))}</p>` : ""}
+    ${p.note ? `<p class="nt">${esc(p.note)}</p>` : ""}
+    <button class="cp" data-cp="${esc(p.name)}">Copy outreach prompt</button>
+  </article>`;
+}
+
+document.querySelectorAll("#trk .sg").forEach(b =>
+  b.addEventListener("click", () => {
+    TRK = b.dataset.trk;
+    document.querySelectorAll("#trk .sg").forEach(x => x.classList.toggle("on", x === b));
+    people();
+  }));
+
+
+/* ── funding ── */
+let FK = "all", FUND = [];
+
+async function loadFunding() {
+  FUND = ((await grab("funding", "data/funding.json")) || {}).funding || [];
+  funding();
+}
+
+function funding() {
+  const rows = FK === "all" ? FUND
+    : FK === "Employment" ? FUND.filter(f => f.kind === "Employment")
+    : FUND.filter(f => f.kind !== "Employment");
+  document.getElementById("fund").innerHTML = rows.length
+    ? rows.map(fcard).join("")
+    : `<p class="none">Nothing in this category.</p>`;
+}
+
+function fcard(f) {
+  const V = { checked: ["v","verified"], secondary: ["w","single source"], lead: ["u","unchecked"] };
+  const [vk, vl] = V[f.verified] || V.lead;
+  const F = { strong: ["s","strong fit"], possible: ["u","possible"], blocked: ["l","blocked"] };
+  const [fk2, fl] = F[f.fit] || F.possible;
+  const d = f.deadline ? days(f.deadline) : null;
+  return `<article class="fcard ${f.fit}">
+    <div class="fh">
+      <h3><a href="${esc(f.url)}" target="_blank" rel="noopener" style="text-decoration:none;border-bottom:1px solid var(--rule-2)">${esc(f.name)}</a></h3>
+      <span class="bdg ${fk2}">${fl}</span>
+      <span class="bdg ${vk}">${vl}</span>
+      ${d !== null && d >= 0 ? `<span class="bdg l">${d}d left</span>` : ""}
+    </div>
+    <p class="who">${esc(f.kind)} · ${esc(f.who)} · ${esc(f.value)}</p>
+    <p class="wt">${esc(f.what)}</p>
+    <p class="bl"><b>What would disqualify you</b>${esc(f.blocks)}</p>
+    <p class="wy">${esc(f.why)}</p>
+  </article>`;
+}
+
+document.querySelectorAll("#fk .sg").forEach(b =>
+  b.addEventListener("click", () => {
+    FK = b.dataset.fk;
+    document.querySelectorAll("#fk .sg").forEach(x => x.classList.toggle("on", x === b));
+    funding();
+  }));
+
+
+
+/* ── data loading ──────────────────────────────────────────────────────────
+   Embedded copy first so the page works from file:// and offline, then fetch
+   to pick up anything newer when served over http. Never blank. */
+function embedded(key) {
+  const el = document.getElementById("bootstrap");
+  if (!el) return null;
+  try { return (JSON.parse(el.textContent) || {})[key] || null; }
+  catch (e) { return null; }
+}
+
+async function grab(key, path) {
+  const seed = embedded(key);
+  try {
+    const r = await fetch(path, { cache: "no-cache" });
+    if (r.ok) return await r.json();
+  } catch (e) { /* file:// or offline — the seed carries us */ }
+  return seed;
+}
+
+/* ── outreach prompt builder ──────────────────────────────────────────────
+   Assembles a grounded prompt from the roster + live grant record and puts it
+   on the clipboard. Deliberately no API call: a static page cannot hold a key
+   without publishing it. You paste this into Claude yourself. */
+
+function buildPrompt(p) {
+  const g = (p.grants || []).filter(x => x.live)[0];
+  return `I am drafting a cold email to a researcher about a possible doctoral position.
+
+THEM
+Name: ${p.name}
+Institution: ${p.inst}${p.dept ? ", " + p.dept : ""}${p.unit ? " (" + p.unit + ")" : ""}
+Country: ${p.country}
+Research focus: ${p.focus}
+${g ? `Active grant: ${g.acronym} — ${g.title}, funded to ${g.end}.` : "No live grant record found — verify their current funding before writing."}
+Why they matter to me: ${p.why}
+${p.note ? `Constraint I must respect: ${p.note}` : ""}
+
+ME
+Indian citizen, 33. M.Sc. Wildlife Science, B.Tech Computer Science.
+~10 years across wildlife crime monitoring (WCCB), tiger prey-base research (WII),
+the Protected Area Update archive (IIT Bombay), online wildlife trade monitoring
+(WCS India), and a sole-researcher impact evaluation at ATREE now under review as
+a first-author manuscript.
+Doctoral interest: how digital traces can be read as evidence of human pressure on
+biodiversity — separating a signal from the detection effort that produced it.
+Four strands: (1) where wildlife trade concentrates pressure and where detection
+effort is absent, (2) what traded species carry, corrected for research effort,
+(3) how environmental change is narrated across languages, (4) what engagement
+with nature media actually produces.
+IELTS 7.0 overall, 6.5 writing.
+
+WRITE
+Under 160 words before the signature.
+Open with a specific observation about their work that could only come from having
+read it — no praise, no "I am writing to express my interest", no "I am passionate".
+One sentence on what I bring that their group currently lacks.
+Close with one question that costs them under a minute to answer.
+Plain sentences, varied length, no em dashes.
+
+THEN
+List the three weakest lines you wrote and why a busy academic would skim past them.
+If this person is a poor use of my time given the constraint above, say so first.`;
+}
+
+document.addEventListener("click", async e => {
+  const b = e.target.closest("[data-cp]");
+  if (!b) return;
+  const p = (DATA.roster || []).find(x => x.name === b.dataset.cp);
+  if (!p) return;
+  try {
+    await navigator.clipboard.writeText(buildPrompt(p));
+    b.textContent = "Copied — paste into Claude";
+    setTimeout(() => (b.textContent = "Copy outreach prompt"), 2200);
+  } catch (err) {
+    b.textContent = "Clipboard blocked — check console";
+    console.log(buildPrompt(p));
+  }
+});
+
+
+/* ── map ──────────────────────────────────────────────────────────────────
+   Institutions + per-country funding and immigration picture, so a marker
+   answers "is this worth my time" without opening anything. */
+let GEO = null, MAP = null, MLAYER = null, MF = "all";
+
+const COL = { roster: "#FF2E63", watch: "#24405E", blocked: "#B0790F" };
+const RISK = { low: "#6E8257", medium: "#B0790F", high: "#FF2E63" };
+
+async function loadGeo() {
+  GEO = await grab("geo", "data/geo.json");
+  if (!GEO) {
+    document.getElementById("leaf").innerHTML =
+      '<p class="none" style="padding:22px">No map data — run pipeline/embed.py</p>';
+    return;
+  }
+  if (typeof L === "undefined") {
+    document.getElementById("leaf").innerHTML =
+      '<p class="none" style="padding:22px">Map library did not load — check your connection.</p>';
+    return;
+  }
+  MAP = L.map("leaf", { scrollWheelZoom: false }).setView([48, 2], 3);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 18
+  }).addTo(MAP);
+  drawMarkers();
+}
+
+function drawMarkers() {
+  if (!MAP || !GEO) return;
+  if (MLAYER) MAP.removeLayer(MLAYER);
+  MLAYER = L.layerGroup().addTo(MAP);
+
+  const rows = (GEO.institutions || []).filter(i => {
+    const c = GEO.countries[i.country] || {};
+    if (MF === "salaried") return c.model === "salaried";
+    if (MF === "the") return i.the && i.the <= 50;
+    if (MF === "blocked") return i.kind === "blocked";
+    return true;
+  });
+
+  rows.forEach(i => {
+    const c = GEO.countries[i.country] || {};
+    L.circleMarker([i.lat, i.lon], {
+      radius: i.kind === "roster" ? 10 : 7,
+      fillColor: COL[i.kind] || COL.watch,
+      color: RISK[c.risk] || "#888",
+      weight: 3, opacity: 1, fillOpacity: .85, className: "mk"
+    }).addTo(MLAYER).bindPopup(popup(i, c), { maxWidth: 340 });
+  });
+
+  const stamp = document.querySelector("#map .intro");
+  if (stamp && !stamp.dataset.n) stamp.dataset.n = "1";
+}
+
+function popup(i, c) {
+  const rank = i.the ? `THE #${i.the}` : (i.the_note || "rank unverified");
+  const ppl = (i.people || []).map(n => `<span>${esc(n)}</span>`).join("");
+  return `<div class="pp">
+    <h4>${esc(i.name)}</h4>
+    <p class="pd">${esc(i.country)} · ${esc(rank)}${i.dept ? "<br>" + esc(i.dept) : ""}</p>
+    <p class="pw">${esc(i.why)}</p>
+    <p class="pn"><b>Funding model</b>${esc(c.model === "salaried" ? "Salaried employment — no scholarship needed, no nationality quota"
+      : c.model === "assistantship" ? "Departmental assistantship — funded on admission"
+      : c.model === "stipend" ? "University-awarded stipend"
+      : "Mixed — check per position")}</p>
+    <p class="pn"><b>After graduation</b>${esc(c.post_study || "verify")}</p>
+    ${c.quota ? `<p class="pn"><b>Quota</b>${esc(c.quota)}</p>` : ""}
+    <p class="pn"><b>Outlook 2026 · ${esc((c.risk || "?").toUpperCase())} RISK</b>${esc(c.outlook || "")}${
+      c.confidence !== "high" ? ` <em>(${esc(c.confidence)} confidence — verify)</em>` : ""}</p>
+    ${c.note ? `<p class="pn"><b>Note</b>${esc(c.note)}</p>` : ""}
+    ${ppl ? `<p class="pl">${ppl}</p>` : ""}
+  </div>`;
+}
+
+document.querySelectorAll("#mf .sg").forEach(b =>
+  b.addEventListener("click", () => {
+    MF = b.dataset.mf;
+    document.querySelectorAll("#mf .sg").forEach(x => x.classList.toggle("on", x === b));
+    drawMarkers();
+  }));
+
+renderOuts(); motif(); load(); loadFunding(); loadGeo(); loadExt();
+</script>
+</body>
+</html>

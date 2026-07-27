@@ -1,0 +1,77 @@
+name: Refresh opportunities
+
+on:
+  schedule:
+    # Mondays 06:00 UTC. CORDIS publishes monthly, so weekly is ample;
+    # the SEDIA calls layer changes more often and justifies the cadence.
+    - cron: "0 6 * * 1"
+  workflow_dispatch:        # lets you trigger it by hand from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Keep the previous JSON so a failed or empty fetch cannot blank the site.
+      - name: Back up current data
+        run: cp data/opportunities.json /tmp/previous.json 2>/dev/null || true
+
+      - name: Fetch grants and calls
+        id: fetch
+        continue-on-error: true
+        run: python pipeline/fetch.py
+
+      # Social runs separately and is allowed to fail without blocking the rest —
+      # Bluesky and Mastodon are open but not contractually reliable.
+      - name: Fetch social signals
+        continue-on-error: true
+        run: python pipeline/social.py
+
+      - name: Restore on failure
+        if: steps.fetch.outcome != 'success'
+        run: |
+          echo "::warning::Fetch failed — restoring previous data"
+          cp /tmp/previous.json data/opportunities.json 2>/dev/null || true
+
+      # A sudden collapse in row count almost always means a source moved,
+      # not that the world changed. Fail loudly rather than publish silence.
+      # Without this the published page shows stale embedded data even though
+      # the JSON files updated. Must run after every fetch.
+      - name: Embed data into the page
+        run: python pipeline/embed.py
+
+      - name: Sanity check
+        run: |
+          python - <<'PY'
+          import json, sys, pathlib
+          p = pathlib.Path("data/opportunities.json")
+          if not p.exists():
+              sys.exit("no data file produced")
+          d = json.loads(p.read_text())
+          n = d["counts"]["leads"] + d["counts"]["calls"]
+          print(f"{n} records ({d['counts']})")
+          if n == 0:
+              sys.exit("empty result set — check whether CORDIS URLs moved")
+          PY
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet data/ index.html; then
+            echo "no change"
+          else
+            git add data/*.json index.html
+            git commit -m "data: refresh opportunities ($(date -u +%Y-%m-%d))"
+            git push
+          fi

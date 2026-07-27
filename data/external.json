@@ -1,0 +1,12 @@
+{
+ "generated": null,
+ "source": null,
+ "counts": {
+  "total": 0,
+  "actionable": 0,
+  "by_funding": {}
+ },
+ "the_filter": false,
+ "note": "No import yet. Run: python pipeline/adapt.py yourfile.csv",
+ "positions": []
+}

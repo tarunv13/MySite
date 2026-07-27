@@ -1,0 +1,254 @@
+{
+  "_README": "Hand-maintained. Screened against one specific profile: Indian citizen, 34 on 1 July 2027, IELTS 7.0 overall / 6.5 writing, ~10 years research experience, M.Sc. + B.Tech. The 'blocks' field is the point — it names what would disqualify you before you spend time. Verify everything at source; scheme terms change annually.",
+
+  "_verified_values": {
+    "checked": "Confirmed against the issuing organisation's own page on the date shown",
+    "secondary": "One secondary source, uncorroborated",
+    "lead": "Not checked — treat as a starting point only"
+  },
+
+  "_fit_values": {
+    "strong": "Structurally suited to your profile",
+    "possible": "Worth checking, with a real caveat",
+    "blocked": "A named criterion disqualifies you as things stand"
+  },
+
+  "funding": [
+    {
+      "name": "ERC-funded doctoral and postdoctoral posts",
+      "kind": "Employment",
+      "who": "Individual ERC grant holders",
+      "value": "Salary on national scales",
+      "fit": "strong",
+      "verified": "checked",
+      "checked": "2026-07-26",
+      "url": "https://cordis.europa.eu/projects",
+      "what": "Grant holders hire their own researchers at their own discretion. This is the route the roster is built around — no cohort call, no nationality quota, no ranking requirement.",
+      "blocks": "None structural. Posts are advertised on each university's own board, often briefly, and sometimes filled before advertisement.",
+      "why": "The only route on this list where a decade of experience is an asset rather than an eligibility problem."
+    },
+    {
+      "name": "MSCA COFUND doctoral programmes",
+      "kind": "Employment",
+      "who": "European Commission + host institutions",
+      "value": "Salaried, typically 4-year contracts",
+      "fit": "possible",
+      "verified": "checked",
+      "checked": "2026-07-26",
+      "url": "https://marie-sklodowska-curie-actions.ec.europa.eu/actions/cofund",
+      "what": "Cohort-based salaried doctoral programmes across Europe. RESDOC at Helsinki is one instance; dozens run annually on staggered deadlines.",
+      "blocks": "Most impose an early-stage researcher rule — under 4 years of research experience, counted from the qualifying degree. Your CV may exceed it. Also an MSCA mobility rule: not more than 12 months in the host country in the preceding 36.",
+      "why": "Get the experience count ruled on in writing by the programme office before applying. Supervisors routinely misread this."
+    },
+    {
+      "name": "RESDOC — University of Helsinki",
+      "kind": "Employment",
+      "who": "University of Helsinki, MSCA COFUND",
+      "value": "~EUR 2,900/month, 4-year contract",
+      "fit": "possible",
+      "verified": "checked",
+      "checked": "2026-07-26",
+      "deadline": "2026-08-31",
+      "url": "https://www.helsinki.fi/en/research/doctoral-school/resdoc-project/how-apply",
+      "what": "30 salaried doctoral positions across four themes including biodiversity and resilience. Starts Jan–Mar 2027.",
+      "blocks": "Early-stage researcher criterion — under 4 years research experience. This is the open question on your application.",
+      "why": "Di Minin is in the supervisor pool. Even if the eligibility ruling goes against you, his BIOBANG grant runs to 2030 and hires independently."
+    },
+    {
+      "name": "MSCA Doctoral Networks",
+      "kind": "Employment",
+      "who": "European Commission",
+      "value": "Salaried, mobility and family allowances",
+      "fit": "possible",
+      "verified": "checked",
+      "checked": "2026-07-26",
+      "url": "https://marie-sklodowska-curie-actions.ec.europa.eu/actions/doctoral-networks",
+      "what": "Consortium-based doctoral training. Positions advertised individually on EURAXESS rather than as one cohort call.",
+      "blocks": "Same early-stage researcher and mobility rules as COFUND.",
+      "why": "Search EURAXESS for 'Doctoral Network' plus your topic terms rather than waiting for a central call."
+    },
+    {
+      "name": "Nordic and Dutch employed doctorates",
+      "kind": "Employment",
+      "who": "Individual universities",
+      "value": "Full salary, pension, no tuition",
+      "fit": "strong",
+      "verified": "checked",
+      "checked": "2026-07-26",
+      "url": "https://euraxess.ec.europa.eu/jobs/search",
+      "what": "In Sweden, Norway, Denmark, Finland and the Netherlands a doctorate is a job. Selection reads like hiring, not admissions.",
+      "blocks": "None on nationality or age. English requirements usually 6.5–7.0, which your bands clear.",
+      "why": "Your publication record and applied experience count for more here than in any admissions-based system."
+    },
+
+    {
+      "name": "Swami Vivekananda Scholarship for Academic Excellence",
+      "kind": "State scholarship",
+      "who": "Government of Rajasthan",
+      "value": "Tuition up to ~INR 50 lakh; living allowance varies by income category",
+      "fit": "possible",
+      "verified": "secondary",
+      "checked": "2026-07-26",
+      "url": "https://scholarship.rajasthan.gov.in/",
+      "what": "Rajasthan domicile scheme for study abroad. Conditional offer accepted at application; unconditional letter due within two months of provisional selection.",
+      "blocks": "Age under 35 on 1 July — your last clean cycle is 2027–28. THE top-50 institutions only, not QS. Reported 75% / 7.5 CGPA qualifying threshold conflicts with older 60% sources. E1 → E2 → E3 evaluation order puts you second in line as E2.",
+      "why": "Verify the marks threshold against your own transcripts before anything else. It can disqualify you outright and is the cheapest thing to check."
+    },
+    {
+      "name": "Commonwealth Scholarships",
+      "kind": "Scholarship",
+      "who": "UK FCDO / CSC",
+      "value": "Full tuition, stipend, airfare",
+      "fit": "strong",
+      "verified": "lead",
+      "url": "https://cscuk.fcdo.gov.uk/scholarships/",
+      "what": "Master's and PhD scholarships for citizens of Commonwealth countries. India is eligible. Nominated through approved bodies.",
+      "blocks": "No upper age limit in most streams. Requires a specific nominating route — check which applies to you before drafting anything.",
+      "why": "One of very few full-cost routes into the UK that sidesteps the UKRI 30% international cap entirely."
+    },
+    {
+      "name": "Chevening",
+      "kind": "Scholarship",
+      "who": "UK FCDO",
+      "value": "Full tuition, stipend, travel",
+      "fit": "possible",
+      "verified": "lead",
+      "url": "https://www.chevening.org/",
+      "what": "One-year UK master's for emerging leaders. Requires around two years' work experience — you have far more.",
+      "blocks": "Master's only, not doctoral. Carries a return-home requirement. One year is short for the research training you want.",
+      "why": "A poor fit for a doctoral trajectory, but the leadership framing suits your CV if you decide a UK master's is the route."
+    },
+    {
+      "name": "Swedish Institute Scholarships for Global Professionals",
+      "kind": "Scholarship",
+      "who": "Swedish Institute",
+      "value": "Tuition, living costs, insurance",
+      "fit": "possible",
+      "verified": "lead",
+      "url": "https://si.se/en/apply/scholarships/",
+      "what": "Master's scholarships explicitly aimed at professionals with work experience and demonstrated leadership.",
+      "blocks": "Master's level only. Cycle dates not confirmed here.",
+      "why": "The 'global professional' framing fits an applicant with a decade of applied work better than most academic schemes."
+    },
+    {
+      "name": "Erasmus Mundus Joint Masters",
+      "kind": "Scholarship",
+      "who": "European Commission",
+      "value": "Full tuition, travel, monthly allowance",
+      "fit": "possible",
+      "verified": "lead",
+      "url": "https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en",
+      "what": "Multi-country master's programmes with integrated full scholarships. No age bar in most.",
+      "blocks": "Master's level, so it does not advance a doctoral timeline directly.",
+      "why": "Worth scanning the catalogue for anything on conservation data or environmental humanities."
+    },
+    {
+      "name": "DAAD scholarship database",
+      "kind": "Scholarship",
+      "who": "German Academic Exchange Service",
+      "value": "Varies by programme",
+      "fit": "possible",
+      "verified": "lead",
+      "url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
+      "what": "Searchable database of German funding for international researchers at every career stage.",
+      "blocks": "Some doctoral schemes impose age or years-since-degree limits. Filter carefully.",
+      "why": "Germany also runs salaried TV-L E13 doctoral posts, which do not need a scholarship at all."
+    },
+    {
+      "name": "JN Tata Endowment",
+      "kind": "Loan scholarship",
+      "who": "JN Tata Endowment, India",
+      "value": "Loan scholarship plus travel grant",
+      "fit": "possible",
+      "verified": "lead",
+      "url": "https://www.jntataendowment.org/",
+      "what": "Long-established Indian endowment for graduate study abroad in any field.",
+      "blocks": "It is a loan, repayable. Annual cycle, typically opening early in the calendar year.",
+      "why": "Useful as a gap-filler alongside a partial award rather than as a primary route."
+    },
+    {
+      "name": "KC Mahindra Scholarships",
+      "kind": "Loan scholarship",
+      "who": "KC Mahindra Education Trust",
+      "value": "Interest-free loan scholarship",
+      "fit": "possible",
+      "verified": "lead",
+      "url": "https://www.kcmet.org/",
+      "what": "For Indian graduates pursuing postgraduate study abroad.",
+      "blocks": "Interest-free but repayable. Competitive and modest in value relative to European tuition.",
+      "why": "Same gap-filler logic as the Tata endowment."
+    },
+    {
+      "name": "Inlaks Shivdasani Scholarship",
+      "kind": "Scholarship",
+      "who": "Inlaks Shivdasani Foundation",
+      "value": "Tuition, living, health insurance",
+      "fit": "blocked",
+      "verified": "lead",
+      "url": "https://www.inlaksfoundation.org/",
+      "what": "Prestigious Indian scholarship for study abroad.",
+      "blocks": "Age limit is typically 30 at application. At 33 you are almost certainly outside it.",
+      "why": "Listed so you do not spend an evening discovering this yourself. Confirm and then close it out."
+    },
+    {
+      "name": "Fulbright-Nehru Fellowships",
+      "kind": "Fellowship",
+      "who": "USIEF",
+      "value": "Tuition, stipend, travel, insurance",
+      "fit": "possible",
+      "verified": "lead",
+      "url": "https://www.usief.org.in/",
+      "what": "India-specific US programmes including doctoral research fellowships and master's awards.",
+      "blocks": "US visa environment adds risk. Doctoral research fellowships require existing Indian PhD enrolment in some streams — check which category applies.",
+      "why": "The doctoral research fellowship is worth understanding even if you do not use it, because it structures a lot of India-US academic mobility."
+    },
+    {
+      "name": "Rotary Peace Fellowships",
+      "kind": "Fellowship",
+      "who": "Rotary Foundation",
+      "value": "Fully funded master's or certificate",
+      "fit": "possible",
+      "verified": "lead",
+      "url": "https://www.rotary.org/en/our-programs/peace-fellowships",
+      "what": "Fully funded programmes at partner universities, aimed at mid-career professionals in peace and development.",
+      "blocks": "Framing is peace and conflict rather than conservation. You would need to make the environmental-conflict link explicitly.",
+      "why": "Mid-career framing is rare and suits you; the thematic stretch is the cost."
+    },
+    {
+      "name": "Aga Khan Foundation ISP",
+      "kind": "Scholarship + loan",
+      "who": "Aga Khan Foundation",
+      "value": "50% grant, 50% loan",
+      "fit": "possible",
+      "verified": "lead",
+      "url": "https://www.akdn.org/our-agencies/aga-khan-foundation/international-scholarship-programme",
+      "what": "Postgraduate scholarships for students from selected countries including India.",
+      "blocks": "Half is a loan. Applications open once a year, typically January to March.",
+      "why": "Applies to doctoral study, which several Indian schemes on this list do not."
+    },
+    {
+      "name": "Swiss Government Excellence Scholarships",
+      "kind": "Scholarship",
+      "who": "Swiss Confederation",
+      "value": "Monthly stipend, tuition waiver, insurance",
+      "fit": "possible",
+      "verified": "lead",
+      "url": "https://www.sbfi.admin.ch/sbfi/en/home/education/scholarships-and-grants/swiss-government-excellence-scholarships.html",
+      "what": "Research and PhD scholarships. Requires a supervisor's acceptance letter before applying.",
+      "blocks": "Age limits apply in some categories, often born after a stated year. Check the India-specific call.",
+      "why": "The supervisor-first requirement suits the outreach strategy you are already running."
+    },
+    {
+      "name": "Australia Awards / RTP stipends",
+      "kind": "Scholarship",
+      "who": "Australian Government / universities",
+      "value": "Tuition plus living stipend",
+      "fit": "possible",
+      "verified": "lead",
+      "url": "https://www.dese.gov.au/research-block-grants/research-training-program",
+      "what": "Australian universities fund international doctoral students through RTP stipends awarded internally.",
+      "blocks": "Competitive and university-administered rather than centrally applied for. UQ ranks well in QS but far lower in THE, so it is likely outside SVS eligibility.",
+      "why": "Relevant if you pursue Richard Fuller at UQ — the funding would come through the university, not the scholarship."
+    }
+  ]
+}
