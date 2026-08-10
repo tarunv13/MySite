@@ -1,8 +1,8 @@
 {
- "generated": "2026-08-03T09:23:17+00:00",
+ "generated": "2026-08-10T07:11:11+00:00",
  "counts": {
-  "scanned": 185,
-  "relevant": 16
+  "scanned": 183,
+  "relevant": 15
  },
  "note": "Bluesky and Mastodon publish open APIs and are fetched directly. LinkedIn, X and Instagram do not, so those appear as pre-built searches you open in your own logged-in session.",
  "posts": [
@@ -139,15 +139,6 @@
    "handle": "IngolfKuehn@fediscience.org",
    "at": "2024-07-05",
    "url": "https://fediscience.org/@IngolfKuehn/112734067903774259",
-   "query": "#EcologyJobs"
-  },
-  {
-   "net": "Mastodon",
-   "text": "Come work with me! We're looking for some lovely people to join our team: 🦊 Assistant Biodiversity Officer -&gt; https:// codydock.org.uk/vacancy-assist ant-biodiversity-officer/ 🙋‍♀️ Education Assistant -&gt; https:// codydock.org.uk/vacancy-educat ion-assistant/ 💻 Office &amp; Finance Manager -&gt; https:// codydock.org.uk/vacancy-assist ant-biodiversity-officer/ # EcologyJobs # GreenJobs # Cons",
-   "author": "Gino Brignoli",
-   "handle": "gino@ecoevo.social",
-   "at": "2024-03-25",
-   "url": "https://ecoevo.social/@gino/112158792028370775",
    "query": "#EcologyJobs"
   }
  ],

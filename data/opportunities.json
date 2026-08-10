@@ -1,7 +1,7 @@
 {
- "generated": "2026-08-03T09:22:21+00:00",
+ "generated": "2026-08-10T07:10:20+00:00",
  "counts": {
-  "leads": 223,
+  "leads": 225,
   "calls": 0,
   "people": 18
  },
@@ -2656,26 +2656,6 @@
   {
    "kind": "lead",
    "source": "CORDIS HORIZON",
-   "id": "101094471",
-   "acronym": "MetaQ",
-   "title": "When enzymes join forces: unmasking a mitochondrial biosynthetic engine",
-   "pi": "",
-   "host": "",
-   "country": "",
-   "grant_type": "HORIZON-ERC",
-   "panel": "",
-   "start": "2023-10-01",
-   "end": "2028-09-30",
-   "fresh": false,
-   "fit": 5,
-   "tags": [
-    "trade"
-   ],
-   "url": "https://cordis.europa.eu/project/id/101094471"
-  },
-  {
-   "kind": "lead",
-   "source": "CORDIS HORIZON",
    "id": "101217160",
    "acronym": "TRACE",
    "title": "Translational Research in Action for Cancer in regional Ecosystem",
@@ -3503,6 +3483,26 @@
   {
    "kind": "lead",
    "source": "CORDIS HORIZON",
+   "id": "101094471",
+   "acronym": "MetaQ",
+   "title": "When enzymes join forces: unmasking a mitochondrial biosynthetic engine",
+   "pi": "",
+   "host": "",
+   "country": "",
+   "grant_type": "HORIZON-ERC",
+   "panel": "",
+   "start": "2023-10-01",
+   "end": "2029-09-30",
+   "fresh": false,
+   "fit": 5,
+   "tags": [
+    "trade"
+   ],
+   "url": "https://cordis.europa.eu/project/id/101094471"
+  },
+  {
+   "kind": "lead",
+   "source": "CORDIS HORIZON",
    "id": "101141477",
    "acronym": "BRONEB",
    "title": "Brownian particles in nonequilibrium baths",
@@ -3722,6 +3722,26 @@
     "culturomics"
    ],
    "url": "https://cordis.europa.eu/project/id/101162844"
+  },
+  {
+   "kind": "lead",
+   "source": "CORDIS HORIZON",
+   "id": "101308878",
+   "acronym": "MARSEC",
+   "title": "reinforcing EU Maritime security through the integration of Autonomous Real-time Surveillance platforms and Enhanced response and Coordination tools",
+   "pi": "",
+   "host": "",
+   "country": "",
+   "grant_type": "HORIZON-IA",
+   "panel": "",
+   "start": "2027-01-01",
+   "end": "2029-12-31",
+   "fresh": true,
+   "fit": 5,
+   "tags": [
+    "trade"
+   ],
+   "url": "https://cordis.europa.eu/project/id/101308878"
   },
   {
    "kind": "lead",
@@ -4106,26 +4126,6 @@
     "culturomics"
    ],
    "url": "https://cordis.europa.eu/project/id/101295540"
-  },
-  {
-   "kind": "lead",
-   "source": "CORDIS HORIZON",
-   "id": "101296045",
-   "acronym": "RIPPLE",
-   "title": "Reducing Impact of Plastic Pollution through Learning & Engagement",
-   "pi": "",
-   "host": "",
-   "country": "",
-   "grant_type": "HORIZON-IA",
-   "panel": "",
-   "start": "2026-09-01",
-   "end": "2030-08-31",
-   "fresh": true,
-   "fit": 5,
-   "tags": [
-    "culturomics"
-   ],
-   "url": "https://cordis.europa.eu/project/id/101296045"
   }
  ],
  "calls": [],
