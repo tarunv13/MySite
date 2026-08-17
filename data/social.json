@@ -1,11 +1,29 @@
 {
- "generated": "2026-08-10T07:11:11+00:00",
+ "generated": "2026-08-17T06:34:48+00:00",
  "counts": {
-  "scanned": 183,
-  "relevant": 15
+  "scanned": 189,
+  "relevant": 17
  },
  "note": "Bluesky and Mastodon publish open APIs and are fetched directly. LinkedIn, X and Instagram do not, so those appear as pre-built searches you open in your own logged-in session.",
  "posts": [
+  {
+   "net": "Mastodon",
+   "text": "Job alert! Postdoctoral Researcher in Machine Learning for Wildlife Audio https:// careers.universiteitleiden.nl/ job/Postdoctoral-Researcher-in-Machine-Learning-for-Wildlife-Audio/16811-en_US - here at the University of Leiden with me &amp; my # bioacoustics team. Please share! # university # leiden # academicjobs",
+   "author": "Dan Stowell",
+   "handle": "danstowell",
+   "at": "2026-08-13",
+   "url": "https://mastodon.social/@danstowell/117086888320195227",
+   "query": "#AcademicJobs"
+  },
+  {
+   "net": "Mastodon",
+   "text": "My university is hiring a Research Support Specialist at one of our Adirondack Park (New York, USA) locations. 'The primary purpose of this position is to assist Adirondack Ecological Center (AEC) staff with managing a Wildlands Monitoring project...' Involves field work in ecological data collection (veg, wildlife), data analysis, supervising field techs, data mgmt/modeling. See post for more det",
+   "author": "Vanessa Rojas",
+   "handle": "chiroptera@ecoevo.social",
+   "at": "2026-08-13",
+   "url": "https://ecoevo.social/@chiroptera/117090034119461264",
+   "query": "#sciencejobs"
+  },
   {
    "net": "Mastodon",
    "text": "Closing date today. \"Justus Liebig University Giessen (JLU) is inviting applications for a W3 Professorship in Agrobioinformatics. This prestigious tenured academic position offers the opportunity to lead internationally recognized research in agricultural bioinformatics, genomics, biodiversity, and data science while contributing to interdisciplinary research initiatives and teaching in Germany.\"",
