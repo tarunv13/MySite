@@ -13,6 +13,7 @@ assets/js/site.js     Reveals, hand-drawn marks, and the Field Journal game
 assets/vendor/        rough-notation 0.5.1 (MIT), self-hosted
 assets/fonts/         Fraunces, Source Serif 4, Caveat (SIL OFL), self-hosted
 llms.txt              Plain summary for AI assistants
+assets/video/         Two-minute film (MP4, captions); its source is _private/video/film.html (not published)
 CNAME                 tarunverma.com
 ```
 
