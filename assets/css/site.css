@@ -18,13 +18,14 @@
   --card: rgba(255, 253, 247, 0.62);
   --ink: #1f2a24;
   --ink-2: #4b564f;
-  --ink-3: #6f776f;
+  --ink-3: #5f675f;
   --rule: #d9d1bf;
   --forest: #23704f;
   --forest-ink: #1b5a3f;
   --mint: #a9dcc3;
   --saffron: #d2811a;
   --saffron-soft: #f6d9a8;
+  --saffron-ink: #9c5b0b; /* saffron for text: 4.9:1 on paper. Bright --saffron is decoration only */
   --sky: #cfe3ee;
   --plum: #8a4f7d;
   --display: "Fraunces", "Iowan Old Style", Georgia, serif;
@@ -282,3 +283,84 @@ main { max-width: 72rem; margin: 0 auto; padding: 0 1.25rem; }
 [data-mark="circle"] { white-space: nowrap; }
 .grid.three { grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
 @media (min-width: 1000px) { .grid.three { grid-template-columns: repeat(3, 1fr); } }
+
+/* =========================================================
+   Polish pass, Sept 2026
+   ========================================================= */
+
+/* Text that was bright saffron fails contrast; keep saffron for marks, use ink-saffron for words */
+.news time, .journal-btn .count, .pubs .status, .timeline .when, .card.accent-saffron .eyebrow { color: var(--saffron-ink); }
+
+/* Only things you can click should move */
+.card:hover { transform: none; box-shadow: var(--shadow); }
+
+/* ---------- foci: an editorial 2×2, not a feature-card row ---------- */
+.foci { list-style: none; margin: 0 auto; padding: 0; max-width: 60rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(2rem, 5vw, 4.5rem); }
+.foci li { position: relative; padding: 1.5rem 0 1.6rem 3.2rem; border-top: 1px solid var(--rule); }
+.foci li:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+.foci-n { position: absolute; left: 0; top: 1.35rem; font-family: var(--hand); font-size: 1.7rem; line-height: 1; color: var(--forest); }
+.foci h3 { font-family: var(--display); font-weight: 500; font-size: 1.3rem; line-height: 1.25; margin: 0 0 .45rem; letter-spacing: -.01em; }
+.foci p { margin: 0; color: var(--ink-2); }
+@media (max-width: 760px) { .foci { grid-template-columns: 1fr; } .foci li:nth-last-child(2) { border-bottom: 0; } }
+
+/* ---------- index of work: whole-row links ---------- */
+.index { list-style: none; margin: 0 auto; padding: 0; max-width: 64rem; border-top: 1.5px solid var(--ink); }
+.index-row {
+  display: grid; grid-template-columns: 5.5rem minmax(10rem, 15rem) 1fr 7rem 1.5rem; gap: 1.25rem; align-items: baseline;
+  padding: 1.15rem .75rem; border-bottom: 1px solid var(--rule); text-decoration: none; border-radius: 0;
+  transition: background .3s var(--ease), padding .3s var(--ease);
+}
+.index-row:hover, .index-row:focus-visible { background: rgba(169,220,195,.28); color: var(--ink); padding-left: 1.1rem; }
+.ix-year { font-family: var(--hand); font-size: 1.3rem; color: var(--saffron-ink); line-height: 1; }
+.ix-name { font-family: var(--display); font-size: 1.45rem; font-weight: 480; letter-spacing: -.015em; line-height: 1.2; }
+.ix-line { color: var(--ink-2); font-size: .98rem; }
+.ix-kind { font-size: .74rem; letter-spacing: .09em; text-transform: uppercase; font-weight: 650; color: var(--forest); text-align: right; }
+.ix-arrow { color: var(--forest); transition: transform .3s var(--ease); justify-self: end; }
+.index-row:hover .ix-arrow, .index-row:focus-visible .ix-arrow { transform: translateX(5px); }
+@media (max-width: 820px) {
+  .index-row { grid-template-columns: 1fr auto; grid-template-areas: "year kind" "name name" "line line"; gap: .25rem .75rem; padding: 1rem .25rem; }
+  .ix-year { grid-area: year; } .ix-kind { grid-area: kind; } .ix-name { grid-area: name; } .ix-line { grid-area: line; } .ix-arrow { display: none; }
+  .index-row:hover, .index-row:focus-visible { padding-left: .5rem; }
+}
+
+/* ---------- featured pull quote ---------- */
+.pull { margin: 0 auto 2.6rem; max-width: 46rem; text-align: center; }
+.pull blockquote { margin: 0; font-family: var(--display); font-style: italic; font-weight: 360; font-size: clamp(1.45rem, 1.1rem + 1.3vw, 2.05rem); line-height: 1.38; letter-spacing: -.01em; }
+.pull blockquote em { font-style: normal; }
+.pull blockquote::before { content: "\201C"; display: block; font-size: 4.5rem; line-height: .6; color: var(--saffron); font-style: normal; margin-bottom: .4rem; }
+.pull figcaption { margin-top: 1.2rem; color: var(--ink-2); font-size: .95rem; }
+.pull figcaption b { color: var(--ink); font-weight: 600; }
+.quotes-minor .quote { padding: 0 0 0 1.25rem; border-left: 2px solid var(--mint); }
+.quotes-minor .quote blockquote { font-size: 1.08rem; }
+.quotes-minor .quote blockquote::before { content: none; }
+
+/* ---------- photo figure (journey) ---------- */
+.photo-band { margin: 0 auto 2.2rem; max-width: 45rem; }
+.photo-band img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 18px; box-shadow: 0 30px 60px -40px rgba(31,42,36,.6); }
+.photo-band figcaption { margin-top: .6rem; font-size: .88rem; color: var(--ink-3); text-align: center; }
+
+/* ---------- native page transitions (2026 browsers; others just navigate) ---------- */
+@view-transition { navigation: auto; }
+.site-header { view-transition-name: site-header; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .28s; }
+@media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+
+/* ---------- print: a clean one-column CV-like page ---------- */
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .site-header, .journal-btn, .journal, .skip, .portrait-wrap, .site-footer nav, .spot, .ix-arrow { display: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .intro { grid-template-columns: 1fr; }
+  .card, .chip { box-shadow: none; backdrop-filter: none; background: none; border: 1px solid #ccc; }
+  a { text-decoration: none; }
+  .prose a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
+  .rough-annotation { display: none; }
+}
+.pull blockquote p { margin: 0; }
+.pull blockquote::before { margin-bottom: .1rem; }
+/* On phones the journal pill hid a line of text on every screen: shrink it to an icon and count */
+@media (max-width: 640px) {
+  .journal-btn { padding: .55rem .7rem; gap: .35rem; right: 12px; bottom: 12px; }
+  .journal-btn > span:not(.count) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .journal { right: 12px; bottom: 64px; }
+}
