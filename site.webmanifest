@@ -1,0 +1,13 @@
+{
+  "name": "Tarun Verma, conservation social scientist",
+  "short_name": "Tarun Verma",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f7f3ea",
+  "theme_color": "#f7f3ea",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}

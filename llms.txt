@@ -1,0 +1,28 @@
+# Tarun Kumar Verma
+
+> Conservation social scientist from India with a first degree in computer science. He studies whether environmental programmes change what people do, and whether the records used to measure that change (enforcement files, online trade listings, news archives, game data) can carry the weight placed on them. Research question: when can a digital record be read as evidence of what happened, rather than of who was looking?
+
+Also known as: Tarun Verma, Tarun K. Verma. Based in Jaipur, Rajasthan, India. ORCID 0009-0009-4130-2455. GitHub tarunv13. LinkedIn in/tarunverma1.
+
+## Background
+- M.Sc. Wildlife Science, University of Kota (2019-2021), 85.5%, ranked 2nd of 18. Dissertation: 1,341 recorded wildlife offences in Ranthambhore Tiger Reserve, 2015-2021.
+- B.Tech. Computer Science and Engineering, Rajasthan Technical University (2012-2016).
+- Creative Image Magazine, a Raghu Rai publication (2015-2018): documentary photography community.
+- WCS-India, Counter Wildlife Trafficking programme (2022-2023): online trade monitoring, 50+ Hindi and Telugu trade codewords, text classifier.
+- C-TARA, IIT Bombay with Kalpavriksh (2022-2024): Protected Area Update database of 6,000+ conservation news reports.
+- ATREE with the University of Oxford (Oct 2024-Oct 2025): led the India component of the evaluation of UNEP's Tide Turners Plastic Challenge, under PIs Dr Diogo Veríssimo and Dr Saloni Bhatia.
+- Independent researcher since October 2025.
+
+## Work
+- [WildTrace](https://tarunv13.github.io/wildtrace/): open atlas of illegal wildlife trade; seizures, arrests and convictions in fauna and flora, graded by evidence strength. DOI 10.5281/zenodo.22902819.
+- [Tide Turners evaluation](https://doi.org/10.31235/osf.io/48gbd_v1): Verma, Bhatia, Sinclair, Ribeiro & Veríssimo (2026), From knowledge to behaviour change: a mixed-methods evaluation of the Tide Turners Plastic Challenge in India. SocArXiv preprint, in review at Environment & Behavior.
+- [Protected Area Update database](https://pau-database.kalpavriksh.org/): public geospatial portal, Kalpavriksh and IIT Bombay.
+- [Sift QDA](https://github.com/tarunv13/sift-qda): free, open-source, offline qualitative data analysis for Windows; an NVivo alternative. DOI 10.5281/zenodo.22774118.
+- [Species on Screen](https://tarunv13.github.io/species-on-screen/): how species and threats appear in digital media and games.
+- [Kosma](https://github.com/tarunv13/kosma): privacy-first Vedic astrology engine with an evidence gate on its AI.
+
+## Pages
+- [About](https://tarunverma.com/)
+- [Work](https://tarunverma.com/work/)
+- [Writing](https://tarunverma.com/writing/)
+- [Journey](https://tarunverma.com/journey/)

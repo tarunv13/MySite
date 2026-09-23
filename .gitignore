@@ -1,0 +1,4 @@
+_private/
+*.log
+.DS_Store
+Thumbs.db

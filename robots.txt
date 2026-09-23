@@ -1,0 +1,5 @@
+# Everyone is welcome, including AI assistants that answer questions about my work.
+User-agent: *
+Allow: /
+
+Sitemap: https://tarunverma.com/sitemap.xml
