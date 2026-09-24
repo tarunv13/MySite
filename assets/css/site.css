@@ -490,3 +490,14 @@ html, body { overflow-x: clip; }
 /* field photographs inside project entries */
 .field-photo { margin: 1.4rem 0; max-width: 42rem; }
 .field-photo img { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 24px 50px -36px rgba(16,23,19,.5); }
+
+/* Brand: the roundel beside the name, the full emblem as a seal in the footer */
+.wordmark { align-items: center; }
+.wordmark .brand-mark { width: 30px; height: 30px; flex: none; margin-right: -.15rem; transition: transform .5s var(--ease); }
+.wordmark:hover .brand-mark { transform: rotate(-8deg) scale(1.06); }
+.wordmark b, .wordmark span { align-self: center; }
+.foot-brand { display: grid; grid-template-columns: auto 1fr; column-gap: 1.2rem; align-items: center; }
+.foot-emblem { grid-row: span 2; width: clamp(96px, 12vw, 132px); height: auto; }
+.foot-brand .foot-name, .foot-brand .foot-role { margin: 0; }
+@media (max-width: 440px) { .wordmark .brand-mark { width: 24px; height: 24px; } .wordmark { gap: .45rem; } }
+@media (max-width: 370px) { .wordmark b { display: none; } }
