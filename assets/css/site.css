@@ -552,3 +552,16 @@ html, body { overflow-x: clip; }
 .marks-key .k-under { text-decoration: underline 2px var(--mark-u); text-underline-offset: 4px; }
 .marks-key .k-high { background: var(--fluoro); padding: 0 .25em; }
 .marks-key { margin-bottom: 1.3rem; }
+
+/* Marks teach themselves: a margin note, in the mark's own ink */
+[data-mark] { cursor: help; border-radius: 3px; }
+[data-mark]:focus-visible { outline: 2px solid var(--mark-u); outline-offset: 3px; }
+.mark-note { position: absolute; z-index: 35; left: var(--x, 0); top: var(--y, 0); padding: .28rem .6rem .3rem; border-radius: 999px; background: #fff; border: 1.5px solid var(--nc, var(--mark-u)); color: var(--nc-ink, var(--mark-u)); font-family: var(--serif); font-style: italic; font-size: .92rem; line-height: 1; white-space: nowrap; box-shadow: 0 12px 26px -16px rgba(16,23,19,.5); opacity: 0; transform: translateY(4px) rotate(-1.5deg); transition: opacity .25s var(--ease), transform .35s var(--ease); pointer-events: none; }
+.mark-note::after { content: ""; position: absolute; top: 100%; left: var(--tip, 50%); width: 9px; height: 9px; margin: -4px 0 0 -5px; background: #fff; border-right: 1.5px solid var(--nc, var(--mark-u)); border-bottom: 1.5px solid var(--nc, var(--mark-u)); transform: rotate(45deg); }
+.mark-note.on { opacity: 1; transform: none; }
+.mark-note[data-type="circle"] { --nc: var(--mark-q); --nc-ink: #B8461F; }
+.mark-note[data-type="underline"] { --nc: var(--mark-u); --nc-ink: var(--mark-u); }
+.mark-note[data-type="highlight"] { --nc: #E3C400; --nc-ink: #6B5A00; background: #FFFBD6; }
+.mark-note[data-type="highlight"]::after { background: #FFFBD6; }
+@media (prefers-reduced-motion: reduce) { .mark-note { transition: opacity .2s linear; transform: none; } }
+@media print { .mark-note { display: none; } }

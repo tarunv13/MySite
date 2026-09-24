@@ -19,15 +19,53 @@ document.querySelectorAll('.proj-bg img').forEach((img) => {
   if (img.complete && img.naturalWidth) on(); else img.addEventListener('load', on, { once: true });
 });
 
-/* ---------- hand-drawn marks (rough-notation, self-hosted) ---------- */
+/* ---------- hand-drawn marks (rough-notation, self-hosted) ----------
+   One meaning per mark: circle = the question, underline = what changes, highlight = the evidence.
+   The grammar is taught in context: the first time a visitor meets each kind, a margin note says what
+   it means, then fades. After that the note returns only on hover, focus or tap. */
 window.__rno_kf_s = true; // keyframes live in site.css, so the CSP needs no inline <style>
 const marks = [...document.querySelectorAll('[data-mark]')];
+const MEANING = { circle: 'the question', underline: 'what changes', highlight: 'the evidence' };
+const LEARNT = 'tv-marks-learnt';
+let learnt = new Set(); try { learnt = new Set(JSON.parse(localStorage.getItem(LEARNT) || '[]')); } catch { /* no storage */ }
+
+const note = document.createElement('span');
+note.className = 'mark-note'; note.setAttribute('aria-hidden', 'true');
+let noteFor = null, noteTimer = 0;
+function placeNote(el) {
+  const rs = el.getClientRects(); if (!rs.length) return;
+  const r = rs[0]; // where the mark begins, so a wrapped mark is labelled at its start
+  note.textContent = MEANING[el.dataset.mark];
+  note.dataset.type = el.dataset.mark;
+  document.body.append(note);
+  const w = note.offsetWidth;
+  const x = Math.min(Math.max(8, r.left - 10), document.documentElement.clientWidth - w - 8);
+  note.style.setProperty('--x', `${x + scrollX}px`);
+  note.style.setProperty('--y', `${r.top + scrollY - note.offsetHeight - 10}px`);
+  note.style.setProperty('--tip', `${Math.min(Math.max(12, r.left - x + Math.min(22, r.width / 2)), w - 12)}px`);
+}
+function openNote(el, ms) {
+  clearTimeout(noteTimer); noteFor = el; placeNote(el);
+  requestAnimationFrame(() => note.classList.add('on'));
+  if (ms) noteTimer = setTimeout(closeNote, ms);
+}
+function closeNote() { note.classList.remove('on'); noteFor = null; }
+addEventListener('resize', () => { if (noteFor) placeNote(noteFor); });
+
 if (marks.length) {
+  marks.forEach((el) => {
+    el.tabIndex = 0;
+    el.setAttribute('aria-label', `${el.textContent} (marked as ${MEANING[el.dataset.mark]})`);
+    el.addEventListener('mouseenter', () => openNote(el));
+    el.addEventListener('mouseleave', () => { if (noteFor === el) closeNote(); });
+    el.addEventListener('focus', () => openNote(el));
+    el.addEventListener('blur', closeNote);
+    el.addEventListener('click', () => (noteFor === el && note.classList.contains('on') ? closeNote() : openNote(el, 2600)));
+  });
   import('/assets/vendor/rough-notation.esm.js').then(({ annotate }) => {
     const css = getComputedStyle(document.documentElement);
-    // one meaning per mark: circle = the question, underline = what changes, highlight = the evidence
-    const MARK = { circle: '--mark-q', underline: '--mark-u', highlight: '--fluoro' };
-    const colour = (type) => css.getPropertyValue(MARK[type] || '--mark-u').trim();
+    const VAR = { circle: '--mark-q', underline: '--mark-u', highlight: '--fluoro' };
+    const colour = (type) => css.getPropertyValue(VAR[type] || '--mark-u').trim();
     const show = (el) => {
       const type = el.dataset.mark;
       annotate(el, {
@@ -37,6 +75,11 @@ if (marks.length) {
         iterations: type === 'circle' ? 1 : 2,
         multiline: true, animate: !reduced, animationDuration: 900,
       }).show();
+      // first encounter with this kind of mark: teach it once, in the margin
+      if (!learnt.has(type)) {
+        learnt.add(type); try { localStorage.setItem(LEARNT, JSON.stringify([...learnt])); } catch { /* no storage */ }
+        setTimeout(() => openNote(el, 4200), reduced ? 0 : 950);
+      }
     };
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) if (e.isIntersecting) { setTimeout(() => show(e.target), 250); io.unobserve(e.target); }
