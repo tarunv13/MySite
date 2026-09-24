@@ -452,3 +452,30 @@ html, body { overflow-x: clip; }
 /* Work: actions sit in the side panel, under the title, where the decision is made */
 .outputs.side { margin: 0 0 1.4rem; }
 .outputs.side .btn { font-size: .86rem; padding: .48rem .9rem; }
+
+/* ---------- Project atmospheres, collage edition: toned prints that breathe ---------- */
+.proj-bg img.is-on, .no-js .proj-bg img { opacity: 1; }
+.proj-bg > div { overflow: hidden; }
+.proj-bg > div > img:first-child { animation: kb 70s ease-in-out infinite alternate; transform-origin: 60% 40%; }
+@keyframes kb { from { transform: scale(1.02); } to { transform: scale(1.1) translate(-1.5%, -1%); } }
+.bg-tide .rays { position: absolute; inset: 0; background: repeating-linear-gradient(105deg, rgba(255,255,255,0) 0 110px, rgba(255,255,255,.7) 110px 170px, rgba(255,255,255,0) 170px 300px); -webkit-mask-image: linear-gradient(to bottom, #000, transparent 80%); mask-image: linear-gradient(to bottom, #000, transparent 80%); animation: rays 14s ease-in-out infinite alternate; }
+@keyframes rays { from { opacity: .25; transform: translateX(-3%); } to { opacity: .75; transform: translateX(3%); } }
+.proj-bg .flot { position: absolute; left: -12vw; width: clamp(56px, 6vw, 110px); height: auto; object-fit: contain; opacity: .5; animation: flot 44s linear infinite; }
+.proj-bg .f1 { top: 20%; }
+.proj-bg .f2 { top: 56%; width: clamp(44px, 4.5vw, 80px); animation-duration: 58s; animation-delay: -22s; }
+.proj-bg .f3 { top: 82%; animation-duration: 50s; animation-delay: -38s; }
+.proj-bg .swim { top: 38%; width: clamp(140px, 15vw, 250px); opacity: .3; animation: swim 80s linear infinite; animation-delay: -12s; }
+@keyframes flot { from { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(62vw, -3vh) rotate(170deg); } to { transform: translate(124vw, 0) rotate(360deg); } }
+@keyframes swim { from { transform: translateX(0) rotate(90deg); } to { transform: translateX(130vw) rotate(90deg); } }
+.bg-disc > div { display: grid; place-items: center; }
+.bg-disc > div > img:first-child { width: min(118vh, 110vw); height: auto; aspect-ratio: 1; object-fit: contain; animation: spin 240s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .proj-bg img, .proj-bg .rays { animation: none !important; } .proj-bg .flot { display: none; } }
+
+/* Outside work: photographs and paintings, captioned */
+.life-fig { margin: 0 0 1rem; }
+.life-fig .life-art { margin-bottom: .45rem; }
+.life-fig figcaption { font-family: var(--mono); font-size: .72rem; color: var(--ink-3); }
+.proj-bg img.flot.is-on, .no-js .proj-bg img.flot { opacity: .32; }
+.proj-bg img.swim.is-on, .no-js .proj-bg img.swim { opacity: .2; }
+.life { grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }

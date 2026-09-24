@@ -32,6 +32,6 @@ run    python _private/build/build.py        writes index.html, work/, writing/,
 - `{{icon:name}}` in a fragment inlines a Phosphor icon from `_private/build/icons/`.
 - The CSP forbids inline `style="..."`: add a class to the CSS instead.
 - The film's source is `_private/video/film.html`; it is rendered frame by frame to `assets/video/`.
-- Illustrations in `assets/img/art/` are generated SVGs: `python _private/art/emblems.py` (project emblems), `backgrounds.py` (pale moving project backgrounds on /work/) and `scenes_more.py` (daily-life scenes), sharing the helpers in `kit.py`.
+- Art in `assets/img/art/` is collage from public-domain works (sources fetched by `_private/art/commons.py`, cut out by `cutout.py`, composed by `compose.py` and `build_assets.py`). The brief for generated paintings is `_private/art/ART-DIRECTION.md`; drop results in `_private/art/incoming/`.
 
 Text © Tarun Kumar Verma, CC BY 4.0. Photographs © Tarun Kumar Verma, all rights reserved. Code MIT.
