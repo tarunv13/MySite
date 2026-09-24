@@ -46,15 +46,15 @@ if (marks.length) {
 /* ---------- the field journal: nine species from Hardwicke's plates, hidden in the text ---------- */
 const P = '/assets/img/plates/';
 const SPECIES = [
-  { k: 'bustard', img: 'great-indian-bustard-ardeotis-nigriceps-hardwicke-1830s', name: 'Great Indian bustard', latin: 'Ardeotis nigriceps', where: 'Home', note: 'Rajasthan’s state bird, now holding on mostly in the Thar desert of the state I grew up in.' },
-  { k: 'pangolin', img: 'indian-pangolin-manis-crassicaudata-hardwicke-1830s', name: 'Indian pangolin', latin: 'Manis crassicaudata', where: 'Home', note: 'Its scales travel under four regional names, and all four went into my trade lexicon at WCS-India.' },
-  { k: 'turtle', img: 'narrow-headed-softshell-turtle-chitra-indica-hardwicke-1830s', name: 'Narrow-headed softshell turtle', latin: 'Chitra indica', where: 'Work', note: 'A river turtle of South Asia, and one of many freshwater turtles that turn up in seizure records.' },
-  { k: 'egret', img: 'little-egret-egretta-garzetta-hardwicke-1830s', name: 'Little egret', latin: 'Egretta garzetta', where: 'Work', note: 'A familiar bird on the IIT Bombay campus, where I joined the birdwatching group.' },
-  { k: 'mongoose', img: 'crab-eating-mongoose-herpestes-urva-hardwicke-1830s', name: 'Crab-eating mongoose', latin: 'Herpestes urva', where: 'Work', note: 'Mongooses are protected in India, and their hair is still seized from the paintbrush trade.' },
-  { k: 'vulture', img: 'white-rumped-vulture-gyps-bengalensis-hardwicke-1830s', name: 'White-rumped vulture', latin: 'Gyps bengalensis', where: 'Writing', note: 'Once common across India, it fell by more than 99% in the 1990s, largely from the veterinary drug diclofenac.' },
-  { k: 'cat', img: 'jungle-cat-felis-chaus-hardwicke-1830s', name: 'Jungle cat', latin: 'Felis chaus', where: 'Journey', note: 'The wild cats of Ranthambhore were the subject of my uncle’s photographs, and my first sense of what a picture can do.' },
-  { k: 'blackbuck', img: 'blackbuck-antilope-cervicapra-hardwicke-1830s', name: 'Blackbuck', latin: 'Antilope cervicapra', where: 'Journey', note: 'Protected for centuries by Bishnoi communities in Rajasthan, which is a lesson in whose knowledge counts.' },
-  { k: 'owl', img: 'dusky-eagle-owl-bubo-coromandus-hardwicke-1830s', name: 'Dusky eagle-owl', latin: 'Bubo coromandus', where: 'Home', note: 'The bird beside my portrait on the front page, because everything on this site starts with who was looking.' },
+  { k: 'bustard', why: 'Where I grew up', img: 'great-indian-bustard-ardeotis-nigriceps-hardwicke-1830s', name: 'Great Indian bustard', latin: 'Ardeotis nigriceps', where: 'Home', note: 'Rajasthan’s state bird, now holding on mostly in the Thar desert of the state I grew up in.' },
+  { k: 'pangolin', why: 'Online wildlife trade', img: 'indian-pangolin-manis-crassicaudata-hardwicke-1830s', name: 'Indian pangolin', latin: 'Manis crassicaudata', where: 'Home', note: 'Its scales travel under four regional names, and all four went into my trade lexicon at WCS-India.' },
+  { k: 'turtle', why: 'Wildlife seizures', img: 'narrow-headed-softshell-turtle-chitra-indica-hardwicke-1830s', name: 'Narrow-headed softshell turtle', latin: 'Chitra indica', where: 'Work', note: 'A river turtle of South Asia, and one of many freshwater turtles that turn up in seizure records.' },
+  { k: 'egret', why: 'Protected Area Update', img: 'little-egret-egretta-garzetta-hardwicke-1830s', name: 'Little egret', latin: 'Egretta garzetta', where: 'Work', note: 'A familiar bird on the IIT Bombay campus, where I joined the birdwatching group.' },
+  { k: 'mongoose', why: 'Wildlife trade', img: 'crab-eating-mongoose-herpestes-urva-hardwicke-1830s', name: 'Crab-eating mongoose', latin: 'Herpestes urva', where: 'Work', note: 'Mongooses are protected in India, and their hair is still seized from the paintbrush trade.' },
+  { k: 'vulture', why: 'Species decline', img: 'white-rumped-vulture-gyps-bengalensis-hardwicke-1830s', name: 'White-rumped vulture', latin: 'Gyps bengalensis', where: 'Writing', note: 'Once common across India, it fell by more than 99% in the 1990s, largely from the veterinary drug diclofenac.' },
+  { k: 'cat', why: 'How I came to conservation', img: 'jungle-cat-felis-chaus-hardwicke-1830s', name: 'Jungle cat', latin: 'Felis chaus', where: 'Journey', note: 'The wild cats of Ranthambhore were the subject of my uncle’s photographs, and my first sense of what a picture can do.' },
+  { k: 'blackbuck', why: 'Traditional knowledge', img: 'blackbuck-antilope-cervicapra-hardwicke-1830s', name: 'Blackbuck', latin: 'Antilope cervicapra', where: 'Journey', note: 'Protected for centuries by Bishnoi communities in Rajasthan, which is a lesson in whose knowledge counts.' },
+  { k: 'owl', why: 'Who was looking', img: 'dusky-eagle-owl-bubo-coromandus-hardwicke-1830s', name: 'Dusky eagle-owl', latin: 'Bubo coromandus', where: 'Home', note: 'The bird beside my portrait on the front page, because everything on this site starts with who was looking.' },
 ];
 const thumb = (s) => `<img src="${P}${s.img}.webp" alt="" width="60" height="60" loading="lazy" decoding="async">`;
 const KEY = 'tv-field-journal-v2';
@@ -69,12 +69,15 @@ btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stro
 const panel = document.createElement('section');
 panel.id = 'field-journal'; panel.className = 'journal'; panel.hidden = true; panel.setAttribute('aria-label', 'Field journal');
 
+let just = null; // the species most recently spotted, shown as a discovery card
 function render() {
   btn.querySelector('.count').textContent = `${seen.size}/${SPECIES.length}`;
   const all = seen.size === SPECIES.length;
-  panel.innerHTML = `<h2>Field journal</h2>
-    <p class="how">Nine species from Thomas Hardwicke’s 1830s <i>Illustrations of Indian Zoology</i> are hiding in the text of this site, in small dashed circles. Tap one to add it here. My work starts with who was looking, so this is a small game about looking closely.</p>
-    <ol>${SPECIES.map((s) => `<li class="${seen.has(s.k) ? 'seen' : ''}"><span class="g">${thumb(s)}</span><span><b>${seen.has(s.k) ? `${s.name} <i class="muted">${s.latin}</i>` : `Not yet spotted · look on ${s.where}`}</b><span class="note">${s.note}</span></span></li>`).join('')}</ol>
+  const j = just && SPECIES.find((x) => x.k === just);
+  const card = j ? `<div class="found" role="status"><span class="found-img"><img src="${P}${j.img}.webp" alt="" width="120" height="120"></span><div><p class="found-lab">Just spotted · ${seen.size} of ${SPECIES.length}</p><b>${j.name}</b><i>${j.latin}</i><span class="why">${j.why}</span><p>${j.note}</p></div></div>` : '';
+  panel.innerHTML = `${card}<h2>Field journal</h2>
+    <p class="how"><b>What is this?</b> Nine animals painted for Thomas Hardwicke’s <i>Illustrations of Indian Zoology</i> (1830s) are hidden in the words of this site, each in a small dashed circle. Every one is tied to a part of my work. Tap it to add it here and read why it matters. My research starts with who was looking, so this is a small game about looking closely.</p>
+    <ol>${SPECIES.map((s) => `<li class="${seen.has(s.k) ? 'seen' : ''}${s.k === just ? ' just' : ''}" data-k="${s.k}"><span class="g">${thumb(s)}</span><span><b>${seen.has(s.k) ? `${s.name} <i class="muted">${s.latin}</i>` : `Not yet spotted · look on ${s.where}`}</b><span class="why">${s.why}</span><span class="note">${s.note}</span></span></li>`).join('')}</ol>
     ${all ? '<p class="done">All nine. You looked more closely than most records do. Thank you for reading this far.</p>' : ''}
     ${seen.size ? '<button class="reset" type="button">Start the journal again</button>' : ''}`;
   panel.querySelector('.reset')?.addEventListener('click', () => { seen = new Set(); save(seen); sync(); render(); });
@@ -90,18 +93,32 @@ document.querySelectorAll('.spot-slot').forEach((slot) => {
   if (!s) return;
   const b = document.createElement('button');
   b.type = 'button'; b.className = 'spot'; b.dataset.species = s.k; b.title = s.name;
-  b.setAttribute('aria-label', `Spot the ${s.name} for your field journal`);
-  b.innerHTML = thumb(s);
+  b.setAttribute('aria-label', `${s.name}, linked to ${s.why.toLowerCase()}. Add it to your field journal`);
+  b.innerHTML = `<span class="spot-face">${thumb(s)}</span><span class="spot-tip" aria-hidden="true"><img src="${P}${s.img}.webp" alt="" width="96" height="96" loading="lazy"><b>${s.name}</b><i>${s.latin}</i><span class="why">${s.why}</span><em>Tap to add to your field journal</em></span>`;
   b.addEventListener('click', () => {
     const fresh = !seen.has(s.k);
-    seen.add(s.k); save(seen); sync(); render();
+    seen.add(s.k); save(seen); sync(); just = s.k; render();
     b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop');
     if (fresh) { btn.classList.remove('bump'); void btn.offsetWidth; btn.classList.add('bump'); }
-    toggle(true);
+    toggle(true); panel.scrollTop = 0;
   });
   slot.replaceWith(b);
 });
 document.body.append(panel, btn);
+const HINT = 'tv-journal-hint';
+let hinted = false; try { hinted = localStorage.getItem(HINT) === '1'; } catch { /* no storage */ }
+if (!hinted && !seen.size && document.querySelector('.spot')) {
+  const tip = document.createElement('p');
+  tip.className = 'journal-hint'; tip.setAttribute('role', 'note');
+  tip.innerHTML = 'Nine animals are hiding in the text, in dashed circles. Tap one to see why it’s here. <button type="button" aria-label="Dismiss">✕</button>';
+  const close = () => { tip.classList.remove('on'); try { localStorage.setItem(HINT, '1'); } catch { /* no storage */ } setTimeout(() => tip.remove(), 400); };
+  tip.querySelector('button').addEventListener('click', close);
+  btn.addEventListener('click', close, { once: true });
+  document.querySelectorAll('.spot').forEach((sp) => sp.addEventListener('click', close, { once: true }));
+  document.body.append(tip);
+  setTimeout(() => tip.classList.add('on'), 3500);
+  setTimeout(() => { if (tip.isConnected) close(); }, 16000);
+}
 sync(); render();
 
 /* ---------- analytics, last, so it never delays the page ---------- */
