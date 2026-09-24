@@ -13,6 +13,12 @@ if ('IntersectionObserver' in window && !reduced) {
   revealers.forEach((el) => io.observe(el));
 } else revealers.forEach((el) => el.classList.add('in'));
 
+/* ---------- project atmospheres fade in once painted ---------- */
+document.querySelectorAll('.proj-bg img').forEach((img) => {
+  const on = () => img.classList.add('is-on');
+  if (img.complete && img.naturalWidth) on(); else img.addEventListener('load', on, { once: true });
+});
+
 /* ---------- hand-drawn marks (rough-notation, self-hosted) ---------- */
 window.__rno_kf_s = true; // keyframes live in site.css, so the CSP needs no inline <style>
 const marks = [...document.querySelectorAll('[data-mark]')];

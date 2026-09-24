@@ -1,6 +1,6 @@
-/* Journey: a scroll-driven stop-motion stage.
-   Uses GSAP + ScrollTrigger (self-hosted in /assets/vendor). Stepped eases give the stop-motion feel;
-   a turbulence filter whose seed changes at 8 fps makes paper edges "boil" like hand-animated film.
+/* Journey: a scroll-driven stage that glides between chapters.
+   Uses GSAP + ScrollTrigger (self-hosted in /assets/vendor). Scenes cross-fade in CSS; inside each scene,
+   paper, paintings and numbers ease into place with soft expo and back curves.
    With reduced motion, scenes simply cross-fade and nothing moves on its own. */
 const gsap = window.gsap, ScrollTrigger = window.ScrollTrigger;
 const stage = document.querySelector('.stage');
@@ -26,28 +26,26 @@ function splitType(el) {
 
 function enter(scene) {
   if (!gsap || reduced) return;
-  const tl = gsap.timeline();
+  const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
   scene.querySelectorAll('[data-enter]').forEach((el) => {
-    const kind = el.dataset.enter, at = +(el.dataset.at || 0), steps = +(el.dataset.steps || 6);
-    const ease = `steps(${steps})`;
-    const d = +(el.dataset.dur || 0.9);
+    const kind = el.dataset.enter, at = +(el.dataset.at || 0);
+    const d = +(el.dataset.dur || 1.1);
     switch (kind) {
-      case 'left': tl.fromTo(el, { xPercent: -140, opacity: 1 }, { xPercent: 0, duration: d, ease }, at); break;
-      case 'right': tl.fromTo(el, { xPercent: 140, opacity: 1 }, { xPercent: 0, duration: d, ease }, at); break;
-      case 'up': tl.fromTo(el, { yPercent: 120, opacity: 1 }, { yPercent: 0, duration: d, ease }, at); break;
-      case 'drop': tl.fromTo(el, { yPercent: -160, rotation: -8, opacity: 1 }, { yPercent: 0, rotation: +(el.dataset.rot || 0), duration: d, ease }, at); break;
-      case 'pop': tl.fromTo(el, { scale: 0, opacity: 1 }, { scale: 1, duration: d * 0.6, ease: `steps(${Math.max(3, steps - 2)})` }, at); break;
-      case 'grow': tl.fromTo(el, { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: d, ease }, at); break;
-      case 'fade': tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: d * 0.5, ease: 'steps(3)' }, at); break;
-      case 'type': splitType(el); tl.fromTo(el.querySelectorAll('.ch'), { opacity: 0 }, { opacity: 1, duration: 0.01, stagger: 0.035 }, at); break;
+      case 'left': tl.fromTo(el, { xPercent: -30, opacity: 0 }, { xPercent: 0, opacity: 1, duration: d }, at); break;
+      case 'right': tl.fromTo(el, { xPercent: 30, opacity: 0 }, { xPercent: 0, opacity: 1, duration: d }, at); break;
+      case 'up': tl.fromTo(el, { yPercent: 18, opacity: 0 }, { yPercent: 0, opacity: 1, duration: d }, at); break;
+      case 'drop': tl.fromTo(el, { yPercent: -24, rotation: -5, opacity: 0 }, { yPercent: 0, rotation: +(el.dataset.rot || 0), opacity: 1, duration: d * 1.1 }, at); break;
+      case 'pop': tl.fromTo(el, { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: d * 0.9, ease: 'back.out(1.7)' }, at); break;
+      case 'grow': tl.fromTo(el, { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: d, ease: 'power3.out' }, at); break;
+      case 'fade': tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: d * 0.8, ease: 'power2.out' }, at); break;
+      case 'type': splitType(el); tl.fromTo(el.querySelectorAll('.ch'), { opacity: 0 }, { opacity: 1, duration: 0.18, stagger: 0.028, ease: 'power1.out' }, at); break;
       case 'count': {
         const to = +el.dataset.to, fmt = el.dataset.fmt || '';
         const o = { v: 0 };
-        tl.to(o, { v: to, duration: d * 1.4, ease: `steps(${steps * 2})`, onUpdate: () => { el.textContent = Math.round(o.v).toLocaleString('en-GB') + fmt; } }, at);
+        tl.to(o, { v: to, duration: d * 1.4, ease: 'power3.out', onUpdate: () => { el.textContent = Math.round(o.v).toLocaleString('en-GB') + fmt; } }, at);
         break;
       }
-      case 'walk': tl.fromTo(el, { xPercent: +(el.dataset.from || 160) }, { xPercent: 0, duration: d * 1.6, ease: `steps(${steps * 2})` }, at)
-        .fromTo(el, { yPercent: 0 }, { yPercent: -4, duration: 0.12, ease: 'steps(1)', repeat: Math.round(d * 1.6 / 0.12), yoyo: true }, at); break;
+      case 'walk': tl.fromTo(el, { xPercent: +(el.dataset.from || 60), opacity: 0 }, { xPercent: 0, opacity: 1, duration: d * 1.8, ease: 'power2.out' }, at); break;
       default: break;
     }
   });
@@ -62,14 +60,6 @@ function show(id, chapter) {
   if (scene) enter(scene);
   if (yearEl && chapter) yearEl.textContent = chapter.dataset.year || '';
   stage?.setAttribute('aria-label', `Illustration: ${scene?.dataset.label || ''}`);
-}
-
-// the "boiling line": swap turbulence seeds at 8 fps while the stage is on screen
-const turb = document.querySelector('#boil feTurbulence');
-if (turb && !reduced) {
-  let seed = 1, visible = true;
-  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(stage);
-  setInterval(() => { if (visible && !document.hidden) turb.setAttribute('seed', String((seed = (seed % 7) + 1))); }, 125);
 }
 
 if (gsap && ScrollTrigger) {

@@ -404,3 +404,42 @@ figcaption.cap, .pair figcaption { font-size: .8rem; color: var(--ink-3); margin
   .nav-links { gap: 0; }
   .nav-links a { padding: .42rem .5rem; font-size: .8rem; }
 }
+
+/* ---------- Project atmospheres: a pale moving scene pinned behind each project until the next begins ---------- */
+html, body { overflow-x: clip; }
+.proj { position: relative; isolation: isolate; }
+.proj-bg { position: absolute; z-index: -1; top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw; overflow: clip; pointer-events: none; }
+.proj-bg > div { position: sticky; top: 0; height: 100vh; height: 100svh; }
+.proj-bg img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s var(--ease); }
+.proj-bg img.is-on, .no-js .proj-bg img { opacity: .72; }
+.proj-emblem { display: block; width: min(80%, 260px); height: auto; margin: 2rem 0 0; }
+@media (max-width: 900px) { .proj-emblem { width: min(56%, 200px); margin: 1.4rem 0 0; } }
+
+/* PAU: sketched, built, analysed */
+.steps { list-style: none; padding: 0; margin: 1.6rem 0; display: grid; gap: 1.6rem; counter-reset: none; }
+.steps > li { position: relative; padding-left: 1.7rem; margin: 0; }
+.steps > li::before { content: ""; position: absolute; left: .3rem; top: .5rem; width: .6rem; height: .6rem; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 18%, transparent); }
+.steps > li:not(:last-child)::after { content: ""; position: absolute; left: .55rem; top: 1.5rem; bottom: -1.3rem; width: 2px; background: linear-gradient(var(--c), color-mix(in srgb, var(--c) 20%, transparent)); }
+.steps figure { margin: 0; }
+.steps img { width: 100%; height: auto; aspect-ratio: 16/10; object-fit: cover; object-position: top; border-radius: 12px; outline: 1px solid rgba(16,23,19,.08); box-shadow: 0 24px 50px -36px rgba(16,23,19,.5); background: var(--paper); }
+.steps figcaption { font-size: .86rem; color: var(--ink-2); margin-top: .55rem; line-height: 1.45; }
+.steps figcaption b { color: var(--c-ink); font-weight: 640; }
+.steps-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 640px) { .steps-pair { grid-template-columns: 1fr; } }
+
+/* Species on Screen: a projected strip */
+.motion { margin: 0 0 1.6rem; }
+.motion .gallop { position: relative; width: 100%; aspect-ratio: 600 / 386; border-radius: 12px; background: #1d1a14 url("/assets/img/work/muybridge-horse-in-motion-1878-sprite.webp") 0 0 / 1100% 100% no-repeat; box-shadow: 0 0 0 14px #27302C, 0 30px 60px -30px rgba(16,23,19,.6); margin: 14px 0 1.4rem; animation: gallop .92s steps(11, jump-none) infinite; }
+.motion .gallop::before, .motion .gallop::after { content: ""; position: absolute; left: 0; right: 0; height: 7px; background: repeating-linear-gradient(90deg, rgba(255,255,255,.85) 0 9px, transparent 9px 22px); border-radius: 2px; }
+.motion .gallop::before { top: -11px; } .motion .gallop::after { bottom: -11px; }
+@keyframes gallop { to { background-position: 100% 0; } }
+@media (prefers-reduced-motion: reduce) { .motion .gallop { animation: none; background-position: 30% 0; } .proj-bg img { transition: none; } }
+.life-art { display: block; width: 100%; height: auto; aspect-ratio: 800 / 560; border-radius: 16px; margin-bottom: 1rem; box-shadow: 0 24px 50px -34px rgba(16,23,19,.45); background: var(--paper-2); }
+.ix-preview.emb { width: 210px; aspect-ratio: 1; border-radius: 50%; background: transparent; box-shadow: none; outline: none; overflow: visible; }
+.ix-preview.emb img { width: 100%; height: 100%; object-fit: contain; }
+
+/* Journey: scenes glide and cross-fade instead of cutting */
+.scene { transform: translateY(16px) scale(.985); filter: blur(4px); transition: opacity .6s var(--ease), transform .8s var(--ease), filter .6s var(--ease), visibility 0s .8s; }
+.scene.on { transform: none; filter: blur(0); transition: opacity .8s var(--ease) .1s, transform 1s var(--ease) .1s, filter .8s var(--ease) .1s; }
+.boil { animation: none; }
+@media (prefers-reduced-motion: reduce) { .scene, .scene.on { transform: none; filter: none; transition: opacity .3s linear; } }
