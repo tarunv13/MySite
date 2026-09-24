@@ -543,3 +543,12 @@ html, body { overflow-x: clip; }
 .journal-hint button { position: absolute; top: .45rem; right: .5rem; background: none; border: 0; color: #fff; opacity: .7; cursor: pointer; font-size: .85rem; }
 @media (max-width: 640px) { .journal-hint { right: 12px; bottom: 62px; } }
 @media (prefers-reduced-motion: reduce) { .spot::after { animation: none !important; } }
+
+/* The three marks, one meaning each, in the brand's three inks */
+:root { --mark-q: #D65A26; --mark-u: #1A7548; }
+.marks-key { display: flex; flex-wrap: wrap; gap: .45rem 1.3rem; margin: 1.2rem 0 0; font-family: var(--mono); font-size: .72rem; color: var(--ink-3); letter-spacing: .01em; }
+.marks-key i { font-style: normal; color: var(--ink); margin-right: .35rem; }
+.marks-key .k-circle { padding: 0 .4em; border: 1.6px solid var(--mark-q); border-radius: 50% / 60%; }
+.marks-key .k-under { text-decoration: underline 2px var(--mark-u); text-underline-offset: 4px; }
+.marks-key .k-high { background: var(--fluoro); padding: 0 .25em; }
+.marks-key { margin-bottom: 1.3rem; }

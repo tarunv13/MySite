@@ -25,11 +25,13 @@ const marks = [...document.querySelectorAll('[data-mark]')];
 if (marks.length) {
   import('/assets/vendor/rough-notation.esm.js').then(({ annotate }) => {
     const css = getComputedStyle(document.documentElement);
-    const colour = (k) => (k === 'fluoro' ? css.getPropertyValue('--fluoro').trim() : '') || css.getPropertyValue(`--c-${k}`).trim() || css.getPropertyValue('--brand-bright').trim();
+    // one meaning per mark: circle = the question, underline = what changes, highlight = the evidence
+    const MARK = { circle: '--mark-q', underline: '--mark-u', highlight: '--fluoro' };
+    const colour = (type) => css.getPropertyValue(MARK[type] || '--mark-u').trim();
     const show = (el) => {
       const type = el.dataset.mark;
       annotate(el, {
-        type, color: colour(el.dataset.colour || 'pau'),
+        type, color: colour(type),
         strokeWidth: type === 'highlight' ? 1 : 1.5,
         padding: type === 'circle' ? [4, 8] : 2,
         iterations: type === 'circle' ? 1 : 2,
