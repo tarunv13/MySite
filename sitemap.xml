@@ -1,7 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://tarunverma.com/</loc><lastmod>2026-09-24</lastmod></url>
-  <url><loc>https://tarunverma.com/work/</loc><lastmod>2026-09-24</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url><loc>https://tarunverma.com/</loc><lastmod>2026-09-24</lastmod>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/tarun-verma-conservation-science-researcher-self-portrait-2022.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/og-tarun-verma.png</image:loc></image:image></url>
+  <url><loc>https://tarunverma.com/work/</loc><lastmod>2026-09-24</lastmod>
+    <image:image><image:loc>https://tarunverma.com/assets/img/work/kosma-evidence-gated-astrology-engine-interface.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/work/protected-area-update-database-portal-kalpavriksh.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/work/protected-area-update-portal-wireframe-2023.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/work/sift-qda-free-nvivo-alternative-interface.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/work/species-on-screen-eco-cinema-observatory-sundarbans.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/work/wildtrace-cites-trade-flows-map.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/work/wildtrace-illegal-wildlife-trade-atlas-globe.webp</image:loc></image:image>
+    <video:video><video:thumbnail_loc>https://tarunverma.com/assets/video/tarun-verma-five-projects-poster.jpg</video:thumbnail_loc><video:title>Who was looking: five projects by Tarun K. Verma</video:title><video:description>A two-minute film on five projects by conservation science researcher Tarun K. Verma: the UNEP Tide Turners evaluation, WildTrace, the Protected Area Update, Sift QDA and Kosma.</video:description><video:content_loc>https://tarunverma.com/assets/video/tarun-verma-five-projects.mp4</video:content_loc><video:duration>115</video:duration></video:video>
+  </url>
   <url><loc>https://tarunverma.com/writing/</loc><lastmod>2026-09-24</lastmod></url>
-  <url><loc>https://tarunverma.com/journey/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://tarunverma.com/journey/</loc><lastmod>2026-09-24</lastmod>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/aravalli-hills-winter-2020.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/bamboo-lodhi-gardens-new-delhi-2016.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/bicycles-jaipur-streets-2016.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/butterfly-2015.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/chinkara-indian-gazelle-black-and-white-2020.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/egret-reflection-jal-mahal-jaipur-2013.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/elephants-forest-long-walks-2021.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/long-walks-forest-road-2021.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/macaque-behind-bars-black-and-white-2019.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/parakeet-black-and-white-2020.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/pigeons-albert-hall-jaipur-2014.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/round-window-2022.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/sand-dunes-railway-track-2017.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/sanjay-gandhi-national-park-forest-light-2016.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/star-trails-2014.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/tarun-verma-fieldwork-rangefinder-compass-2021.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/photos/the-red-bicycle-2022.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/plates/blackbuck-antilope-cervicapra-hardwicke-1830s.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/plates/crab-eating-mongoose-herpestes-urva-hardwicke-1830s.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/plates/dusky-eagle-owl-bubo-coromandus-hardwicke-1830s.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/plates/great-indian-bustard-ardeotis-nigriceps-hardwicke-1830s.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/plates/indian-pangolin-manis-crassicaudata-hardwicke-1830s.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/plates/jungle-cat-felis-chaus-hardwicke-1830s.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/plates/little-egret-egretta-garzetta-hardwicke-1830s.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/plates/narrow-headed-softshell-turtle-chitra-indica-hardwicke-1830s.webp</image:loc></image:image>
+    <image:image><image:loc>https://tarunverma.com/assets/img/plates/white-rumped-vulture-gyps-bengalensis-hardwicke-1830s.webp</image:loc></image:image></url>
 </urlset>

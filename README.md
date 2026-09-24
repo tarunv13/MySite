@@ -1,29 +1,36 @@
 # tarunverma.com
 
-Personal research site of Tarun Kumar Verma, conservation social scientist.
-Static HTML and CSS, no build step, no cookies, no trackers. Hosted on GitHub Pages with HTTPS.
+Personal research site of Tarun Kumar Verma, Conservation Science Researcher.
+Static HTML and CSS, hosted on GitHub Pages with HTTPS. No cookies of its own; Microsoft Clarity for reading analytics.
 
 ```
-index.html            About (landing)
-work/                 Projects: WildTrace, Tide Turners, Protected Area Update, Sift QDA, Species on Screen, Kosma
-writing/              Papers, citable software, talks, education
-journey/              Timeline, mentors, life outside work
-assets/css/site.css   The whole design system (tokens at the top)
-assets/js/site.js     Reveals, hand-drawn marks, and the Field Journal game
-assets/vendor/        rough-notation 0.5.1 (MIT), self-hosted
-assets/fonts/         Fraunces, Source Serif 4, Caveat (SIL OFL), self-hosted
-llms.txt              Plain summary for AI assistants
-assets/video/         Two-minute film (MP4, captions); its source is _private/video/film.html (not published)
-CNAME                 tarunverma.com
+index.html, work/, writing/, journey/, 404.html   generated pages (do not edit by hand)
+assets/css/site.css        the design system ("the field record"): tokens at the top
+assets/css/journey.css     stop-motion scene layouts, loaded on /journey/ only
+assets/js/site.js          reveals, hand-drawn marks, the Field Journal game
+assets/js/journey.js       GSAP + ScrollTrigger stop-motion stage
+assets/js/analytics.js     Microsoft Clarity loader (id on <body data-clarity>, honours GPC)
+assets/img/plates/         Hardwicke and Gray, Illustrations of Indian Zoology (1830s), public domain
+assets/img/photos/         Tarun's own photographs (all rights reserved)
+assets/vendor/             GSAP 3.15, rough-notation 0.5.1, self-hosted
+assets/fonts/              Schibsted Grotesk, Newsreader, IBM Plex Mono (SIL OFL), self-hosted
+llms.txt, sitemap.xml      summary for AI assistants; sitemap with images and the film
+CNAME                      tarunverma.com
 ```
 
 ## Editing
 
-- **Add a news item:** copy an `<li>` in the `what’s new` list in `index.html`.
-- **Swap the illustration for a portrait:** save a square photo as `assets/img/tarun-verma-portrait.webp`
-  and change the `<img src>` inside `.portrait` in `index.html`. Write a real alt text.
-- **After any change,** update `<lastmod>` in `sitemap.xml` and `dateModified` in the homepage JSON-LD.
-- **Security:** each page carries a Content-Security-Policy that allows only files from this site.
-  Inline `style="..."` attributes and inline scripts will be blocked; put styles in `site.css`.
+The pages are generated from fragments so the head, navigation, footer, security policy and
+structured data stay identical everywhere. `_private/` is not published.
 
-Text © Tarun Kumar Verma, CC BY 4.0. Code MIT.
+```
+edit   _private/build/pages/<page>.html      page body
+edit   _private/build/build.py               titles, descriptions, JSON-LD, CSP, Clarity id
+run    python _private/build/build.py        writes index.html, work/, writing/, journey/, 404.html
+```
+
+- `{{icon:name}}` in a fragment inlines a Phosphor icon from `_private/build/icons/`.
+- The CSP forbids inline `style="..."`: add a class to the CSS instead.
+- The film's source is `_private/video/film.html`; it is rendered frame by frame to `assets/video/`.
+
+Text © Tarun Kumar Verma, CC BY 4.0. Photographs © Tarun Kumar Verma, all rights reserved. Code MIT.
