@@ -565,3 +565,9 @@ html, body { overflow-x: clip; }
 .mark-note[data-type="highlight"]::after { background: #FFFBD6; }
 @media (prefers-reduced-motion: reduce) { .mark-note { transition: opacity .2s linear; transform: none; } }
 @media print { .mark-note { display: none; } }
+
+/* Issuer logos on training and certificates: one height, one quiet tile */
+.issuer { display: flex; align-items: center; gap: .6rem; margin: 0 0 .6rem; }
+.issuer img, .issuer .logo-type { height: 30px; width: auto; max-width: 150px; object-fit: contain; }
+.issuer img[src*="iiit-kota"], .issuer img[src*="zsl"] { height: 38px; }
+.issuer .logo-type { display: inline-grid; place-items: center; height: 30px; padding: 0 .6rem; border-radius: 6px; background: #1A7548; color: #fff; font: 700 .8rem/1 var(--sans); letter-spacing: .12em; }
