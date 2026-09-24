@@ -25,7 +25,7 @@ const marks = [...document.querySelectorAll('[data-mark]')];
 if (marks.length) {
   import('/assets/vendor/rough-notation.esm.js').then(({ annotate }) => {
     const css = getComputedStyle(document.documentElement);
-    const colour = (k) => css.getPropertyValue(`--c-${k}`).trim() || css.getPropertyValue('--brand-bright').trim();
+    const colour = (k) => (k === 'fluoro' ? css.getPropertyValue('--fluoro').trim() : '') || css.getPropertyValue(`--c-${k}`).trim() || css.getPropertyValue('--brand-bright').trim();
     const show = (el) => {
       const type = el.dataset.mark;
       annotate(el, {

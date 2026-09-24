@@ -443,3 +443,12 @@ html, body { overflow-x: clip; }
 .scene.on { transform: none; filter: blur(0); transition: opacity .8s var(--ease) .1s, transform 1s var(--ease) .1s, filter .8s var(--ease) .1s; }
 .boil { animation: none; }
 @media (prefers-reduced-motion: reduce) { .scene, .scene.on { transform: none; filter: none; transition: opacity .3s linear; } }
+
+/* What's new: calls to action under each item */
+.news-cta { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0 0; }
+.news-cta .btn { padding: .4rem .85rem; font-size: .84rem; }
+/* highlighter: fluorescent, readable under ink */
+:root { --fluoro: rgba(255, 236, 0, .62); }
+/* Work: actions sit in the side panel, under the title, where the decision is made */
+.outputs.side { margin: 0 0 1.4rem; }
+.outputs.side .btn { font-size: .86rem; padding: .48rem .9rem; }

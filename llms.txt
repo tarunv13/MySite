@@ -1,12 +1,12 @@
 # Tarun Kumar Verma
 
-> Conservation science researcher from India with a first degree in computer science. He studies whether environmental programmes change what people do, and whether the records used to measure that change (enforcement files, online trade listings, news archives, game data) can carry the weight placed on them. Research question: when can a digital record be read as evidence of what happened, rather than of who was looking?
+> Conservation science researcher. He studies whether environmental programmes change what people do, and whether the records used to measure that change (enforcement files, online trade listings, news archives, game data) can carry the weight placed on them. Research question: when can a digital record be read as evidence of what happened, rather than of who was looking?
 
 Also known as: Tarun Verma, Tarun K. Verma. Based in India. ORCID 0009-0009-4130-2455. GitHub tarunv13. LinkedIn in/tarunverma1.
 
 ## Background
-- M.Sc. Wildlife Science, University of Kota (2019-2021), 85.5%, ranked 2nd in the cohort. Dissertation: 1,341 recorded wildlife offences in Ranthambhore Tiger Reserve, 2015-2021.
-- B.Tech. Computer Science and Engineering, Rajasthan Technical University (2012-2016): programming and databases.
+- M.Sc. Wildlife Science (2019-2021), 85.5%, ranked 2nd in the cohort. Dissertation: 1,341 recorded wildlife offences in Ranthambhore Tiger Reserve, 2015-2021.
+- B.Tech. Computer Science and Engineering (2012-2016): programming and databases.
 - Creative Image Magazine, a Raghu Rai publication (2015-2018): built a documentary-photography community of 50,000+ followers.
 - FRLHT People's Biodiversity Register, Haryana (2020): 200+ household interviews on traditional ecological knowledge.
 - Wildlife Crime Control Bureau, volunteer analyst (2021-2022); WCS-India Counter Wildlife Trafficking programme (2022-2023): online trade monitoring, 50+ Hindi and Telugu trade codewords, text classifier.
