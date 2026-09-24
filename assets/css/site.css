@@ -571,3 +571,13 @@ html, body { overflow-x: clip; }
 .issuer img, .issuer .logo-type { height: 30px; width: auto; max-width: 150px; object-fit: contain; }
 .issuer img[src*="iiit-kota"], .issuer img[src*="zsl"] { height: 38px; }
 .issuer .logo-type { display: inline-grid; place-items: center; height: 30px; padding: 0 .6rem; border-radius: 6px; background: #1A7548; color: #fff; font: 700 .8rem/1 var(--sans); letter-spacing: .12em; }
+/* icon tiles where an entry has no logo, in the entry's chapter colour */
+.issuer .logo-ico { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 9px; background: color-mix(in srgb, var(--c, var(--brand)) 12%, #fff); color: var(--c-ink, var(--brand)); border: 1px solid color-mix(in srgb, var(--c, var(--brand)) 25%, #fff); }
+.issuer .logo-ico svg { width: 19px; height: 19px; }
+.issuer .logo-griffith { background: #C8102E; letter-spacing: .04em; font-size: .78rem; }
+.issuer img[src*="unep"] { height: 40px; }
+.issuer img[src*="socarxiv"] { height: 36px; border-radius: 4px; }
+/* What's new: an icon per kind of news */
+.news .tag { display: inline-flex; align-items: center; gap: .35rem; }
+.news .tag svg { width: 14px; height: 14px; }
+.issuer img[src*="atree"] { height: 38px; max-width: 170px; } .issuer img[src*="kalpavriksh"] { height: 34px; }
