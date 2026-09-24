@@ -479,3 +479,14 @@ html, body { overflow-x: clip; }
 .proj-bg img.flot.is-on, .no-js .proj-bg img.flot { opacity: .32; }
 .proj-bg img.swim.is-on, .no-js .proj-bg img.swim { opacity: .2; }
 .life { grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }
+
+/* Kind words: Raghu Rai's portrait beside his words */
+.pull-wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(1.2rem, 3vw, 2.5rem); align-items: center; }
+.pull-photo { margin: 0; }
+.pull-photo img { width: 100%; height: auto; border-radius: 14px; box-shadow: 0 30px 60px -40px rgba(16,23,19,.6); }
+.pull-photo figcaption { margin-top: .5rem; font-family: var(--mono); font-size: .72rem; color: var(--ink-3); }
+.pull figcaption a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+@media (max-width: 760px) { .pull-wrap { grid-template-columns: 1fr; } }
+/* field photographs inside project entries */
+.field-photo { margin: 1.4rem 0; max-width: 42rem; }
+.field-photo img { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 24px 50px -36px rgba(16,23,19,.5); }
