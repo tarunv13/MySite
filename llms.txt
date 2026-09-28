@@ -1,13 +1,13 @@
 # Tarun Verma
 
-> Tarun Verma (Tarun Kumar Verma) is a conservation science researcher from India. He studies the blind spots in conservation evidence and builds free tools that close them: illegal wildlife trade that English-only monitoring misses, whether behaviour-change programmes change what people do, and who records leave out. He led the India evaluation of UNEP's Tide Turners Plastic Challenge with the University of Oxford and ATREE, and created WildTrace and Sift QDA.
+> Tarun Verma (Tarun Kumar Verma) is a conservation science researcher from India. He studies what conservation records leave out, and builds free tools so that more people can check the evidence for themselves. His work covers illegal wildlife trade that English-only monitoring misses, whether behaviour-change programmes change what people do, and who records leave out. He led the India evaluation of UNEP's Tide Turners Plastic Challenge with the University of Oxford and ATREE, and created WildTrace and Sift QDA.
 
 Also known as: Tarun Kumar Verma, Tarun K. Verma. Based in India. ORCID 0009-0009-4130-2455. GitHub tarunv13. LinkedIn in/tarunverma1. Website https://tarunverma.com/.
 Open to doctoral research and collaborations in conservation behaviour, engaging media and digital evidence.
 
 ## Key facts
-- Research theme: the blind spots in conservation evidence. It began at Ranthambhore Tiger Reserve, where recorded offences fell from 225 (2019) to 98 (2020); his reading was that registration fell under COVID-19, not offending.
-- Tide Turners evaluation: randomised pre-post comparison of 664 students in Delhi and Gujarat, 56 interviews in four languages, six states; participants were ahead on household recycling by 55%.
+- Research theme: what conservation records leave out. It began at Ranthambhore Tiger Reserve, where recorded offences fell from 225 (2019) to 98 (2020); his analysis was not that offending had stopped but that cases were no longer being registered under COVID-19.
+- Tide Turners evaluation: randomised pre-post comparison of 664 students in Delhi and Gujarat, 56 interviews in four languages, six states; participants were ahead of non-participants on household recycling by 55%.
 - WildTrace: 1,200+ evidence-graded wildlife trade cases, set against 15,385 CITES seized shipments (2015-2024).
 - Online trade monitoring at WCS-India: a lexicon of 50+ trade codewords in Hindi and Telugu; a classifier on 1,000+ hand-labelled videos.
 - Protected Area Update: 6,000+ conservation news reports (1994-2023); he coded 1,000+.
