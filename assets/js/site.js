@@ -99,7 +99,7 @@ const SPECIES = [
   { k: 'vulture', why: 'Species decline', img: 'white-rumped-vulture-gyps-bengalensis-hardwicke-1830s', name: 'White-rumped vulture', latin: 'Gyps bengalensis', where: 'Writing', note: 'Once common across India, it fell by more than 99% in the 1990s, largely from the veterinary drug diclofenac.' },
   { k: 'cat', why: 'How I came to conservation', img: 'jungle-cat-felis-chaus-hardwicke-1830s', name: 'Jungle cat', latin: 'Felis chaus', where: 'Journey', note: 'The wild cats of Ranthambhore were the subject of my uncle’s photographs, and my first sense of what a picture can do.' },
   { k: 'blackbuck', why: 'Traditional knowledge', img: 'blackbuck-antilope-cervicapra-hardwicke-1830s', name: 'Blackbuck', latin: 'Antilope cervicapra', where: 'Journey', note: 'Protected for centuries by Bishnoi communities in Rajasthan, which is a lesson in whose knowledge counts.' },
-  { k: 'owl', why: 'Who was looking', img: 'dusky-eagle-owl-bubo-coromandus-hardwicke-1830s', name: 'Dusky eagle-owl', latin: 'Bubo coromandus', where: 'Home', note: 'The bird beside my portrait on the front page, because everything on this site starts with who was looking.' },
+  { k: 'owl', why: 'Reading the record', img: 'dusky-eagle-owl-bubo-coromandus-hardwicke-1830s', name: 'Dusky eagle-owl', latin: 'Bubo coromandus', where: 'Home', note: 'A night hunter of Indian riverbanks. Much of what matters in a forest happens when nobody is there to write it down.' },
 ];
 const thumb = (s) => `<img src="${P}${s.img}.webp" alt="" width="60" height="60" loading="lazy" decoding="async">`;
 const KEY = 'tv-field-journal-v2';
@@ -121,7 +121,7 @@ function render() {
   const j = just && SPECIES.find((x) => x.k === just);
   const card = j ? `<div class="found" role="status"><span class="found-img"><img src="${P}${j.img}.webp" alt="" width="120" height="120"></span><div><p class="found-lab">Just spotted · ${seen.size} of ${SPECIES.length}</p><b>${j.name}</b><i>${j.latin}</i><span class="why">${j.why}</span><p>${j.note}</p></div></div>` : '';
   panel.innerHTML = `${card}<h2>Field journal</h2>
-    <p class="how"><b>What is this?</b> Nine animals painted for Thomas Hardwicke’s <i>Illustrations of Indian Zoology</i> (1830s) are hidden in the words of this site, each in a small dashed circle. Every one is tied to a part of my work. Tap it to add it here and read why it matters. My research starts with who was looking, so this is a small game about looking closely.</p>
+    <p class="how"><b>What is this?</b> Nine animals painted for Thomas Hardwicke’s <i>Illustrations of Indian Zoology</i> (1830s) are hidden in the words of this site, each in a small dashed circle. Every one is tied to a part of my work. Tap it to add it here and read why it matters. My research is about what records miss, so this is a small game about looking closely.</p>
     <ol>${SPECIES.map((s) => `<li class="${seen.has(s.k) ? 'seen' : ''}${s.k === just ? ' just' : ''}" data-k="${s.k}"><span class="g">${thumb(s)}</span><span><b>${seen.has(s.k) ? `${s.name} <i class="muted">${s.latin}</i>` : `Not yet spotted · look on ${s.where}`}</b><span class="why">${s.why}</span><span class="note">${s.note}</span></span></li>`).join('')}</ol>
     ${all ? '<p class="done">All nine. You looked more closely than most records do. Thank you for reading this far.</p>' : ''}
     ${seen.size ? '<button class="reset" type="button">Start the journal again</button>' : ''}`;
@@ -165,6 +165,55 @@ if (!hinted && !seen.size && document.querySelector('.spot')) {
   setTimeout(() => { if (tip.isConnected) close(); }, 16000);
 }
 sync(); render();
+
+
+/* ---------- project rail: swipe on touch, drag with a mouse, arrows, keys ----------
+   No autoplay: visitors move it themselves, and the next card always peeks in
+   so the rail announces that there is more. */
+document.querySelectorAll('[data-rail]').forEach((rail) => {
+  const track = rail.querySelector('.rail-track');
+  const cards = [...track.children];
+  const prev = rail.querySelector('.prev'), next = rail.querySelector('.next');
+  const count = rail.querySelector('.rail-count b'), bar = rail.querySelector('.rail-bar');
+  const pad = () => parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0;
+  const current = () => {
+    const x = track.scrollLeft + pad();
+    let best = 0; cards.forEach((c, i) => { if (Math.abs(c.offsetLeft - x) < Math.abs(cards[best].offsetLeft - x)) best = i; });
+    return best;
+  };
+  const go = (i) => { const c = cards[Math.max(0, Math.min(cards.length - 1, i))]; track.scrollTo({ left: c.offsetLeft - pad(), behavior: reduced ? 'auto' : 'smooth' }); };
+  const update = () => {
+    const max = track.scrollWidth - track.clientWidth;
+    const i = track.scrollLeft >= max - 4 ? cards.length - 1 : current();
+    count.textContent = String(i + 1).padStart(2, '0');
+    bar.style.setProperty('--p', `${((i + 1) / cards.length) * 100}%`);
+    prev.disabled = track.scrollLeft <= 4; next.disabled = track.scrollLeft >= max - 4;
+  };
+  prev.addEventListener('click', () => go(current() - 1));
+  next.addEventListener('click', () => go(current() + 1));
+  track.addEventListener('keydown', (e) => {
+    if (e.target !== track) return;
+    if (e.key === 'ArrowRight') { e.preventDefault(); go(current() + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(current() - 1); }
+  });
+  let raf = 0; track.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); }, { passive: true });
+  addEventListener('resize', update);
+  // mouse drag (touch and trackpads scroll natively)
+  let down = null, moved = false;
+  track.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse' || e.button) return; down = { x: e.clientX, l: track.scrollLeft }; moved = false; });
+  addEventListener('pointermove', (e) => {
+    if (!down) return; const dx = e.clientX - down.x;
+    if (!moved && Math.abs(dx) > 6) { moved = true; track.classList.add('dragging'); }
+    if (moved) track.scrollLeft = down.l - dx;
+  });
+  addEventListener('pointerup', () => {
+    if (!down) return; down = null;
+    if (moved) { track.classList.remove('dragging'); go(current()); setTimeout(() => { moved = false; }, 0); }
+  });
+  track.addEventListener('click', (e) => { if (moved) { e.preventDefault(); moved = false; } }, true);
+  track.addEventListener('dragstart', (e) => e.preventDefault());
+  update();
+});
 
 /* ---------- analytics, last, so it never delays the page ---------- */
 if ('requestIdleCallback' in window) requestIdleCallback(() => startAnalytics(), { timeout: 3000 });

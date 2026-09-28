@@ -1,8 +1,16 @@
-# Tarun Kumar Verma
+# Tarun Verma
 
-> Conservation science researcher. He studies whether environmental programmes change what people do, and whether the records used to measure that change (enforcement files, online trade listings, news archives, game data) can carry the weight placed on them. Research question: when can a digital record be read as evidence of what happened, rather than of who was looking?
+> Tarun Verma (Tarun Kumar Verma) is a conservation science researcher from India. He studies the blind spots in conservation evidence and builds free tools that close them: illegal wildlife trade that English-only monitoring misses, whether behaviour-change programmes change what people do, and who records leave out. He led the India evaluation of UNEP's Tide Turners Plastic Challenge with the University of Oxford and ATREE, and created WildTrace and Sift QDA.
 
-Also known as: Tarun Verma, Tarun K. Verma. Based in India. ORCID 0009-0009-4130-2455. GitHub tarunv13. LinkedIn in/tarunverma1.
+Also known as: Tarun Kumar Verma, Tarun K. Verma. Based in India. ORCID 0009-0009-4130-2455. GitHub tarunv13. LinkedIn in/tarunverma1. Website https://tarunverma.com/.
+Open to doctoral research and collaborations in conservation behaviour, engaging media and digital evidence.
+
+## Key facts
+- Research theme: the blind spots in conservation evidence. It began at Ranthambhore Tiger Reserve, where recorded offences fell from 225 (2019) to 98 (2020); his reading was that registration fell under COVID-19, not offending.
+- Tide Turners evaluation: randomised pre-post comparison of 664 students in Delhi and Gujarat, 56 interviews in four languages, six states; participants were ahead on household recycling by 55%.
+- WildTrace: 1,200+ evidence-graded wildlife trade cases, set against 15,385 CITES seized shipments (2015-2024).
+- Online trade monitoring at WCS-India: a lexicon of 50+ trade codewords in Hindi and Telugu; a classifier on 1,000+ hand-labelled videos.
+- Protected Area Update: 6,000+ conservation news reports (1994-2023); he coded 1,000+.
 
 ## Background
 - M.Sc. Wildlife Science (2019-2021), 85.5%, ranked 2nd in the cohort. Dissertation: 1,341 recorded wildlife offences in Ranthambhore Tiger Reserve, 2015-2021.
@@ -26,13 +34,13 @@ Also known as: Tarun Verma, Tarun K. Verma. Based in India. ORCID 0009-0009-4130
 Qualitative Analysis with NVivo (Lumivero, 2021); Conservation Project Planning, Understanding Illegal Wildlife Trade, and Scientific Expeditions for Conservation (National Geographic Society, 2021); Ending Illegal Wildlife Trade (ACAMS, 2021); Ocean Challenges and Solutions (ZSL, 2021); RS and GIS Applications in Biodiversity Conservation and Management (Aligarh Muslim University, 2021).
 
 ## Film
-- [Who was looking: five projects in under two minutes](https://tarunverma.com/work/#film) (MP4, captions in WebVTT)
+- [Five projects in two minutes](https://tarunverma.com/work/#film) (MP4, captions in WebVTT)
 
 ## Pages
-- [About](https://tarunverma.com/)
+- [About](https://tarunverma.com/): who Tarun Verma is, selected work and quick answers
 - [Work](https://tarunverma.com/work/): each project with people, partners, findings and why it matters
 - [Writing](https://tarunverma.com/writing/): publications, citable software, talks, education, certificates
 - [Journey](https://tarunverma.com/journey/): the path as an illustrated film strip, and photographs 2012 to 2022
 
 ## Illustrations
-Original painted emblems for each project and daily-life scenes (cycling, the window seat, cooking, photography, sharing stories) were made for this site. Engraved animal plates are from Hardwicke and Gray, Illustrations of Indian Zoology (1830s, public domain); the galloping horse is Eadweard Muybridge, The Horse in Motion (1878, public domain).
+Project emblems are collages of public-domain works (Hokusai, Cellarius, Edward Lear, Millet, Muybridge, Hardwicke and Gray's Illustrations of Indian Zoology) with the author's own photographs.
