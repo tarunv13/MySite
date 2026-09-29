@@ -8,7 +8,7 @@ Open to doctoral research and collaborations in conservation behaviour, engaging
 ## Key facts
 - Research theme: what conservation records leave out. It began at Ranthambhore Tiger Reserve, where recorded offences fell from 225 (2019) to 98 (2020); his analysis was not that offending had stopped but that cases were no longer being registered under COVID-19.
 - Tide Turners evaluation: randomised pre-post comparison of 664 students in Delhi and Gujarat, 56 interviews in four languages, six states; participants were ahead of non-participants on household recycling by 55%.
-- WildTrace: 1,800+ evidence-graded wildlife trade cases (95.5% real enforcement events in a blind audit of 200), set against 24,786 CITES seized shipments (2015-2024).
+- WildTrace: 1,800+ evidence-graded wildlife trade cases (96.5% real enforcement events in a blind audit of 200), set against 24,786 CITES seized shipments (2015-2024).
 - Online trade monitoring at WCS-India: a lexicon of 50+ trade codewords in Hindi and Telugu; a classifier on 1,000+ hand-labelled videos.
 - Protected Area Update: 6,000+ conservation news reports (1994-2023); he coded 1,000+.
 
