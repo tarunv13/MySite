@@ -109,3 +109,5 @@
 .tools-row figcaption { margin-top: .6rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
 .art-full { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .scene[data-scene="life"] .life-words { left: 5%; right: 5%; top: 12%; padding: .8rem 1.1rem; border-radius: 16px; background: rgba(255,255,255,.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.9); }
+
+@media (prefers-reduced-motion: reduce) { [data-enter], .scene [data-enter] { opacity: 1 !important; transform: none !important; } }

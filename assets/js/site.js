@@ -152,7 +152,8 @@ document.querySelectorAll('.spot-slot').forEach((slot) => {
 document.body.append(panel, btn);
 const HINT = 'tv-journal-hint';
 let hinted = false; try { hinted = localStorage.getItem(HINT) === '1'; } catch { /* no storage */ }
-if (!hinted && !seen.size && document.querySelector('.spot')) {
+// The hint shows on the home page only, where it opens the game, not over the first lines of every page.
+if (!hinted && !seen.size && document.querySelector('.spot') && location.pathname === '/') {
   const tip = document.createElement('p');
   tip.className = 'journal-hint'; tip.setAttribute('role', 'note');
   tip.innerHTML = 'Nine animals are hiding in the text, in dashed circles. Tap one to see why it’s here. <button type="button" aria-label="Dismiss">✕</button>';
@@ -162,7 +163,9 @@ if (!hinted && !seen.size && document.querySelector('.spot')) {
   document.querySelectorAll('.spot').forEach((sp) => sp.addEventListener('click', close, { once: true }));
   document.body.append(tip);
   setTimeout(() => tip.classList.add('on'), 3500);
-  setTimeout(() => { if (tip.isConnected) close(); }, 16000);
+  // Shown once per browser, for six seconds; the first scroll also closes it so it never sits over the text.
+  setTimeout(() => { if (tip.isConnected) close(); }, 9500);
+  addEventListener('scroll', () => { if (tip.classList.contains('on')) close(); }, { passive: true, once: true });
 }
 sync(); render();
 
